@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intellectual Journey - Dr. Ahmed Rahman</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav-logo">Dr. Rahman</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#videos">Videos</a>
+      <a href="index.html#books">Books</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Desktop Hamburger Menu -->
+  <div class="desktop-hamburger">
+    <input type="checkbox" id="desktop-menu-toggle">
+    <label for="desktop-menu-toggle" class="desktop-menu-icon">
+      <i class="fas fa-bars"></i>
+      <span>More Pages</span>
+    </label>
+    
+    <div class="desktop-menu">
+      <div class="desktop-menu-header">
+        <h3>Explore More</h3>
+        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="desktop-menu-links">
+        <a href="intellectual-journey.html" class="desktop-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="desktop-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="desktop-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="desktop-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="desktop-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="desktop-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="recommended-movies.html" class="desktop-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Recommended Movies</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Hamburger Menu -->
+  <div class="mobile-hamburger">
+    <input type="checkbox" id="mobile-menu-toggle">
+    <label for="mobile-menu-toggle" class="mobile-menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    
+    <div class="mobile-menu">
+      <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="mobile-menu-header">
+        <div class="nav-logo">Dr. Rahman</div>
+        <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
+      </div>
+      
+      <div class="mobile-menu-links">
+        <a href="index.html" class="mobile-menu-link">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="index.html#videos" class="mobile-menu-link">
+          <i class="fas fa-play-circle"></i>
+          <span>Videos</span>
+        </a>
+        <a href="index.html#books" class="mobile-menu-link">
+          <i class="fas fa-book"></i>
+          <span>Books</span>
+        </a>
+        <a href="index.html#gallery" class="mobile-menu-link">
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
+        </a>
+        <a href="index.html#contact" class="mobile-menu-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+        <div class="menu-divider"></div>
+        <a href="intellectual-journey.html" class="mobile-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="mobile-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="mobile-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="mobile-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="mobile-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="mobile-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="recommended-movies.html" class="mobile-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Recommended Movies</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <h1>Intellectual Journey</h1>
+    <p>My path of knowledge, learning, and spiritual growth through Islamic scholarship</p>
+  </section>
+
+  <section class="page-content">
+    <div class="content-grid">
+      <div class="content-card">
+        <h3><i class="fas fa-book-open"></i> Early Education</h3>
+        <p>My journey began at the age of 7 with memorization of the Holy Quran under the guidance of renowned Qaris. This foundation in Quranic studies shaped my understanding of Islamic principles and values.</p>
+      </div>
+      
+      <div class="content-card">
+        <h3><i class="fas fa-graduation-cap"></i> Formal Studies</h3>
+        <p>I pursued formal Islamic education at Al-Azhar University, where I specialized in Quranic Tafseer and Hadith sciences. This period was crucial in developing my analytical and critical thinking skills.</p>
+      </div>
+      
+      <div class="content-card">
+        <h3><i class="fas fa-lightbulb"></i> Spiritual Awakening</h3>
+        <p>During my studies, I experienced a profound spiritual awakening that deepened my connection with Islamic teachings and motivated me to share this knowledge with others.</p>
+      </div>
+    </div>
+
+    <div class="section-title">Academic Timeline</div>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-date">1995-2000</span>
+        <h3>Quran Memorization</h3>
+        <p>Completed Hifz of the Holy Quran at Darul Uloom Islamic Center under Sheikh Ahmed Al-Misri</p>
+      </div>
+      
+      <div class="timeline-item">
+        <span class="timeline-date">2000-2005</span>
+        <h3>Islamic Studies Degree</h3>
+        <p>Bachelor of Islamic Studies from International Islamic University, specializing in Tafseer and Hadith</p>
+      </div>
+      
+      <div class="timeline-item">
+        <span class="timeline-date">2005-2008</span>
+        <h3>Advanced Studies</h3>
+        <p>Master's degree in Islamic Jurisprudence from Al-Azhar University, Cairo</p>
+      </div>
+      
+      <div class="timeline-item">
+        <span class="timeline-date">2008-2012</span>
+        <h3>PhD Research</h3>
+        <p>Doctoral research on "Modern Applications of Islamic Principles in Contemporary Society"</p>
+      </div>
+      
+      <div class="timeline-item">
+        <span class="timeline-date">2012-Present</span>
+        <h3>Teaching & Scholarship</h3>
+        <p>Established Islamic education centers and published numerous books on Islamic teachings</p>
+      </div>
+    </div>
+
+    <div class="section-title">Key Influences</div>
+    
+    <div class="content-grid">
+      <div class="content-card">
+        <h3><i class="fas fa-users"></i> Mentors & Teachers</h3>
+        <ul>
+          <li>Sheikh Ahmed Al-Misri - Quranic Studies</li>
+          <li>Dr. Muhammad Al-Shareef - Islamic Jurisprudence</li>
+          <li>Professor Fatima Zahra - Hadith Sciences</li>
+          <li>Dr. Ibrahim Khan - Contemporary Islamic Thought</li>
+        </ul>
+      </div>
+      
+      <div class="content-card">
+        <h3><i class="fas fa-book"></i> Influential Texts</h3>
+        <ul>
+          <li>Tafheem ul Quran - Maududi</li>
+          <li>Riyadh us Saliheen - Imam Nawawi</li>
+          <li>Fiqh us Sunnah - Sayyid Sabiq</li>
+          <li>Al-Muwatta - Imam Malik</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-socials">
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="footer-text">
+      <p>&copy; 2025 Dr. Ahmed Rahman | Islamic Scholar & Legal Expert</p>
+      <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+    </div>
+  </div>
+  
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/8303682611?text=Hello%20Dr.%20Rahman,%20I%20would%20like%20to%20know%20more%20about%20your%20Islamic%20teachings" 
+     class="whatsapp-float" 
+     target="_blank" 
+     title="Chat with Dr. Rahman on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

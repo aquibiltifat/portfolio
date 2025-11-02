@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Ahmed Rahman - Islamic Scholar Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav-logo">Dr. Rahman</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#videos">Videos</a>
+      <a href="#books">Books</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <section class="hero" id="home">
+    <img src="Gemini_Generated_Image_jxxhnzjxxhnzjxxh.png" alt="Dr. Rahman" class="profile-img">
+    <div class="hero-title">Dr. Ahmed Rahman</div>
+    <div class="hero-subtitle">Islamic Scholar • Speaker • Legal Expert</div>
+    <div class="hero-roles">
+      <span class="hero-role">Quran Teacher</span>
+      <span class="hero-role">Hadith Expert</span>
+      <span class="hero-role">Islamic Scholar</span>
+    </div>
+    <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+      Get in Touch
+    </button>
+  </section>
+</header>
+
+<main>
+  <!-- Desktop Hamburger Menu -->
+  <div class="desktop-hamburger top-left">
+    <input type="checkbox" id="desktop-menu-toggle">
+    <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    
+    <div class="desktop-menu">
+      <div class="desktop-menu-header">
+        <h3>Explore More</h3>
+        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="desktop-menu-links">
+        <a href="intellectual-journey.html" class="desktop-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="desktop-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="desktop-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="desktop-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="desktop-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="desktop-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="recommended-movies.html" class="desktop-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Recommended Movies</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Hamburger Menu -->
+  <div class="mobile-hamburger">
+    <input type="checkbox" id="mobile-menu-toggle">
+    <label for="mobile-menu-toggle" class="mobile-menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    
+    <div class="mobile-menu">
+      <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="mobile-menu-header">
+        <div class="nav-logo">Dr. Rahman</div>
+        <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
+      </div>
+      
+      <div class="mobile-menu-links">
+        <a href="#home" class="mobile-menu-link">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#videos" class="mobile-menu-link">
+          <i class="fas fa-play-circle"></i>
+          <span>Videos</span>
+        </a>
+        <a href="#books" class="mobile-menu-link">
+          <i class="fas fa-book"></i>
+          <span>Books</span>
+        </a>
+        <a href="#gallery" class="mobile-menu-link">
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
+        </a>
+        <a href="#contact" class="mobile-menu-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+        <div class="menu-divider"></div>
+        <a href="intellectual-journey.html" class="mobile-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="mobile-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="mobile-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="mobile-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="mobile-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="mobile-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="recommended-movies.html" class="mobile-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Recommended Movies</span>
+        </a>
+        <a href="videos.html" target="_blank" class="mobile-menu-link">
+          <i class="fas fa-play-circle"></i>
+        </a>
+        <a href="books.html" target="_blank" class="mobile-menu-link">
+          <i class="fas fa-book"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="stats-counters">
+    <div class="counter-card">
+      <div class="counter-num" id="talks-count">120+</div>
+      <div class="counter-label">Islamic Talks</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num" id="students-count">5000+</div>
+      <div class="counter-label">Students</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num" id="videos-count">110+</div>
+      <div class="counter-label">Islamic Videos</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num" id="books-count">28+</div>
+      <div class="counter-label">Islamic Books</div>
+    </div>
+  </section>
+  
+  <div class="section-title" id="videos">Islamic Videos & Lectures</div>
+  <div class="videos-row">
+    <div class="videos-carousel">
+      <!-- Video cards remain the same as before -->
+      <div class="video-card" data-video-id="kuh7_Xm8iMI">
+        <div class="video-thumb-container">
+          <img src="https://img.youtube.com/vi/kuh7_Xm8iMI/maxresdefault.jpg" class="video-thumb" alt="Quran Recitation"/>
+          <div class="video-play-btn">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="video-title">Surah Al-Fatiha Recitation with Translation</div>
+        <div class="video-meta">5min • 7k views</div>
+      </div>
+      <!-- Add other video cards -->
+    </div>
+  </div>
+  
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="videoModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <iframe class="video-modal-iframe" id="videoIframe" 
+              src="" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+  
+  <div class="section-title" id="books">Islamic Books & Resources</div>
+  <div class="books-grid">
+    <!-- Book cards remain the same -->
+    <div class="book-card">
+      <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="book-cover" alt="Quran PDF"/>
+      <div class="book-title">Holy Quran</div>
+      <div class="book-meta">Arabic-English Translation • 604 pages</div>
+      <a href="#" class="book-download">Download PDF</a>
+    </div>
+    <!-- Add other book cards -->
+  </div>
+  
+  <div class="section-title" id="gallery">Islamic Event Gallery</div>
+  <div class="gallery-masonry">
+    <img src="https://images.unsplash.com/photo-1560421683-258635f7a58a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 1" class="gallery-img"/>
+    <img src="https://images.unsplash.com/photo-1601599714603-3c1d56bad9f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 2" class="gallery-img"/>
+    <!-- Add more gallery images -->
+  </div>
+  
+  
+
+  <!-- Personal Details Section -->
+  <section class="personal-details">
+    <div class="section-title">My Opinion</div>
+    <div class="detail-content">
+      <p>"Through knowledge and understanding, we can bridge the gap between tradition and modernity, creating a harmonious society that respects Islamic values while embracing positive change."</p>
+    </div>
+
+    <div class="section-title">Qualification</div>
+    <div class="detail-content">
+      <ul>
+        <li>PhD in Islamic Studies - Al-Azhar University</li>
+        <li>Master of Laws (LLM) - International Islamic University</li>
+        <li>Bachelor of Sharia & Law - Islamic University of Medina</li>
+        <li>Ijazah in Quran Recitation - Certified Qari</li>
+      </ul>
+    </div>
+
+    <div class="section-title">Achievement</div>
+    <div class="detail-content">
+      <ul>
+        <li>Published 28+ Islamic books translated into 5 languages</li>
+        <li>Conducted 120+ public lectures across 15 countries</li>
+        <li>Established 3 Islamic education centers</li>
+        <li>Recipient of Islamic Scholar Excellence Award 2023</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<div class="section-title" id="contact">Contact Dr. Rahman</div>
+  <form class="contact-form" autocomplete="on">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-socials">
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="footer-text">
+      <p>&copy; 2025 Dr. Ahmed Rahman | Islamic Scholar & Legal Expert</p>
+      <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+    </div>
+  </div>
+  
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/8303682611?text=Hello%20Dr.%20Rahman,%20I%20would%20like%20to%20know%20more%20about%20your%20Islamic%20teachings" 
+     class="whatsapp-float" 
+     target="_blank" 
+     title="Chat with Dr. Rahman on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
