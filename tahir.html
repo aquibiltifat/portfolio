@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatwa on Terrorism: A Comprehensive Review</title>
+    <style>
+        :root {
+            --primary: #1a472a;
+            --secondary: #b8860b;
+            --accent: #8b4513;
+            --light: #f8f8f8;
+            --dark: #2c2c2c;
+            --gold: #d4af37;
+            --green: #2e8b57;
+            --red: #8b0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: var(--light);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), #0d3c1f);
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(184, 134, 11, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.2) 0%, transparent 50%);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .author {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            height: fit-content;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 3rem 0 1.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        h2:first-child {
+            margin-top: 0;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        h3 {
+            color: var(--accent);
+            margin: 2.2rem 0 1.2rem;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.8rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.08), rgba(184, 134, 11, 0.08));
+            border-left: 5px solid var(--secondary);
+            padding: 2.2rem;
+            margin: 2.5rem 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .highlight::before {
+            content: "";
+            font-size: 5rem;
+            color: var(--secondary);
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .arguments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .argument-card {
+            background: white;
+            border: 1px solid rgba(26, 71, 42, 0.2);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .argument-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        .argument-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .argument-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+        
+        .argument-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        
+        .refutation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .refutation-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .refutation-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .refutation-table tr:nth-child(even) {
+            background: rgba(26, 71, 42, 0.03);
+        }
+        
+        .claim {
+            font-weight: 600;
+            color: var(--red);
+        }
+        
+        .refutation {
+            font-weight: 600;
+            color: var(--green);
+        }
+        
+        .methodology-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .methodology-item {
+            padding: 1.8rem;
+            max-width: 250px;
+        }
+        
+        .methodology-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .methodology-label {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .impact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-card {
+            background: white;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            border-radius: 12px;
+            padding: 2.2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .impact-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.05), rgba(184, 134, 11, 0.05));
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-left: 5px solid var(--secondary);
+            position: relative;
+        }
+        
+        .conclusion::before {
+            content: "★";
+            position: absolute;
+            top: -18px;
+            left: 25px;
+            background: white;
+            color: var(--secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-radius: 15px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2.8rem;
+        }
+        
+        .sidebar-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.7rem;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+        
+        .credentials-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .credentials-list li {
+            padding: 0.8rem;
+            background: rgba(26, 71, 42, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .endorsement-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .endorsement-list li {
+            padding: 0.8rem;
+            background: rgba(184, 134, 11, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .methodology-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .refutation-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Fatwa on Terrorism and Suicide Bombings</h1>
+        <p class="subtitle">A Comprehensive Review of Dr. Muhammad Tahir-ul-Qadri's Landmark Theological Refutation</p>
+        <p class="author">By Dr. Muhammad Tahir-ul-Qadri • Issued 2010</p>
+        
+        <div class="stats">
+            <div class="stat">600 Pages (Urdu)</div>
+            <div class="stat">512 Pages (English)</div>
+            <div class="stat">Al-Azhar Endorsed</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <section id="overview">
+                <h2>Part 1: A Jurisprudential Stand: Overview and Significance</h2>
+                <p>The Fatwa on Terrorism and Suicide Bombings by Dr. Muhammad Tahir-ul-Qadri represents one of the most significant and comprehensive theological refutations of extremist violence in the 21st century. Issued in 2010, this jurisprudential ruling emerged at a critical moment in the global struggle against terrorism, providing an authoritative, text-based counter-narrative to the ideologies propagated by groups like Al-Qaeda and the Taliban.</p>
+                
+                <div class="highlight">
+                    <p>A primary driver for this 600-page work was the conspicuous and, in his view, dangerous "silence" of many other ulema (Islamic clerics) and scholars. Dr. Qadri noted, "unfortunately, I saw many ulema and scholars who were supposed to criticize or condemn these acts of terror, [but] instead of condemning them absolutely and strongly, they were silent".</p>
+                </div>
+                
+                <h3>1.1 Context of the Edict: Filling a Theological Void</h3>
+                <p>The fatwa was issued as a direct response to a "wave of terrorism and violence" that had intensified, particularly in the author's native Pakistan, which was plagued by suicide bombings. Dr. Qadri was motivated by the sheer brutality of these acts, citing terrorists "slaughtering" their opponents and even "hanging [dead bodies] from the trees".</p>
+                
+                <p>This theological vacuum had two profound and damaging consequences that the fatwa was designed to combat. First, it allowed a "bad name" to be attached to Islam globally, poisoning East-West relations. Second, it permitted the unopposed "brainwashing" of a "new Muslim generation," which was becoming "confused about Islamic ideologies".</p>
+                
+                <h3>1.2 The Author: Dual Scholarly Authority</h3>
+                <p>The credibility and impact of the fatwa are inextricably linked to the unique scholarly profile of its author. Dr. Qadri possesses a rare "dual-credentialism," establishing him as an authority in both classical Islamic sciences and modern Western-style academia.</p>
+                
+                <div class="highlight">
+                    <p>This dual-credentialism serves as a powerful methodological shield. Extremist ideologues typically dismiss modern, Western-trained academics as inauthentic, while secular critics often dismiss purely traditional clerics as being out of touch with contemporary statecraft.</p>
+                </div>
+                
+                <h3>1.3 The 600-Page Judgment: Absolute Condemnation</h3>
+                <p>The fatwa is one of the "most extensive Islamic anti-terrorism rulings" ever published. At its public launch in London, Dr. Qadri articulated its core thesis: an "absolute" condemnation of terrorism without "'any excuses or pretexts'".</p>
+                
+                <p>The sheer 600-page length of the fatwa is a deliberate and necessary methodological choice. Terrorist organizations "distort, twist, and confuse" sacred concepts and "utilise sacred Islamic concepts to justify their activities", often buttressed by their own complex, albeit perverse, scriptural proofs.</p>
+            </section>
+            
+            <section id="arguments">
+                <h2>Part 2: Core Theological and Legal Arguments</h2>
+                <p>The fatwa systematically deconstructs the key pillars of extremist ideology, employing classical Islamic law (fiqh) and theology (aqidah) to not only condemn their actions but to invalidate their very creed.</p>
+                
+                <div class="arguments-grid">
+                    <div class="argument-card">
+                        <h4><span class="argument-number">1</span> Terrorism as Kufr (Disbelief)</h4>
+                        <p>The most significant ruling of the fatwa is its declaration "that terrorism is kufr [an act of disbelief] under Islamic law". This goes far beyond declaring it a major sin (haram).</p>
+                        <p>Dr. Qadri's legal reasoning rests on the classical concept of istihlal—the act of making the forbidden permissible. He argues that the act of "killing people with [the] ideology" that this killing is "lawful (halal) or permissible, or an act of jihad" is precisely what "leads a person to exit the fold of Islam".</p>
+                    </div>
+                    <div class="argument-card">
+                        <h4><span class="argument-number">2</span> Reclaiming Jihad</h4>
+                        <p>The fatwa "completely dismantles al-Qaeda's violent ideology" by "disprov[ing] and refut[ing] terrorist interpretations of the jihad verses".</p>
+                        <p>Dr. Qadri's "basic principle" is that "nobody—neither an individual, a private organization, nor a group of people—has the right to declare jihad." He asserts this is a "unanimously agreed-upon view in Islam". The right to armed struggle belongs exclusively to a legitimate state authority.</p>
+                    </div>
+                    <div class="argument-card">
+                        <h4><span class="argument-number">3</span> Refuting Martyrdom Claims</h4>
+                        <p>The fatwa is unequivocal in dismantling the "cult of martyrdom" that fuels suicide bombings. Dr. Qadri states, "they can't claim that their suicide bombings are martyrdom operations". "Whatever these terrorists are doing, it's not martyrdom".</p>
+                        <p>Instead of becoming "heroes of the Muslim Umma," he argues, they "become heroes of hellfire, and they are leading towards hellfire".</p>
+                    </div>
+                    <div class="argument-card">
+                        <h4><span class="argument-number">4</span> Sanctity of Life</h4>
+                        <p>The fatwa provides an "emphatic rejection of any acts of unjustified aggression against all human beings, whether Muslims or non-believers".</p>
+                        <p>This protection is extended to property and religious freedom, with the fatwa mandating "the protection of the non-Muslims' lives, properties and places of worship" and forbidding "forcing one's belief upon others and destroying places of worship".</p>
+                    </div>
+                </div>
+                
+                <h3>Point-by-Point Refutation of Extremist Claims</h3>
+                <table class="refutation-table">
+                    <thead>
+                        <tr>
+                            <th>Extremist Claim</th>
+                            <th>Dr. Qadri's Refutation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="claim">Jihad (The "Sword Verses") - Terrorists use "misinterpretation of the Qur'anic verses of the 'sword'" to justify violence</td>
+                            <td class="refutation">Jihad is Not Anarchy - "Nobody... an individual, a private organization... has the right to declare jihad". Allowing this creates "anarchy".</td>
+                        </tr>
+                        <tr>
+                            <td class="claim">Targeting Non-Combatants - Terrorists "utilise sacred Islamic concepts to justify their activities" against civilian "infidels"</td>
+                            <td class="refutation">Absolute Sanctity of Non-Combatants - "There is no jihad against noncombatants". The fatwa proves the "unlawfulness of terrorism against non-Muslims, even during times of war".</td>
+                        </tr>
+                        <tr>
+                            <td class="claim">Suicide Bombing as Martyrdom - The "bomber commit[s] his heinous act" believing it to be a "martyrdom operation"</td>
+                            <td class="refutation">Suicide as a "Triple Sin" - "It's not martyrdom". They are "heroes of hellfire". It is a compound sin: 1) Murder, 2) Suicide, and 3) Istihlal (declaring the haram to be halal), which is an act of Kufr.</td>
+                        </tr>
+                        <tr>
+                            <td class="claim">The "Caliphate" & Rebellion - Extremists seek to establish a "global Caliphate" by overthrowing "apostate" Muslim governments</td>
+                            <td class="refutation">Rebellion is Haram - The fatwa proves the "unlawfulness of rebelling against the Muslim state, administration and authority". This is true "even if the government is corrupt".</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="methodology">
+                <h2>Part 3: Authorial Methodology: Classical Refutation</h2>
+                <p>The how of the fatwa—its jurisprudential methodology—is as significant as its conclusions. Dr. Qadri does not invent a new, "modernist" interpretation of Islam to suit contemporary ethics. Instead, he uses the full weight of classical tradition to prove that modern terrorism is a deviation.</p>
+                
+                <div class="methodology-section">
+                    <div class="methodology-item">
+                        <div class="methodology-icon">📚</div>
+                        <div class="methodology-label">Khawarij Analogy</div>
+                        <p>Identifying modern terrorists with the Khawarij, the first violent, takfiri sect in Islamic history</p>
+                    </div>
+                    <div class="methodology-item">
+                        <div class="methodology-icon">⚖️</div>
+                        <div class="methodology-label">Classical Sources</div>
+                        <p>Relying on exhaustive citations from Qur'an, Hadith, and classical scholarship</p>
+                    </div>
+                    <div class="methodology-item">
+                        <div class="methodology-icon">🕊️</div>
+                        <div class="methodology-label">Jurisprudence of Peace</div>
+                        <p>Using classical sources to argue that Islam is fundamentally a religion of peace</p>
+                    </div>
+                </div>
+                
+                <h3>The Khawarij Analogy: Identifying Modern Terrorists as Islam's First Heretics</h3>
+                <p>The fatwa's central methodological argument is the identification of modern terrorists with the Khawarij (Kharijites). The text explicitly links "The tribulations of the Kharijites and modern-day terrorists".</p>
+                
+                <div class="highlight">
+                    <p>This is not merely a pejorative label; it is a legal categorization. By meticulously demonstrating that modern terrorists fit the classical definition of the Khawarij, Dr. Qadri bypasses any need for contemporary debate. He effectively activates 1,400 years of established Islamic jurisprudence and universal consensus (ijma) which states that the Khawarij are heretics.</p>
+                </div>
+            </section>
+            
+            <section id="impact">
+                <h2>Part 4: Global Resonance: Impact and Reception</h2>
+                <p>The fatwa's release created a significant impact, resonating with major Islamic institutions, Western academic and political bodies, and interfaith leaders.</p>
+                
+                <div class="impact-section">
+                    <div class="impact-card">
+                        <h4>Al-Azhar Endorsement</h4>
+                        <p>The most powerful validation came when it "has been officially endorsed by Al-Azhar University in Cairo, Egypt". Al-Azhar is widely considered the preeminent seat of learning and authority for Sunni Muslims globally.</p>
+                    </div>
+                    <div class="impact-card">
+                        <h4>Academic Validation</h4>
+                        <p>The English-language edition featured a Foreword by Professor John L. Esposito of Georgetown University and an Introduction by Dr. Joel S. Hayward, a scholar of war and strategy.</p>
+                    </div>
+                    <div class="impact-card">
+                        <h4>Political Reception</h4>
+                        <p>The US State Department "welcomed the new fatwa". Spokesman P.J. Crowley called it a "very important step" in "having the Muslims themselves... take back the good name of Islam".</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="curriculum">
+                <h2>Part 5: An Indispensable Text for the 21st Century</h2>
+                <p>The Fatwa on Terrorism is not merely a historical document; it is the foundation for an ongoing educational project that remains "timely and relevant" in the "contemporary context of concern over terrorism".</p>
+                
+                <h3>From Theological Edict to Practical Pedagogy</h3>
+                <p>Dr. Qadri's project did not end with the 2010 fatwa. The fatwa provided the dense, scholarly foundation for a practical "counter-narrative". This "soft power" tool was formalized as the Islamic Curriculum on Peace and Counter-Terrorism, a series of books launched in the UK in June 2015.</p>
+                
+                <div class="highlight">
+                    <p>This "Fatwa-to-Curriculum pipeline" is what makes the project uniquely effective. A 600-page legal edict is essential for scholars but inaccessible to the "brainwashed" youth. The 2010 fatwa is the "why" (the theological proof), while the 2015 curriculum is the "how" (the pedagogical delivery system).</p>
+                </div>
+                
+                <div class="conclusion">
+                    <h3>Why This Fatwa is Required Reading</h3>
+                    <p>The continued relevance of the fatwa and its curriculum is rooted in the fact that extremist groups "utilise sacred Islamic concepts to justify their activities". This recruitment "has had a negative impact on the lived experiences of Muslims" and continues to "brainwash" young people.</p>
+                    
+                    <p>The fatwa and curriculum are the "counter narratives (soft power)" that provide the "theological reassurance" needed to "disprove and refute" extremist claims. They are designed to "steer them away from radical and extreme narratives" by equipping them with the "critical thinking" skills and traditional Islamic knowledge to see through the propaganda.</p>
+                </div>
+            </section>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>Document Details</h3>
+                <p><strong>Title:</strong> Fatwa on Terrorism and Suicide Bombings</p>
+                <p><strong>Author:</strong> Dr. Muhammad Tahir-ul-Qadri</p>
+                <p><strong>Issued:</strong> 2010</p>
+                <p><strong>Length:</strong> 600 pages (Urdu), 512 pages (English)</p>
+                <p><strong>Language:</strong> Originally Urdu, translated to English</p>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Author's Credentials</h3>
+                <ul class="credentials-list">
+                    <li>Sunni Muslim of Hanafi school, Qadiri Sufi order</li>
+                    <li>Honorific "Shaykh-ul-Islam"</li>
+                    <li>MA in Islamic Studies (Gold Medal), LLB, PhD in Islamic Law</li>
+                    <li>Professor of International Constitutional Law</li>
+                    <li>Jurist consult for Supreme Court of Pakistan</li>
+                    <li>Author of over 1,000 books</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Key Endorsements</h3>
+                <ul class="endorsement-list">
+                    <li>Officially endorsed by Al-Azhar University</li>
+                    <li>Foreword by Prof. John L. Esposito (Georgetown)</li>
+                    <li>Introduction by Dr. Joel S. Hayward</li>
+                    <li>Welcomed by US State Department</li>
+                    <li>Discussed at World Economic Forum</li>
+                    <li>Received by Pope Benedict XVI</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Core Rulings</h3>
+                <ul>
+                    <li>Terrorism is Kufr (disbelief)</li>
+                    <li>Suicide bombing is triple sin</li>
+                    <li>Only states can declare jihad</li>
+                    <li>Rebellion against state is haram</li>
+                    <li>Non-combatants are protected</li>
+                    <li>Modern terrorists = Khawarij</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Author's Statement</h3>
+                <div class="quote">
+                    "Terrorism is terrorism, violence is violence and it has no place in Islamic teaching and no justification can be provided for it, or any kind of excuses or ifs or buts."
+                </div>
+                <div class="quote">
+                    "You don't become a terrorist overnight. It is a journey. The fatwa was designed to intercept those on that road before they became totally brainwashed."
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Comprehensive Review of Dr. Muhammad Tahir-ul-Qadri's Fatwa on Terrorism and Suicide Bombings</p>
+        <p>Examining the theological foundations, jurisprudential methodology, and global impact of this landmark Islamic ruling</p>
+    </footer>
+</body>
+</html>

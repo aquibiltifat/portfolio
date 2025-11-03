@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary: Nur e Sarmadi by M. Fethullah Gülen</title>
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --secondary: #d4af37;
+            --accent: #8b4513;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #0d3c4f);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .author {
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            font-weight: 600;
+        }
+        
+        h3 {
+            color: var(--accent);
+            margin: 1.2rem 0 0.8rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .method-card {
+            background: rgba(26, 95, 122, 0.05);
+            border: 1px solid rgba(26, 95, 122, 0.1);
+            border-radius: 8px;
+            padding: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .method-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .prophetic-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .role-card {
+            background: white;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .role-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, rgba(26, 95, 122, 0.05), rgba(212, 175, 55, 0.05));
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .bibliography {
+            font-size: 0.9rem;
+            columns: 2;
+            column-gap: 2rem;
+        }
+        
+        .bib-item {
+            margin-bottom: 0.5rem;
+            break-inside: avoid;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-stats {
+                flex-direction: column;
+            }
+            
+            .bibliography {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nur e Sarmadi (Infinite Light)</h1>
+            <p class="subtitle">A Comprehensive Analysis of M. Fethullah Gülen's Thematic Approach to Prophetic Biography</p>
+            <p class="author">By M. Fethullah Gülen • Originally "Sonsuz Nur" (1995)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-content">
+                <section id="overview">
+                    <h2>1. Overview and Significance</h2>
+                    <p>M. Fethullah Gülen's seminal work—known in its original Turkish as <em>Sonsuz Nur</em> ("Eternal Light") and in its Urdu translation as <em>Nur e Sarmadi</em>—stands as a significant and profoundly distinct contribution to the vast tradition of Sira (prophetic biography).</p>
+                    
+                    <div class="highlight">
+                        <p>First published in Turkish in 1995, the work's origin is not the solitary desk of an academic but the pastoral context of the public pulpit; it is a compilation of 53 Friday sermons Gülen delivered throughout 1989 and 1990.</p>
+                    </div>
+                    
+                    <p>This origin is key to its purpose: to introduce the Prophet Muhammad (PBUH) "in all his aspects," particularly to a younger generation grappling with the spiritual and intellectual challenges of modernity.</p>
+                    
+                    <p>Its significance lies in its deliberate departure from traditional biography. It is not a story but a study. It eschews a linear, chronological narrative in favor of a thematic, multi-dimensional analysis of the Prophet's character and mission.</p>
+                </section>
+                
+                <section id="methodology">
+                    <h2>2. The Author's Methodology and Core Argument</h2>
+                    <p>Gülen's primary objective is not to simply recount the history of the Prophet, but to establish the immutable truth of his prophethood. To achieve this, he employs a unique methodology that can be termed the "kalamisation of Sira".</p>
+                    
+                    <h3>Core Idea: A "Sīrah Philosophy"</h3>
+                    <p>Gülen's work is less a biography and more a "Sīrah Philosophy". He is not concerned with <em>what happened next</em>, but with <em>why it happened</em> and <em>what it means for today</em>.</p>
+                    
+                    <h3>Methodology: Kalām over Chronology</h3>
+                    <p>The book's entire structure is built upon the foundations of kalām (Islamic dialectic theology). Gülen's main argument revolves around "proving prophethood". To do this, he deconstructs the Prophet's life thematically, organizing it around the five essential attributes of prophethood:</p>
+                    
+                    <div class="methodology-grid">
+                        <div class="method-card">
+                            <h4>Sidq (Truthfulness)</h4>
+                            <p>Analyzing his predictions and the testimony of his enemies.</p>
+                        </div>
+                        <div class="method-card">
+                            <h4>Amānah (Trustworthiness)</h4>
+                            <p>Examining his role as custodian of the revelation and his integrity in all dealings.</p>
+                        </div>
+                        <div class="method-card">
+                            <h4>Tabligh (Communication)</h4>
+                            <p>Detailing his wisdom in addressing people at their own level of understanding.</p>
+                        </div>
+                        <div class="method-card">
+                            <h4>Fatānah (Prophetic Intellect)</h4>
+                            <p>Presenting the Prophet's political, military, and social successes as the natural outcome of his superior, divinely-bestowed intellect.</p>
+                        </div>
+                        <div class="method-card">
+                            <h4>Ismah (Infallibility)</h4>
+                            <p>Addressing and removing common doubts to establish the Prophet as the perfect, divinely protected role model.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Analytical Evaluation: A Necessary Departure</h3>
+                    <p>This thematic, kalām-based methodology is a radical and necessary departure from classical and even many modern Sira works.</p>
+                    
+                    <p><strong>Contrast with Classical Sira (e.g., Ibn Hisham):</strong> Classical biographers like Ibn Hisham were primarily concerned with chronology and preservation. Their works are indispensable for establishing the historical timeline but can feel distant to modern readers.</p>
+                    
+                    <p><strong>Contrast with Modern Sira (e.g., Martin Lings):</strong> More recent biographers like Martin Lings employ a literary-narrative approach, weaving a compelling, immersive story.</p>
+                    
+                    <div class="highlight">
+                        <p>Gülen does neither. He is not a chronicler like Ibn Hisham nor a storyteller like Lings. He is a theologian and a preacher. He sacrifices narrative flow for thematic depth, creating a work that is explicitly prescriptive—functioning as a user's manual for the Prophet's life.</p>
+                    </div>
+                </section>
+                
+                <section id="holistic-exemplar">
+                    <h2>3. A Holistic Exemplar: Deconstructing the Prophetic Model</h2>
+                    <p>Gülen's thematic methodology allows him to present a holistic portrait of the Prophet, where his public and private virtues are shown to be inseparable.</p>
+                    
+                    <div class="prophetic-roles">
+                        <div class="role-card">
+                            <h4>Prophet and Educator</h4>
+                            <p>The Prophet's entire 23-year mission is framed as a project of "teaching and training" aimed at comprehensive "social reform".</p>
+                        </div>
+                        <div class="role-card">
+                            <h4>Statesman and Commander</h4>
+                            <p>Gülen presents the Prophet as a "universal leader" who appointed competent people, practiced consultation, and possessed unmatched wisdom.</p>
+                        </div>
+                        <div class="role-card">
+                            <h4>Sociologist and Economist</h4>
+                            <p>The book details how the Prophet engineered a complete social and economic revolution, establishing a new society based on universal brotherhood and social justice.</p>
+                        </div>
+                        <div class="role-card">
+                            <h4>Father and Husband</h4>
+                            <p>Gülen portrays the Prophet's home as a microcosm of the ideal state, where principles of justice, mercy, and consultation were first perfected.</p>
+                        </div>
+                        <div class="role-card">
+                            <h4>Humble Servant of Allah</h4>
+                            <p>This is the foundation for all other roles. His authority came not from worldly power but from his perfect servitude (ubudiyyah).</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="impact">
+                    <h2>4. Impact and Reception</h2>
+                    <p>The impact of <em>Sonsuz Nur</em> cannot be overstated. It has been translated into numerous languages and is considered one of the most popular books published by its house, second only to the Quran.</p>
+                    
+                    <div class="impact-stats">
+                        <div class="stat">
+                            <div class="stat-number">53</div>
+                            <div class="stat-label">Original Sermons</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1995</div>
+                            <div class="stat-label">First Published</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">Multiple</div>
+                            <div class="stat-label">Languages</div>
+                        </div>
+                    </div>
+                    
+                    <p>The book's ideas form the intellectual and spiritual bedrock of the global Hizmet (Service) movement, which Gülen inspired. This civil society movement is renowned for establishing thousands of educational institutions worldwide.</p>
+                    
+                    <div class="highlight">
+                        <p>Gülen himself is widely regarded as "one of the world's most important Muslim figures," promoting a message of interfaith dialogue, tolerance, and education.</p>
+                    </div>
+                </section>
+                
+                <section id="conclusion">
+                    <h2>5. A Necessary Text for This Century and the Next</h2>
+                    
+                    <div class="conclusion">
+                        <p>We live in an age defined by what Gülen terms a lack of "ethical values" and a dominance of materialism. The modern world faces crises of leadership, social injustice, and spiritual emptiness.</p>
+                        
+                        <p><em>Nur e Sarmadi</em> is Gülen's answer to this fragmentation. His "Sira Philosophy" is explicitly designed to link the Prophet's life to contemporary problems, presenting a holistic, integrated model of a human being who is at once intellectually brilliant, ethically grounded, socially just, and spiritually profound.</p>
+                        
+                        <p>This is why the book is so desperately needed. It directly counters the modern, secular educational model that often produces individuals who are technically skilled but morally adrift.</p>
+                    </div>
+                    
+                    <p>Gülen's book is the blueprint for his "Golden Generation"—individuals who possess both scientific literacy and a deep moral compass, capable of navigating the modern world without losing their spiritual and ethical grounding.</p>
+                    
+                    <p>For this reason, <em>Nur e Sarmadi</em> is perfectly suited for any study curriculum. It functions as the ideal companion to the Quran. If the Quran provides the divine, universal principles, Gülen's Sira provides the "exemplar of ideal Muslim behaviour", demonstrating precisely how those principles are translated into a living, breathing, and perfect human life.</p>
+                </section>
+            </div>
+            
+            <div class="sidebar">
+                <h2>Key Points</h2>
+                
+                <h3>Original Title</h3>
+                <p>Sonsuz Nur (Turkish)</p>
+                
+                <h3>English Title</h3>
+                <p>Infinite Light / The Messenger of God: Muhammad</p>
+                
+                <h3>Publication Year</h3>
+                <p>1995 (Turkish)</p>
+                
+                <h3>Origin</h3>
+                <p>Compilation of 53 Friday sermons (1989-1990)</p>
+                
+                <h3>Methodology</h3>
+                <p>Thematic "Sīrah Philosophy" based on Kalām</p>
+                
+                <h3>Core Focus</h3>
+                <p>Five attributes of prophethood</p>
+                
+                <h3>Impact</h3>
+                <p>Foundation for global Hizmet movement and educational institutions</p>
+                
+                <h3>Significance</h3>
+                <p>Blueprint for "Golden Generation" integrating faith with modernity</p>
+            </div>
+        </div>
+        
+        <section id="bibliography">
+            <h2>Bibliography</h2>
+            <div class="bibliography">
+                <p class="bib-item">Açıkgenç, Alparslan. (2011). "Muhammed Fethullah Gülen." Oxford Bibliographies.</p>
+                <p class="bib-item">Al-Enezi, Mutlaq. (2022). "Principles of an Economic Life Based on Halal Gain in the Light of Prophet's Teachings." Turkish Journal of Islamic Economics (TUJISE).</p>
+                <p class="bib-item">Asaduz Zaman. (2022). "Building a Moral Economy on Islamic Foundations." Medium.</p>
+                <p class="bib-item">Çetin, Ihsan. (2024). "Syed Muhammed Fethullah Gülen and the Relevance of His Legacy." The Fountain Magazine.</p>
+                <p class="bib-item">Daarul Kitab. (n.d.). "Noor E Sarmadi Fakhr E Insaniyat Muhammad S A W 2 Vol Set."</p>
+                <p class="bib-item">Elias, Abu Amina. (2017). "Hadith on Humility: The Prophet is a humble servant." AbuAminaElias.com.</p>
+                <p class="bib-item">fgulen.com. (n.d.). "Dr. Naeem Mushtaq reviews the book Noor-e-Sarmadi (Sonsuz Nur) by M. Fethullah Gülen."</p>
+                <p class="bib-item">fgulen.com. (n.d.). "Fethullah Gülen's 'Sonsuz Nur' Translated into Zulu."</p>
+                <p class="bib-item">fgulen.com. (n.d.). "His Achievements." [Essentials of the Islamic Faith].</p>
+                <p class="bib-item">fgulen.com. (n.d.). "Prophet Muhammad in the Bible."</p>
+                <p class="bib-item">fgulen.com. (n.d.). "The Circumstances in the Early Days in Madina." [Prophet Muhammad as Commander].</p>
+                <p class="bib-item">Goodreads. (n.d.). The Messenger of God: Muhammad by M. Fethullah Gülen.</p>
+                <p class="bib-item">GulenMovement.com. (n.d.). "Fethullah Gülen as a Pious, Dedicated Muslim."</p>
+                <p class="bib-item">GulenMovement.com. (n.d.). "Fethullah Gülen on Islam and State."</p>
+                <p class="bib-item">GulenMovement.com. (n.d.). "Fethullah Gülen's 'Golden Generation': Integration of Muslim Identity with the World through Education."</p>
+                <p class="bib-item">Hassan, Marzia. (n.d.). "Be Servants of the Merciful." Libsyn.</p>
+                <p class="bib-item">Inspired by Muhammad. (n.d.). "Social Justice." inspiredbymuhammad.com.</p>
+                <p class="bib-item">Internet Archive. (2019). "Noor E Sarmadi Volume 1 By Allama Muhammad Fateh Ullah Golan Turkish."</p>
+                <p class="bib-item">IMAM-US.org. (2025). "World Day of Social Justice: A Call for Justice in the Light of Islamic Teachings."</p>
+                <p class="bib-item">IslamOnWeb.net. (n.d.). "The Prophet (SAW): The Ideal Teacher."</p>
+                <p class="bib-item">JWorldTimes.com. (n.d.). "The Holy Prophet (PBUH): The Most Supreme Role Model for Educators."</p>
+                <p class="bib-item">Maududi, Abul A'la. (n.d.). "Economic and Political Teachings of the Qur'an." muslimphilosophy.net.</p>
+                <p class="bib-item">Medium.com / Jumah Nugget. (n.d.). "Who Are the Servants of the Most Merciful?"</p>
+                <p class="bib-item">Muslim Central. (n.d.). "Omar Suleiman - Social Justice."</p>
+                <p class="bib-item">Mushtaq, Naeem. (n.d.). Review of Noor-e-Sarmadi. fgulen.com.</p>
+                <p class="bib-item">ResearchGate. (2018). "Justice Dimensions of Islamic Inheritance Law..."</p>
+                <p class="bib-item">ResearchGate. (2020). "Revisiting Social Justice: Exploring the Quranic Paradigm..."</p>
+                <p class="bib-item">Rumi Forum. (n.d.). "A Modern Turkish-Islamic Reformist."</p>
+                <p class="bib-item">Sertkaya, Sulayman. (2016). "The Sirah Genre: An evaluation of Fethullah Gülen's approach." Australian Catholic University (Thesis).</p>
+                <p class="bib-item">Sertkaya, Sulayman. (2023). "Sīrah Philosophy: Fethullah Gülen's Approach to the Life of the Prophet Muhammad." Religions (MDPI).</p>
+                <p class="bib-item">Simon & Schuster. (n.d.). The Messenger of God: Muhammad.</p>
+                <p class="bib-item">The Review of Religions. (n.d.). "Social Justice – The Key to Establishing World Peace."</p>
+                <p class="bib-item">Tughra Books. (2019). The Messenger of God MUHAMMAD: An Analysis of the Prophet's Life. (via finpolar.fi).</p>
+                <p class="bib-item">Virtual University of Pakistan. (2024). "Discover Islamic Economic System of Madina." YouTube.</p>
+                <p class="bib-item">Yaqeen Institute (Omar Suleiman). (2020). "The Firsts: Social Justice Starts at Home." YouTube.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Summary of "Nur e Sarmadi" by M. Fethullah Gülen</p>
+            <p>Analysis based on comprehensive review of the text and secondary sources</p>
+        </div>
+    </footer>
+</body>
+</html>
