@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad's Allah: Dynamic Analysis</title>
+    <style>
+        :root {
+            --primary: #2c1810;
+            --secondary: #8b4513;
+            --accent: #daa520;
+            --light: #f5f5dc;
+            --dark: #2c2c2c;
+            --gold: #d4af37;
+            --bronze: #cd7f32;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: var(--light);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .dark-mode {
+            --primary: #daa520;
+            --secondary: #cd7f32;
+            --accent: #8b4513;
+            --light: #1a1a1a;
+            --dark: #f5f5dc;
+            background: #1a1a1a;
+            color: #f5f5dc;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), #1a0f0a);
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+        }
+        
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            position: relative;
+            font-style: italic;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .author {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .main-content {
+            background: #2a2a2a;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            height: fit-content;
+            transition: var(--transition);
+        }
+        
+        .dark-mode .sidebar {
+            background: #2a2a2a;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 3rem 0 1.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+            font-weight: 400;
+            position: relative;
+            font-style: italic;
+            transition: var(--transition);
+        }
+        
+        h2:first-child {
+            margin-top: 0;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 2.2rem 0 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        h4 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+            transition: var(--transition);
+        }
+        
+        ul, ol {
+            margin-left: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.05), rgba(218, 165, 32, 0.05));
+            border-left: 5px solid var(--accent);
+            padding: 2.2rem;
+            margin: 2.5rem 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .highlight {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.05), rgba(139, 69, 19, 0.05));
+        }
+        
+        .highlight::before {
+            content: "";
+            font-size: 5rem;
+            color: var(--accent);
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .concept-card {
+            background: white;
+            border: 1px solid rgba(44, 24, 16, 0.2);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        
+        .dark-mode .concept-card {
+            background: #2a2a2a;
+            border-color: rgba(218, 165, 32, 0.2);
+        }
+        
+        .concept-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .concept-card.active {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .concept-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+        
+        .concept-icon {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .comparison-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            transition: var(--transition);
+        }
+        
+        .dark-mode .comparison-table td {
+            border-bottom-color: #444;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: rgba(44, 24, 16, 0.03);
+        }
+        
+        .dark-mode .comparison-table tr:nth-child(even) {
+            background: rgba(218, 165, 32, 0.03);
+        }
+        
+        .traditional {
+            font-weight: 600;
+            color: #8b0000;
+        }
+        
+        .hulusi {
+            font-weight: 600;
+            color: #2e8b57;
+        }
+        
+        .methodology-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .methodology-item {
+            padding: 1.8rem;
+            max-width: 250px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .methodology-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .methodology-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .methodology-label {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .reception-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .reception-card {
+            background: white;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 12px;
+            padding: 2.2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .dark-mode .reception-card {
+            background: #2a2a2a;
+        }
+        
+        .reception-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .reception-card.positive h4 {
+            color: #2e8b57;
+        }
+        
+        .reception-card.negative h4 {
+            color: #8b0000;
+        }
+        
+        .reception-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.05), rgba(139, 69, 19, 0.05));
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-left: 5px solid var(--accent);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .dark-mode .conclusion {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.05), rgba(139, 69, 19, 0.05));
+        }
+        
+        .conclusion::before {
+            content: "✦";
+            position: absolute;
+            top: -18px;
+            left: 25px;
+            background: white;
+            color: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .conclusion::before {
+            background: #2a2a2a;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+        
+        .dark-mode footer {
+            background: #333;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2.8rem;
+        }
+        
+        .sidebar-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.7rem;
+            transition: var(--transition);
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+        
+        .dark-mode .quote {
+            color: #aaa;
+        }
+        
+        .arabic {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .credentials-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .credentials-list li {
+            padding: 0.8rem;
+            background: rgba(44, 24, 16, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .credentials-list li {
+            background: rgba(218, 165, 32, 0.05);
+        }
+        
+        .critique-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .critique-list li {
+            padding: 0.8rem;
+            background: rgba(139, 69, 19, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .critique-list li {
+            background: rgba(139, 69, 19, 0.1);
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            border-bottom: 3px solid var(--accent);
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .dark-mode .tab-content {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .methodology-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <header class="header">
+        <div class="controls">
+            <button class="control-btn" id="themeToggle">🌙 Dark Mode</button>
+            <button class="control-btn" id="fontIncrease">A+</button>
+            <button class="control-btn" id="fontDecrease">A-</button>
+        </div>
+        
+        <h1>Deconstructing the Deity, Reconstructing the One</h1>
+        <p class="subtitle">An Interactive Analysis of Ahmed Hulusi's "Muhammad's Allah"</p>
+        <p class="author">My Reflection as a Seeker - Faiz Ali Qadri</p>
+        
+        <div class="stats">
+            <div class="stat">First Published 1989</div>
+            <div class="stat">1M+ Copies Sold</div>
+            <div class="stat">30+ Books</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <section id="introduction">
+                <h2>Introduction: A Challenge to the Inherited God</h2>
+                <p>Ahmed Hulusi's <em>Muhammad's Allah</em>, first published in Turkish in 1989 and later translated into English, stands as one of the most provocative and uncompromising spiritual texts of the modern era. It is not merely a book about Islam; it is a direct, polemical intervention intended to fundamentally deconstruct and reconstruct the very object of faith.</p>
+                
+                <div class="highlight">
+                    <p>The work operates as a "Sufi manifesto", aiming to systematically dismantle what Hulusi argues is a "god-concept" born of "misleading information and conditioning". Its primary significance lies in this audacious claim: that the "Allah" worshipped by the vast majority of believers, and rejected by atheists, is an idol of the mind, bearing no resemblance to the reality articulated by the Prophet Muhammad.</p>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="polemic">Central Polemic</button>
+                        <button class="tab-btn" data-tab="author">The Author</button>
+                        <button class="tab-btn" data-tab="significance">Significance</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="polemic">
+                            <p>The book's title is its thesis. The deliberate, provocative question, "Why not just Allah? Why Muhammad's Allah?" frames the entire work as a project of theological restoration. Hulusi's core premise is that the "Allah" of popular consciousness—an external, anthropomorphic deity who "sits on a star in the heavens or dwells somewhere in space," imagined as a "benevolent paternal figure or a majestic sultan"—is a cultural and psychological fabrication.</p>
+                        </div>
+                        <div class="tab-pane" id="author">
+                            <p>This theological project is reinforced by the author's biography, which serves as a practical performance of his core tenets. Ahmed Hulusi, born in Istanbul in 1945, is a Turkish journalist by trade and a researcher of Islamic mysticism and modern science. He meticulously avoids the titles that would otherwise define him, explicitly rejecting the role of "guru," "teacher," "hodja," "master," or "sheikh".</p>
+                        </div>
+                        <div class="tab-pane" id="significance">
+                            <p>Hulusi's work represents a significant contribution to contemporary Islamic thought by bridging the gap between traditional Sufi metaphysics and modern scientific understanding. It challenges both religious literalism and atheistic materialism, offering a third way that synthesizes spiritual insight with rational inquiry.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="theology">
+                <h2>The Core Theological Argument: Deconstructing the Deity</h2>
+                <p>Hulusi's argument begins with a radical diagnosis of a problem afflicting both the religious and the irreligious: their shared obsession with a false object. He argues that the conventional believer and the conventional atheist are two sides of the same counterfeit coin.</p>
+                
+                <div class="concepts-grid">
+                    <div class="concept-card" data-concept="deconstruction">
+                        <h4><span class="concept-icon">⚡</span> Deconstructing the "God-Concept"</h4>
+                        <p>The believer has constructed a "God that we love, get angry with, judge and even accuse, at times, for doing wrong by us!" This is the "God who sits on a star", an external being who is expected to intervene, reward, and punish like a human monarch.</p>
+                        <p>The atheist observes this primitive, anthropomorphic "god-concept" and, finding it contrary to reason, "proudly declare[s] themselves as atheists". Hulusi's profound move is to agree with the atheist.</p>
+                    </div>
+                    <div class="concept-card" data-concept="tawhid">
+                        <h4><span class="concept-icon">☝️</span> Tawhid as Non-Duality</h4>
+                        <p>Hulusi rebuilds his theology on the foundation of the Shahada: La ilaha illallah. His interpretation is the book's central pivot. The phrase "There is no God. There is only Allah" is the key.</p>
+                        <p>He argues this phrase is almost universally mistranslated and misunderstood. It does not mean, "There is no god but God," but rather is a declaration that the very concept of a separate, external deity is void.</p>
+                    </div>
+                    <div class="concept-card" data-concept="system">
+                        <h4><span class="concept-icon">🌐</span> The "System" (Sunnatullah)</h4>
+                        <p>This non-dual "Allah" has profound implications for daily life. If there is no external sultan-God, there can be no arbitrary divine intervention. In place of a personal deity, Hulusi posits "a System present within life".</p>
+                        <p>This "System" is his modernization of the classical concept of Sunnatullah, the unchangeable way or laws of Allah. In this framework, suffering is not punishment from an angry God, but the automatic consequences of actions.</p>
+                    </div>
+                </div>
+                
+                <h3>Traditional vs. Hulusi's Interpretation</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Traditional Understanding</th>
+                            <th>Hulusi's Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>La ilaha illallah</strong></td>
+                            <td class="traditional">"There is no god but God" - Affirms one God among possible gods</td>
+                            <td class="hulusi">"There is no God, only Allah" - Negates the entire category of deity/godhood</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Allah</strong></td>
+                            <td class="traditional">Supreme Being, Creator, separate from creation</td>
+                            <td class="hulusi">Infinite, unlimited, whole One - Non-dual Reality encompassing all existence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prayer & Worship</strong></td>
+                            <td class="traditional">Supplication to external deity for intervention</td>
+                            <td class="hulusi">Neurological technology for self-realization and alignment with System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Afterlife</strong></td>
+                            <td class="traditional">Reward/punishment in physical paradise/hell</td>
+                            <td class="hulusi">Continuation of consciousness based on level of awareness attained</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="methodology">
+                <h2>Authorial Methodology: Sufi Metaphysics and Science</h2>
+                <p>Hulusi's methodology for building this theological case is as revolutionary as his conclusion. He offers a "new construal" of Islam that rejects "simplistic" and "literal" interpretations. He argues that the Quran is a book of profound metaphors that must be "decoded" using the highest intellectual tools available to humanity.</p>
+                
+                <div class="methodology-section">
+                    <div class="methodology-item" data-method="esotericism">
+                        <div class="methodology-icon">🔍</div>
+                        <div class="methodology-label">Rationalist Esotericism</div>
+                        <p>"Decoding" the Quran through synthesis of Sufi esotericism and modern science</p>
+                    </div>
+                    <div class="methodology-item" data-method="holographic">
+                        <div class="methodology-icon">💎</div>
+                        <div class="methodology-label">Holographic Universe</div>
+                        <p>Using holographic principle as scientific analogy for Tawhid and non-duality</p>
+                    </div>
+                    <div class="methodology-item" data-method="neuroscience">
+                        <div class="methodology-icon">🧠</div>
+                        <div class="methodology-label">Neuroscience</div>
+                        <p>Reinterpreting spiritual concepts through neuroscience and quantum physics</p>
+                    </div>
+                </div>
+                
+                <h3>The Metaphor of the "Holographic Universe"</h3>
+                <p>The signature tool in Hulusi's methodological toolkit is the "holographic universe." He begins with a classic mystical exposition attributed to Hadhrat Ali: "The secret of the Quran is in al-Fatiha, the secret of al-Fatiha is in the Basmalah, and the secret of the Basmalah is in the letter B (ب)... And I am the point beneath the 'B' (ب"!(.</p>
+                
+                <div class="highlight">
+                    <p>Hulusi makes an audacious interpretive leap. He argues this is not merely a poetic metaphor, but a "precursory reference to the contemporary concept of the 'holographic universe'". The core of the holographic principle—that "the whole is contained in the part"—becomes his primary scientific analogy for Tawhid.</p>
+                </div>
+                
+                <h3>Neuroscience and Quantum Reality</h3>
+                <p>Hulusi extends this synthesis into the realm of human consciousness. He argues that the teachings of the Prophet are "consistent with modern scientific understandings of the quantum universe". He re-interprets complex theological concepts through a scientific lens:</p>
+                
+                <ul>
+                    <li><strong>The Spirit (Ruh):</strong> The "spirit" or "soul" is described as a "luminous body of frequencies" sculpted by the brain.</li>
+                    <li><strong>Prayer (Dhikr):</strong> Ritual practice, particularly dhikr (remembrance), is reframed as a neuroscientific process explicitly defined as "Channeling Brain Waves Through Dhikr".</li>
+                </ul>
+            </section>
+            
+            <section id="reception">
+                <h2>Reception and Theological Debate</h2>
+                <p>The reception of Hulusi's work demonstrates its profound resonance with a specific segment of the 21st-century spiritual-intellectual landscape, while also generating significant controversy within orthodox Islamic circles.</p>
+                
+                <div class="reception-section">
+                    <div class="reception-card positive" data-reception="positive">
+                        <h4>Impact and Popular Appeal</h4>
+                        <p>His books have sold "more than a million copies" in Turkish and have attracted a significant global audience. Reviewers have praised Muhammad's Allah as a "deeply considered study" that "offers a more universalist interpretation of Islam".</p>
+                    </div>
+                    <div class="reception-card negative" data-reception="negative">
+                        <h4>The Orthodox Critique: Heresy Charges</h4>
+                        <p>The very elements that make Hulusi's work appealing to modern spiritual seekers are precisely what make it deeply controversial to orthodox Islamic theology. His central doctrine, Wahdat al-Wujud, is one of the most contentious ideas in Islamic history.</p>
+                    </div>
+                </div>
+                
+                <h3>The Theological Mirror-Match</h3>
+                <p>This creates a "theological mirror-match," where both Hulusi and his orthodox critics accuse one another of the exact same sin: shirk (associationism).</p>
+                
+                <ul>
+                    <li><strong>Hulusi's Charge:</strong> Hulusi, as a "fundamentalist" of Tawhid, argues that to posit an external "God" or "deity" (ilah) separate from the Oneness of Allah is the cardinal sin of shirk.</li>
+                    <li><strong>The Orthodox Charge:</strong> Conversely, orthodox critics charge that Wahdat al-Wujud is itself a form of pantheism or panentheism. They argue that by dissolving the distinction between the Creator and the creation, it "associates" the created world with God.</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p>The most potent academic argument against Hulusi's position concerns the nature of creation. Orthodox Tawhid is built on a "bipolar" distinction: the absolute, eternal, uncreated Creator (Allah) and the temporal, contingent, created universe. The belief in eternal, uncreated matter "is, by the consensus of the community (bil-ijma') tantamount to kufr (unbelief)".</p>
+                </div>
+            </section>
+            
+            <section id="significance">
+                <h2>21st Century Significance and Pedagogical Value</h2>
+                <p>Despite, or perhaps because of, its theological controversy, Hulusi's work addresses a profound and urgent need in 21st-century Islamic thought. Its primary value is not as a new dogma, but as a prescription for an epistemological revolution.</p>
+                
+                <h3>A Prescription for Intellectual Reformation</h3>
+                <p>The book is a sustained argument against taqlid (blind imitation). Hulusi's message is a direct call for believers to "give up living with the expectation of a savior, mahdi and ready-made recipes" and to instead "turn toward science (ilm), questioning (inquiry), thinking and understanding".</p>
+                
+                <h3>An Antidote to Violent Extremism</h3>
+                <p>This intellectual project has a critical social and political dimension. Hulusi's work functions as a potent, theologically robust counter-narrative to violent, literalist extremism. He argues that such extremism is born from a failure of comprehension, from those who "interpret every verse simplistically and literally".</p>
+                
+                <div class="conclusion">
+                    <h3>Pedagogical Recommendation</h3>
+                    <p>The profound intellectual and theological challenges posed by Muhammad's Allah make it an indispensable text for any serious study of modern religion. Its inclusion in a curriculum is justified not to promote its views as dogma, but to leverage its power as an intellectual catalyst.</p>
+                    
+                    <p>The book's primary pedagogical value stems from the author's own methodology. Hulusi fundamentally rejects taqlid and demands critical inquiry from his reader. His personal directive—"Don't believe me; find and verify the truth for yourself"—is the very definition of a high-functioning pedagogical tool.</p>
+                    
+                    <p>Its true pedagogical power is unleashed when it is taught alongside its orthodox and Salafi critiques. The book's function in a curriculum is to force a "crisis of definition" on every student, regardless of their background, thereby fostering true intellectual and religious literacy.</p>
+                </div>
+                
+                <div class="arabic">
+                    فَ ََل تَتَفَ َّكُرون
+                    أَ — Will you not then reflect?' (Qur'an 6:50)
+                </div>
+            </section>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>Book Details</h3>
+                <p><strong>Title:</strong> Muhammad's Allah</p>
+                <p><strong>Author:</strong> Ahmed Hulusi</p>
+                <p><strong>First Published:</strong> 1989 (Turkish)</p>
+                <p><strong>Genre:</strong> Islamic Mysticism, Spirituality</p>
+                <p><strong>Pages:</strong> Varies by edition</p>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Author's Stance</h3>
+                <ul class="credentials-list">
+                    <li>Rejects titles: guru, teacher, sheikh</li>
+                    <li>Offers all works free of charge</li>
+                    <li>No copyright on his writings</li>
+                    <li>Lives reclusive life</li>
+                    <li>Journalist by profession</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Core Doctrines</h3>
+                <ul>
+                    <li>Wahdat al-Wujud (Oneness of Being)</li>
+                    <li>Non-dual interpretation of Tawhid</li>
+                    <li>Quran as metaphorical code</li>
+                    <li>Integration of science and mysticism</li>
+                    <li>Rejection of anthropomorphic God</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Key Criticisms</h3>
+                <ul class="critique-list">
+                    <li>Charged with pantheism/heresy</li>
+                    <li>Controversial interpretation of Shahada</li>
+                    <li>Rejection of traditional scholarship</li>
+                    <li>Unorthodox cosmological views</li>
+                    <li>Challenge to clerical authority</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Author's Directives</h3>
+                <div class="quote">
+                    "Don't believe me; find and verify the truth for yourself."
+                </div>
+                <div class="quote">
+                    "Give up living with the expectation of a savior, mahdi and ready-made recipes."
+                </div>
+                <div class="quote">
+                    "Turn toward science (ilm), questioning (inquiry), thinking and understanding."
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Deconstructing the Deity, Reconstructing the One: An Interactive Analysis of Ahmed Hulusi's "Muhammad's Allah"</p>
+        <p>Examining the intersection of Sufi metaphysics, modern science, and Islamic theology in this provocative spiritual work</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        });
+
+        // Font Size Controls
+        let fontSize = 1;
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+        
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+
+        // Tab Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and panes
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to current button and corresponding pane
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Concept Card Interactions
+        const conceptCards = document.querySelectorAll('.concept-card');
+        conceptCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('active');
+            });
+        });
+
+        // Methodology Item Interactions
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        methodologyItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const method = item.getAttribute('data-method');
+                alert(`Selected methodology: ${method}`);
+            });
+        });
+
+        // Reception Card Interactions
+        const receptionCards = document.querySelectorAll('.reception-card');
+        receptionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.getAttribute('data-reception');
+                alert(`Selected ${type} reception view`);
+            });
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Stats Counter (Animation)
+        const stats = document.querySelectorAll('.stat');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        stats.forEach(stat => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(stat);
+        });
+
+        // Highlight Animation
+        const highlights = document.querySelectorAll('.highlight');
+        highlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => {
+                highlight.style.transform = 'scale(1.02)';
+            });
+            
+            highlight.addEventListener('mouseleave', () => {
+                highlight.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

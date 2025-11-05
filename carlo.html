@@ -29,6 +29,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark mode styles */
+       .dark-mode {
+            --primary: #daa520;
+            --secondary: #cd7f32;
+            --accent: #8b4513;
+            --light: #1a1a1a;
+            --dark: #f5f5dc;
+            background: #1a1a1a;
+            color: #f5f5dc;
         }
         
         .cosmic-header {
@@ -93,6 +105,7 @@
             border-radius: 50px;
             font-weight: bold;
             border: 1px solid rgba(255,255,255,0.2);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
         .container {
@@ -106,6 +119,7 @@
             border-radius: 15px;
             padding: 3rem;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
         }
         
         .sidebar {
@@ -114,6 +128,14 @@
             padding: 2.5rem;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             height: fit-content;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .main-content,
+        body.dark-mode .sidebar {
+            background: #2c3e50;
+            color: #ecf0f1;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         
         h2 {
@@ -169,6 +191,12 @@
             font-style: italic;
             position: relative;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        body.dark-mode .highlight {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(155, 89, 182, 0.15));
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
         .highlight::before {
@@ -198,6 +226,13 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        
+        body.dark-mode .lesson-card {
+            background: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .lesson-card::before {
@@ -252,6 +287,14 @@
             padding: 2.2rem;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        body.dark-mode .reception-card {
+            background: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .reception-card.public h4 {
@@ -277,6 +320,12 @@
         .methodology-item {
             padding: 1.8rem;
             max-width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .methodology-item:hover {
+            transform: scale(1.05);
         }
         
         .methodology-icon {
@@ -292,6 +341,10 @@
             margin-bottom: 0.8rem;
         }
         
+        body.dark-mode .methodology-label {
+            color: #ecf0f1;
+        }
+        
         .conclusion {
             background: linear-gradient(135deg, rgba(44, 62, 80, 0.05), rgba(52, 152, 219, 0.05));
             border-radius: 15px;
@@ -299,6 +352,10 @@
             margin: 3rem 0;
             border-left: 5px solid var(--accent);
             position: relative;
+        }
+        
+        body.dark-mode .conclusion {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.15), rgba(52, 152, 219, 0.15));
         }
         
         .conclusion::before {
@@ -318,6 +375,10 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
         
+        body.dark-mode .conclusion::before {
+            background: #2c3e50;
+        }
+        
         footer {
             background: var(--dark);
             color: white;
@@ -325,6 +386,10 @@
             padding: 3rem 0;
             margin-top: 4rem;
             border-radius: 15px;
+        }
+        
+        body.dark-mode footer {
+            background: #1a1a2e;
         }
         
         .sidebar-section {
@@ -359,6 +424,11 @@
             border: 1px solid rgba(52, 152, 219, 0.2);
         }
         
+        body.dark-mode .equation {
+            background: rgba(52, 152, 219, 0.2);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
         .narrative-arc {
             display: flex;
             flex-direction: column;
@@ -373,9 +443,78 @@
             border-left: 4px solid var(--accent);
         }
         
+        body.dark-mode .arc-phase {
+            background: rgba(155, 89, 182, 0.15);
+        }
+        
         .arc-phase h4 {
             color: var(--accent);
             margin-bottom: 0.5rem;
+        }
+        
+       /* Controls Section */
+        .controls {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            display: flex;
+            gap: 8px;
+            z-index: 1800;
+        }
+        
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .control-btn:hover {
+           background: rgba(255,255,255,0.3);
+        }
+        /* Progress Bar */
+      .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
         
         @media (max-width: 900px) {
@@ -397,10 +536,25 @@
             h1 {
                 font-size: 2.5rem;
             }
+            
         }
     </style>
 </head>
 <body>
+     <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <button class="back-to-top" id="backToTop">↑</button>
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" id="themeToggle">🌙 Dark Mode</button>
+        <button class="control-btn" id="fontIncrease">A+</button>
+        <button class="control-btn" id="fontDecrease">A-</button>
+    </div>
+    
+   
+    
     <header class="cosmic-header">
         <h1>Seven Brief Lessons on Physics</h1>
         <p class="subtitle">A Critical and Contextual Analysis of Carlo Rovelli's Poetic Science</p>
@@ -494,17 +648,17 @@
                 <p>The book is universally defined by its "poetic", "lyrical", and "humanistic" style. Rovelli fuses his deep knowledge of science and the arts, referencing figures like Dante and James Joyce.</p>
                 
                 <div class="methodology-section">
-                    <div class="methodology-item">
+                    <div class="methodology-item" data-method="Relational Philosophy">
                         <div class="methodology-icon">🎭</div>
                         <div class="methodology-label">Relational Philosophy</div>
                         <p>Reality as interaction rather than absolute objects</p>
                     </div>
-                    <div class="methodology-item">
+                    <div class="methodology-item" data-method="Poetic Method">
                         <div class="methodology-icon">📝</div>
                         <div class="methodology-label">Poetic Method</div>
                         <p>Using metaphor and analogy to gesture at mathematical realities</p>
                     </div>
-                    <div class="methodology-item">
+                    <div class="methodology-item" data-method="Reader Relationship">
                         <div class="methodology-icon">🤝</div>
                         <div class="methodology-label">Reader Relationship</div>
                         <p>Building connection through shared human experience</p>
@@ -521,11 +675,11 @@
                 <p>This unique methodology, which so brilliantly fuses a relational philosophy with a poetic method, is the direct cause of the book's complex and bifurcated reception. The book is, in effect, two different things to two different audiences.</p>
                 
                 <div class="reception-section">
-                    <div class="reception-card public">
+                    <div class="reception-card public" data-reception="public">
                         <h4>The Public Phenomenon</h4>
                         <p>For its intended audience of lay readers, the book is an overwhelming triumph. Praised as "delightful", "enchanting", and "surprisingly easy to grasp". Readers describe how it helped them "confront insecurities about learning science" and feel "reassured" that even Einstein found quantum theory baffling.</p>
                     </div>
-                    <div class="reception-card expert">
+                    <div class="reception-card expert" data-reception="expert">
                         <h4>The Expert's Critique</h4>
                         <p>From the perspective of many physicists, the book is "absolutely infuriating!" Criticisms include lack of detail, absence of mathematical rigor, and philosophical overreach. Experts argue that stating concepts without explaining why they're true simply asks readers to "take my word for it".</p>
                     </div>
@@ -642,5 +796,132 @@
         <p>Critical Analysis of Carlo Rovelli's <em>Seven Brief Lessons on Physics</em></p>
         <p>Examining the poetic methodology, bifurcated reception, and cultural significance of this scientific phenomenon</p>
     </footer>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        });
+
+        // Font Size Controls
+        let fontSize = 1;
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+        
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Stats Counter (Animation)
+        const stats = document.querySelectorAll('.stat');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        stats.forEach(stat => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(stat);
+        });
+
+        // Highlight Animation
+        const highlights = document.querySelectorAll('.highlight');
+        highlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => {
+                highlight.style.transform = 'scale(1.02)';
+            });
+            
+            highlight.addEventListener('mouseleave', () => {
+                highlight.style.transform = 'scale(1)';
+            });
+        });
+
+        // Lesson Card Interactions
+        const lessonCards = document.querySelectorAll('.lesson-card');
+        lessonCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const lessonNumber = card.querySelector('.lesson-number').textContent;
+                alert(`Selected Lesson ${lessonNumber}`);
+            });
+        });
+
+        // Methodology Item Interactions
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        methodologyItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const method = item.getAttribute('data-method');
+                alert(`Selected methodology: ${method}`);
+            });
+        });
+
+        // Reception Card Interactions
+        const receptionCards = document.querySelectorAll('.reception-card');
+        receptionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.getAttribute('data-reception');
+                alert(`Selected ${type} reception view`);
+            });
+        });
+    </script>
 </body>
 </html>
