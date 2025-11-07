@@ -6,7 +6,7 @@
     <title>Summary: Nur e Sarmadi by M. Fethullah Gülen</title>
     <style>
         :root {
-            --primary: #1a5f7a;
+            --primary: #186583;
             --secondary: #d4af37;
             --accent: #8b4513;
             --light: #f8f9fa;
@@ -41,6 +41,27 @@
             margin-bottom: 2rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(241, 143, 1, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(162, 59, 114, 0.2) 0%, transparent 50%);
+        }
+        .dark-mode {
+            --primary:#0caace;
+            --secondary: #cd7f32;
+            --accent: #cf1616;
+            --light: #1a1a1a;
+            --dark: #f5f5dc;
+            background: #1a1a1a;
+            color: #f5f5dc;
+        }
+
         
         h1 {
             font-size: 2.5rem;
@@ -82,6 +103,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             height: fit-content;
         }
+         body.dark-mode .main-content,
+        body.dark-mode .sidebar {
+            background: #2c3e50;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
         
         h2 {
             color: var(--primary);
@@ -118,6 +145,20 @@
             margin: 1.5rem 0;
             border-radius: 0 5px 5px 0;
         }
+         body.dark-mode .highlight {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(155, 89, 182, 0.15));
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+         .highlight::before {
+            content: "";
+            font-size: 5rem;
+            color: var(--accent);
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
         
         .methodology-grid {
             display: grid;
@@ -132,6 +173,20 @@
             border-radius: 8px;
             padding: 1.2rem;
             transition: transform 0.3s ease;
+        }
+        body.dark-mode .method-card {
+            background: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+         .instinct-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--secondary);
         }
         
         .method-card:hover {
@@ -159,6 +214,18 @@
             padding: 1.2rem;
             text-align: center;
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+         body.dark-mode .role-card {
+            background: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+         .role-card.positive h4 {
+            color: var(--success);
+        }
+        
+        .role-card.negative h4 {
+            color: var(--danger);
         }
         
         .role-card h4 {
@@ -195,6 +262,9 @@
             margin: 2rem 0;
             border-left: 5px solid var(--secondary);
         }
+        body.dark-mode .conclusion {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.15), rgba(52, 152, 219, 0.15));
+        }
         
         footer {
             background: var(--dark);
@@ -203,6 +273,10 @@
             padding: 2rem 0;
             margin-top: 3rem;
         }
+         body.dark-mode footer {
+            background: #1a1a2e;
+        }
+        
         
         .bibliography {
             font-size: 0.9rem;
@@ -228,9 +302,56 @@
                 columns: 1;
             }
         }
+        /* Controls Section */
+        .controls {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            display: flex;
+            gap: 8px;
+            z-index: 1800;
+        }
+        
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .control-btn:hover {
+           background: rgba(255,255,255,0.3);
+        }
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
+     <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+     <div class="controls">
+        <button class="control-btn" id="themeToggle">🌙 Dark Mode</button>
+        <button class="control-btn" id="fontIncrease">A+</button>
+        <button class="control-btn" id="fontDecrease">A-</button>
+    </div>
     <header>
         <div class="container">
             <h1>Nur e Sarmadi (Infinite Light)</h1>
@@ -448,5 +569,114 @@
             <p>Analysis based on comprehensive review of the text and secondary sources</p>
         </div>
     </footer>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        });
+
+        // Font Size Controls
+        let fontSize = 1;
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+        
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                document.body.style.fontSize = `${fontSize}rem`;
+            }
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Stats Counter (Animation)
+        const stats = document.querySelectorAll('.stat');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        stats.forEach(stat => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(stat);
+        });
+
+        // Highlight Animation
+        const highlights = document.querySelectorAll('.highlight');
+        highlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => {
+                highlight.style.transform = 'scale(1.02)';
+            });
+            
+            highlight.addEventListener('mouseleave', () => {
+                highlight.style.transform = 'scale(1)';
+            });
+        });
+
+        // Lesson Card Interactions
+        const lessonCards = document.querySelectorAll('.method-card');
+        methodCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const lessonNumber = card.querySelector('.method-number').textContent;
+                alert(`Selected Lesson ${methodNumber}`);
+            });
+        });
+
+        // Methodology Item Interactions
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        methodologyItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const method = item.getAttribute('data-method');
+                alert(`Selected methodology: ${method}`);
+            });
+        });
+
+        // Reception Card Interactions
+        const receptionCards = document.querySelectorAll('.role-card');
+        roleCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.getAttribute('data-role');
+                alert(`Selected ${type} role view`);
+            });
+        });
+    </script>
 </body>
 </html>
