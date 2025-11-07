@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended Authors | Faiz Ali Qadri</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a472a;
+      --secondary: #2e8b57;
+      --accent: #d4af37;
+      --light: #f8f9fa;
+      --dark: #1a1a1a;
+      --text: #333333;
+      --gray: #6c757d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--light);
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    nav {
+      max-width: 1200px;
+      margin: 1px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem;
+    }
+    
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(46, 139, 87, 0.9)), url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .page-subtitle {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      text-align: center;
+      margin: 3rem 0 2rem;
+      position: relative;
+    }
+    
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      margin: 0.5rem auto;
+    }
+    
+    /* Authors Grid */
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .author-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .author-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .author-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: white;
+      position: relative;
+    }
+    
+    .author-name {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .author-field {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .author-content {
+      padding: 2rem;
+    }
+    
+    .key-concept {
+      margin-bottom: 1.5rem;
+    }
+    
+    .concept-title {
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .concept-title::before {
+      content: "✦";
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+    
+    .works-list {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .works-title {
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+    
+    .work-item {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    
+    .work-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+    }
+    
+    .quote {
+      font-style: italic;
+      color: var(--gray);
+      border-left: 3px solid var(--secondary);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+      line-height: 1.6;
+    }
+    
+    .author-tag {
+      display: inline-block;
+      background: rgba(46, 139, 87, 0.1);
+      color: var(--secondary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Filters */
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .filter-btn {
+      background: white;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--secondary);
+      color: white;
+    }
+    
+    /* Author Modal */
+    .author-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .author-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 15px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .author-modal.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray);
+    }
+    
+    .modal-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .modal-title {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .modal-subtitle {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    
+    .modal-section {
+      margin-bottom: 2rem;
+    }
+    
+    .modal-section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-socials a {
+      color: white;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-socials a:hover {
+      color: var(--accent);
+    }
+    
+    .footer-text p {
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+    }
+    
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 100;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    
+    .whatsapp-tooltip {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    
+    .whatsapp-float:hover .whatsapp-tooltip {
+      opacity: 1;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .authors-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-logo">Faiz Ali Qadri</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="videos.html">Videos</a>
+        <a href="books.html">Books</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-header">
+    <h1 class="page-title">Recommended Authors</h1>
+    <p class="page-subtitle">Explore the works of influential thinkers, scholars, and visionaries whose ideas have shaped Islamic thought, spirituality, and contemporary understanding</p>
+  </div>
+
+  <main>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All Authors</button>
+      <button class="filter-btn" data-filter="spirituality">Spirituality</button>
+      <button class="filter-btn" data-filter="science">Science</button>
+      <button class="filter-btn" data-filter="personal-development">Personal Development</button>
+      <button class="filter-btn" data-filter="social-change">Social Change</button>
+    </div>
+
+    <div class="authors-grid">
+      <!-- M. Fethullah Gülen -->
+      <div class="author-card" data-categories="spirituality social-change">
+        <div class="author-header">
+          <h2 class="author-name">M. Fethullah Gülen</h2>
+          <p class="author-field">Islamic Scholar & Peace Advocate</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Nur e Sarmadi (Eternal Light)</div>
+            <p>A concept exploring divine light as the source of all existence and knowledge, bridging spiritual understanding with contemporary life.</p>
+          </div>
+          
+          <div class="quote">
+            "True knowledge leads to love, and love leads to service of humanity."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">The Essentials of the Islamic Faith</div>
+            <div class="work-item">Toward a Global Civilization of Love and Tolerance</div>
+            <div class="work-item">Pearls of Wisdom</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Interfaith Dialogue</span>
+            <span class="author-tag">Education</span>
+            <span class="author-tag">Peace Building</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- John Walbridge -->
+      <div class="author-card" data-categories="spirituality">
+        <div class="author-header">
+          <h2 class="author-name">John Walbridge</h2>
+          <p class="author-field">Islamic Studies Scholar</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Bahá'í Studies</div>
+            <p>Academic exploration of Bahá'í history, theology, and the interface between reason and revelation.</p>
+          </div>
+          
+          <div class="quote">
+            "The harmony of science and religion is a fundamental principle of the Bahá'í Faith."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">The Wisdom of the Mystic East: Suhrawardī and Platonic Orientalism</div>
+            <div class="work-item">Sacred Acts, Sacred Space, Sacred Time</div>
+            <div class="work-item">The Most Learned of the Shīʿa: The Institution of the Marjaʿ Taqlīd</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Bahá'í Studies</span>
+            <span class="author-tag">Islamic Philosophy</span>
+            <span class="author-tag">Comparative Religion</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Napoleon Hill -->
+      <div class="author-card" data-categories="personal-development">
+        <div class="author-header">
+          <h2 class="author-name">Napoleon Hill</h2>
+          <p class="author-field">Personal Development Pioneer</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Law of Success</div>
+            <p>The philosophy that personal achievement comes through definiteness of purpose, persistence, and a positive mental attitude.</p>
+          </div>
+          
+          <div class="quote">
+            "Whatever the mind can conceive and believe, it can achieve."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">Think and Grow Rich</div>
+            <div class="work-item">The Law of Success</div>
+            <div class="work-item">Outwitting the Devil</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Success Principles</span>
+            <span class="author-tag">Positive Thinking</span>
+            <span class="author-tag">Wealth Creation</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Carlo Rovelli -->
+      <div class="author-card" data-categories="science">
+        <div class="author-header">
+          <h2 class="author-name">Carlo Rovelli</h2>
+          <p class="author-field">Theoretical Physicist</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Loop Quantum Gravity</div>
+            <p>A theory proposing that space is composed of finite loops woven into a fabric, challenging our understanding of reality and time.</p>
+          </div>
+          
+          <div class="quote">
+            "We are an integral part of nature; we are nature, in one of its innumerable and infinitely variable expressions."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">Seven Brief Lessons on Physics</div>
+            <div class="work-item">The Order of Time</div>
+            <div class="work-item">Reality Is Not What It Seems</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Quantum Gravity</span>
+            <span class="author-tag">Philosophy of Science</span>
+            <span class="author-tag">Time</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hans, Ola & Anna Rosling -->
+      <div class="author-card" data-categories="science social-change">
+        <div class="author-header">
+          <h2 class="author-name">Hans, Ola & Anna Rosling</h2>
+          <p class="author-field">Global Health & Data Visualization</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Factfulness</div>
+            <p>Using data to challenge misconceptions about global development and promote a fact-based worldview.</p>
+          </div>
+          
+          <div class="quote">
+            "The world is much better than you think. This is not a opinion; it's a fact."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">Factfulness: Ten Reasons We're Wrong About the World</div>
+            <div class="work-item">Gapminder Foundation Tools</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Data Visualization</span>
+            <span class="author-tag">Global Health</span>
+            <span class="author-tag">Critical Thinking</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ahmed Hulusi -->
+      <div class="author-card" data-categories="spirituality">
+        <div class="author-header">
+          <h2 class="author-name">Ahmed Hulusi</h2>
+          <p class="author-field">Spiritual Teacher & Author</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Divine Reality</div>
+            <p>Exploring the nature of existence through the lens of Islamic mysticism and modern scientific understanding.</p>
+          </div>
+          
+          <div class="quote">
+            "The entire cosmos is the manifestation of the Names of Allah."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">Decoding the Quran: A Unique Sufi Interpretation</div>
+            <div class="work-item">The Observing One</div>
+            <div class="work-item">Islam: The Universal Truth</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Sufism</span>
+            <span class="author-tag">Quranic Interpretation</span>
+            <span class="author-tag">Consciousness</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Dr. Muhammad Tahir-ul-Qadri -->
+      <div class="author-card" data-categories="spirituality social-change">
+        <div class="author-header">
+          <h2 class="author-name">Dr. Muhammad Tahir-ul-Qadri</h2>
+          <p class="author-field">Islamic Scholar & Reformist</p>
+        </div>
+        <div class="author-content">
+          <div class="key-concept">
+            <div class="concept-title">Islamic Renaissance</div>
+            <p>Promoting a contemporary understanding of Islam that addresses modern challenges while preserving traditional values.</p>
+          </div>
+          
+          <div class="quote">
+            "True spirituality is manifested in serving humanity without any discrimination."
+          </div>
+          
+          <div class="works-list">
+            <div class="works-title">Key Works:</div>
+            <div class="work-item">The Quran: A Point of Contact</div>
+            <div class="work-item">Fatwa on Terrorism and Suicide Bombings</div>
+            <div class="work-item">Irfan-ul-Quran (Quranic Exegesis)</div>
+          </div>
+          
+          <div>
+            <span class="author-tag">Islamic Law</span>
+            <span class="author-tag">Counter-extremism</span>
+            <span class="author-tag">Spirituality</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Author Modal -->
+    <div class="author-modal" id="authorModal">
+      <div class="modal-content">
+        <button class="close-modal" id="closeModal">&times;</button>
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalAuthorName">Author Name</h2>
+          <p class="modal-subtitle" id="modalAuthorField">Field of Expertise</p>
+        </div>
+        <div class="modal-section">
+          <h3>Key Concepts</h3>
+          <p id="modalConcept">Concept description will appear here.</p>
+        </div>
+        <div class="modal-section">
+          <h3>Notable Works</h3>
+          <ul id="modalWorks">
+            <!-- Works will be populated by JavaScript -->
+          </ul>
+        </div>
+        <div class="modal-section">
+          <h3>Influence & Legacy</h3>
+          <p id="modalInfluence">Information about the author's influence will appear here.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-socials">
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/faiz_ali_qadri?igsh=bmRwcWluNzVtMjg4" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@edumots?si=zQ2P459FdPpMv2zl" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1FxQeod9Xq/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="mailto:faizalipresofmerci@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="footer-text">
+        <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
+        <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+      </div>
+    </div>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/+918303682611?text=Hello%20MERCI%20Foundation,%20I%20would%20like%20to%20know%20more%20about%20your%20programs." 
+         class="whatsapp-float" 
+         target="_blank" 
+         aria-label="Chat on WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+          <span class="whatsapp-tooltip">Chat with us</span>
+      </a>
+  </footer>
+
+  <script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const authorCards = document.querySelectorAll('.author-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        authorCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+          } else {
+            const categories = card.getAttribute('data-categories');
+            if (categories.includes(filter)) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    
+    // Modal functionality
+    const authorModal = document.getElementById('authorModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalAuthorName = document.getElementById('modalAuthorName');
+    const modalAuthorField = document.getElementById('modalAuthorField');
+    const modalConcept = document.getElementById('modalConcept');
+    const modalWorks = document.getElementById('modalWorks');
+    const modalInfluence = document.getElementById('modalInfluence');
+    
+    // Author data for modal
+    const authorData = {
+      "M. Fethullah Gülen": {
+        field: "Islamic Scholar & Peace Advocate",
+        concept: "Nur e Sarmadi (Eternal Light) - A concept exploring divine light as the source of all existence and knowledge, bridging spiritual understanding with contemporary life. Gülen emphasizes that this eternal light illuminates both the cosmos and human consciousness, guiding individuals toward moral excellence and service to humanity.",
+        works: [
+          "The Essentials of the Islamic Faith",
+          "Toward a Global Civilization of Love and Tolerance", 
+          "Pearls of Wisdom",
+          "The Statue of Our Souls",
+          "Key Concepts in the Practice of Sufism"
+        ],
+        influence: "Gülen's teachings have inspired a global movement focused on education, interfaith dialogue, and humanitarian service. His interpretation of Islam emphasizes compassion, tolerance, and engagement with modern science and knowledge."
+      },
+      "John Walbridge": {
+        field: "Islamic Studies Scholar",
+        concept: "Bahá'í Studies - Academic exploration of Bahá'í history, theology, and the interface between reason and revelation. Walbridge's work examines how religious traditions evolve and interact with modernity, with particular focus on the Bahá'í faith's approach to progressive revelation and the harmony of science and religion.",
+        works: [
+          "The Wisdom of the Mystic East: Suhrawardī and Platonic Orientalism",
+          "Sacred Acts, Sacred Space, Sacred Time", 
+          "The Most Learned of the Shīʿa: The Institution of the Marjaʿ Taqlīd",
+          "Essays and Notes on Bábí and Bahá'í History"
+        ],
+        influence: "Walbridge has contributed significantly to academic understanding of Islamic and Bahá'í thought, particularly in areas of philosophy, law, and the historical development of religious institutions."
+      },
+      "Napoleon Hill": {
+        field: "Personal Development Pioneer", 
+        concept: "Law of Success - The philosophy that personal achievement comes through definiteness of purpose, persistence, and a positive mental attitude. Hill's work, based on decades of research into successful individuals, outlines principles that anyone can apply to achieve their goals and create wealth.",
+        works: [
+          "Think and Grow Rich",
+          "The Law of Success", 
+          "Outwitting the Devil",
+          "The Master-Key to Riches",
+          "You Can Work Your Own Miracles"
+        ],
+        influence: "Hill's work has influenced millions worldwide and laid the foundation for the modern personal development industry. His principles continue to be taught in business schools and success seminars globally."
+      },
+      "Carlo Rovelli": {
+        field: "Theoretical Physicist",
+        concept: "Loop Quantum Gravity - A theory proposing that space is composed of finite loops woven into a fabric, challenging our understanding of reality and time. Rovelli's work bridges theoretical physics and philosophy, exploring how our perception of time emerges from more fundamental timeless physical laws.",
+        works: [
+          "Seven Brief Lessons on Physics", 
+          "The Order of Time",
+          "Reality Is Not What It Seems",
+          "Helgoland",
+          "Quantum Gravity"
+        ],
+        influence: "Rovelli has become one of the most influential science communicators of our time, making complex physics concepts accessible to general audiences while contributing significantly to theoretical physics research."
+      },
+      "Hans, Ola & Anna Rosling": {
+        field: "Global Health & Data Visualization",
+        concept: "Factfulness - Using data to challenge misconceptions about global development and promote a fact-based worldview. The Roslings developed innovative data visualization tools and frameworks that reveal how the world is actually improving in many areas, contrary to popular pessimistic narratives.",
+        works: [
+          "Factfulness: Ten Reasons We're Wrong About the World", 
+          "Gapminder Foundation Tools",
+          "Various academic papers on global health"
+        ],
+        influence: "The Roslings have transformed how we understand global development through data visualization. Their work has influenced policymakers, educators, and millions of people worldwide to adopt a more fact-based perspective on global progress."
+      },
+      "Ahmed Hulusi": {
+        field: "Spiritual Teacher & Author", 
+        concept: "Divine Reality - Exploring the nature of existence through the lens of Islamic mysticism and modern scientific understanding. Hulusi's work synthesizes traditional Sufi teachings with contemporary knowledge, presenting a unified understanding of reality where science and spirituality converge.",
+        works: [
+          "Decoding the Quran: A Unique Sufi Interpretation",
+          "The Observing One", 
+          "Islam: The Universal Truth",
+          "Allah as Explained by the Prophet",
+          "The Affirmation of Divine Unity"
+        ],
+        influence: "Hulusi has developed a significant following for his contemporary interpretations of Islamic spirituality that resonate with modern seekers. His work bridges traditional mystical teachings with contemporary scientific understanding."
+      },
+      "Dr. Muhammad Tahir-ul-Qadri": {
+        field: "Islamic Scholar & Reformist",
+        concept: "Islamic Renaissance - Promoting a contemporary understanding of Islam that addresses modern challenges while preserving traditional values. Qadri's work emphasizes the peaceful, compassionate aspects of Islam and provides scholarly refutations of extremist interpretations.",
+        works: [
+          "The Quran: A Point of Contact", 
+          "Fatwa on Terrorism and Suicide Bombings",
+          "Irfan-ul-Quran (Quranic Exegesis)",
+          "Islamic Philosophy of Human Life",
+          "The Islamic Vision of Human Rights"
+        ],
+        influence: "Qadri has become an influential voice for moderate Islam, with his extensive scholarly works and his 600-page fatwa against terrorism receiving international attention. He founded Minhaj-ul-Quran International, promoting education and spiritual development."
+      }
+    };
+    
+    // Add click event to author cards
+    authorCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const authorName = card.querySelector('.author-name').textContent;
+        openAuthorModal(authorName);
+      });
+    });
+    
+    function openAuthorModal(authorName) {
+      const data = authorData[authorName];
+      
+      modalAuthorName.textContent = authorName;
+      modalAuthorField.textContent = data.field;
+      modalConcept.textContent = data.concept;
+      
+      // Clear and populate works list
+      modalWorks.innerHTML = '';
+      data.works.forEach(work => {
+        const li = document.createElement('li');
+        li.textContent = work;
+        li.style.marginBottom = '0.5rem';
+        modalWorks.appendChild(li);
+      });
+      
+      modalInfluence.textContent = data.influence;
+      
+      authorModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      authorModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Close modal when clicking outside content
+    authorModal.addEventListener('click', (e) => {
+      if (e.target === authorModal) {
+        authorModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
