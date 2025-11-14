@@ -36,6 +36,7 @@
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
     }
     
     nav {
@@ -45,12 +46,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 1.5rem;
+      position: relative;
     }
     
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
       font-weight: 700;
+      z-index: 10;
     }
     
     .nav-links {
@@ -67,6 +70,86 @@
     
     .nav-links a:hover {
       color: var(--accent);
+    }
+    
+    /* Mobile Menu Styles */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    
+    .mobile-menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      z-index: 90;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      padding: 80px 20px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-menu.active {
+      right: 0;
+    }
+    
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-weight: 500;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+    }
+    
+    .mobile-menu a:hover {
+      color: var(--accent);
+      padding-left: 10px;
+    }
+    
+    .mobile-menu a i {
+      margin-right: 15px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 80;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
     
     /* Page Header */
@@ -409,6 +492,10 @@
         display: none;
       }
       
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      
       .page-title {
         font-size: 2.2rem;
       }
@@ -416,6 +503,43 @@
       .authors-grid {
         grid-template-columns: 1fr;
       }
+      
+      .nav-logo {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .filters {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        max-width: 250px;
+      }
+      
+      .page-title {
+        font-size: 1.8rem;
+      }
+    }
+    
+    .authors-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+
+    .author-card {
+      width: 320px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
     }
   </style>
 </head>
@@ -430,7 +554,26 @@
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
       </div>
+      
+      <!-- Mobile Hamburger Menu -->
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="videos.html"><i class="fas fa-play-circle"></i> Videos</a>
+      <a href="books.html"><i class="fas fa-book"></i> Books</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
   </header>
 
   <div class="page-header">
@@ -448,308 +591,367 @@
       <button class="filter-btn" data-filter="education">Education</button>
     </div>
 
-    <div class="authors-grid">
-      <!-- Norman Lowe -->
-      <div class="author-card" data-categories="education social-change personal-development">
-        <div class="author-header">
-          <h2 class="author-name">Norman Lowe</h2>
-          <p class="author-field">Historian & Master Educator</p>
+   <div class="authors-grid">
+
+  <!-- Norman Lowe -->
+  <div class="author-card" data-categories="education social-change personal-development">
+    <div class="author-header">
+      <h2 class="author-name">Norman Lowe</h2>
+      <p class="author-field">Historian & Master Educator</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Norman Lowe is a master educator whose work has shaped how millions understand modern world history...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Pedagogical Synthesis</div>
+          <p>Lowe's unique contribution lies not in original historical discovery but in his ability to synthesize complex historical processes into accessible frameworks...</p>
         </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Norman Lowe is a master educator whose work has shaped how millions understand modern world history...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Pedagogical Synthesis</div>
-              <p>Lowe's unique contribution lies not in original historical discovery but in his ability to synthesize complex historical processes into accessible frameworks...</p>
-            </div>
-            
-            <div class="quote">
-              "It is sometimes impossible to decide what 'the truth' is..."
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Mastering Modern World History</div>
-              <div class="work-item">Mastering Modern British History</div>
-              <div class="work-item">Mastering Twentieth-Century Russian History</div>
-            </div>
-            
-            <div class="tags-container">
-              <span class="author-tag">Historical Education</span>
-              <span class="author-tag">Critical Thinking</span>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="norman.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Norman Summary
-          </a>
+        
+        <div class="quote">
+          "It is sometimes impossible to decide what 'the truth' is..."
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Mastering Modern World History</div>
+          <div class="work-item">Mastering Modern British History</div>
+          <div class="work-item">Mastering Twentieth-Century Russian History</div>
+        </div>
+        
+        <div class="tags-container">
+          <span class="author-tag">Historical Education</span>
+          <span class="author-tag">Critical Thinking</span>
         </div>
       </div>
       
-      <!-- Carlo Rovelli -->
-      <div class="author-card" data-categories="science">
-        <div class="author-header">
-          <h2 class="author-name">Carlo Rovelli</h2>
-          <p class="author-field">Theoretical Physicist</p>
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="norman.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Norman Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Carlo Rovelli -->
+  <div class="author-card" data-categories="science">
+    <div class="author-header">
+      <h2 class="author-name">Carlo Rovelli</h2>
+      <p class="author-field">Theoretical Physicist</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Carlo Rovelli is an Italian theoretical physicist and writer known for his work on loop quantum gravity...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Loop Quantum Gravity</div>
+          <p>A theory proposing that space is composed of finite loops woven into a fabric...</p>
         </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Carlo Rovelli is an Italian theoretical physicist and writer known for his work on loop quantum gravity...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Loop Quantum Gravity</div>
-              <p>A theory proposing that space is composed of finite loops woven into a fabric...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Seven Brief Lessons on Physics</div>
-              <div class="work-item">The Order of Time</div>
-              <div class="work-item">Reality Is Not What It Seems</div>
-            </div>
-            
-            <div class="tags-container">
-              <span class="author-tag">Quantum Gravity</span>
-              <span class="author-tag">Philosophy of Science</span>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="carlo.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Carlo Summary
-          </a>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Seven Brief Lessons on Physics</div>
+          <div class="work-item">The Order of Time</div>
+          <div class="work-item">Reality Is Not What It Seems</div>
         </div>
+        
+        <div class="tags-container">
+          <span class="author-tag">Quantum Gravity</span>
+          <span class="author-tag">Philosophy of Science</span>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="carlo.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Carlo Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Napoleon Hill -->
+  <div class="author-card" data-categories="personal-development">
+    <div class="author-header">
+      <h2 class="author-name">Napoleon Hill</h2>
+      <p class="author-field">Personal Development Pioneer</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Napoleon Hill was an American self-help author known for his groundbreaking work on personal success...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Law of Success</div>
+          <p>The philosophy that personal achievement comes through definiteness of purpose...</p>
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Think and Grow Rich</div>
+          <div class="work-item">The Law of Success</div>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="hill.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Hill Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Ahmed Hulusi -->
+  <div class="author-card" data-categories="spirituality">
+    <div class="author-header">
+      <h2 class="author-name">Ahmed Hulusi</h2>
+      <p class="author-field">Spiritual Teacher & Author</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Ahmed Hulusi is a contemporary spiritual teacher known for his unique interpretations of Islamic spirituality...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Divine Reality</div>
+          <p>Exploring the nature of existence through the lens of Islamic mysticism...</p>
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Decoding the Quran</div>
+          <div class="work-item">The Observing One</div>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="hulusi.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Hulusi Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Hans Rosling -->
+  <div class="author-card" data-categories="science social-change">
+    <div class="author-header">
+      <h2 class="author-name">Hans, Ola & Anna Rosling</h2>
+      <p class="author-field">Global Health & Data Visualization</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>The Rosling family has revolutionized how we understand global development through data visualization...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Factfulness</div>
+          <p>Using data to challenge misconceptions about global development...</p>
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Factfulness</div>
+          <div class="work-item">Gapminder Foundation Tools</div>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="rosling.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Rosling Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Dr. Muhammad Tahir-ul-Qadri -->
+  <div class="author-card" data-categories="spirituality social-change">
+    <div class="author-header">
+      <h2 class="author-name">Dr. Muhammad Tahir-ul-Qadri</h2>
+      <p class="author-field">Islamic Scholar & Reformist</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Dr. Muhammad Tahir-ul-Qadri is a prominent Pakistani Islamic scholar and reformist...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Islamic Renaissance</div>
+          <p>Promoting a contemporary understanding of Islam...</p>
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Fatwa on Terrorism</div>
+          <div class="work-item">Irfan-ul-Quran</div>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="tahir.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Tahir Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- John Walbridge -->
+  <div class="author-card" data-categories="spirituality">
+    <div class="author-header">
+      <h2 class="author-name">John Walbridge</h2>
+      <p class="author-field">Islamic Studies Scholar</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>John Walbridge is a prominent scholar specializing in Islamic philosophy...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Bahá'í Studies</div>
+          <p>Academic exploration of Bahá'í history and theology...</p>
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">The Wisdom of the Mystic East</div>
+          <div class="work-item">Sacred Acts, Sacred Space, Sacred Time</div>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="walbridge.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Walbridge Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Edward Said -->
+  <div class="author-card" data-categories="education social-change spirituality">
+    <div class="author-header">
+      <h2 class="author-name">Edward W. Said</h2>
+      <p class="author-field">Literary Critic & Post-Colonial Scholar</p>
+    </div>
+    <div class="author-content">
+      <div class="author-summary">
+        <p>Edward W. Said was a Palestinian-American intellectual who fundamentally transformed cultural and political discourse through his groundbreaking work on post-colonialism and Orientalism...</p>
+      </div>
+      
+      <div class="author-details">
+        <div class="key-concept">
+          <div class="concept-title">Orientalism</div>
+          <p>Said's critique of how Western scholarship created "the Orient" as an object of knowledge and power, fundamentally challenging colonial narratives...</p>
+        </div>
+        
+        <div class="quote">
+          "The Orient is not merely a geographical fact, but a Western intellectual construct that produces the very reality it claims to describe."
+        </div>
+        
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Orientalism (1978)</div>
+          <div class="work-item">Culture and Imperialism (1993)</div>
+          <div class="work-item">The World, the Text, and the Critic</div>
+          <div class="work-item">Out of Place: A Memoir</div>
+        </div>
+        
+        <div class="tags-container">
+          <span class="author-tag">Post-Colonial Studies</span>
+          <span class="author-tag">Cultural Criticism</span>
+          <span class="author-tag">Palestinian Advocacy</span>
+        </div>
+      </div>
+      
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
+      
+      <a href="edward.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Edward Summary
+      </a>
+    </div>
+  </div>
+
+  <!-- Rashid Shaz -->
+  <div class="author-card" data-categories="education social-change spirituality">
+    <div class="author-header">
+      <h2 class="author-name">Rashid Shaz</h2>
+      <p class="author-field">Literary Critic & Post-Colonial Scholar</p>
+    </div>
+
+    <div class="author-content">
+
+      <div class="author-summary">
+        <p>An Intellectual Autopsy of the Modern Muslim Mind: A Recommendation of Professor Rashid Shaz's...</p>
       </div>
 
-      <!-- Napoleon Hill -->
-      <div class="author-card" data-categories="personal-development">
-        <div class="author-header">
-          <h2 class="author-name">Napoleon Hill</h2>
-          <p class="author-field">Personal Development Pioneer</p>
+      <div class="author-details">
+
+        <div class="key-concept">
+          <div class="concept-title">Intellectual Stagnation</div>
+          <p>Rashid Shaz is an Indian Muslim scholar known for his writings on reform, revival, and critique of contemporary Muslim thought....</p>
         </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Napoleon Hill was an American self-help author known for his groundbreaking work on personal success...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Law of Success</div>
-              <p>The philosophy that personal achievement comes through definiteness of purpose...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Think and Grow Rich</div>
-              <div class="work-item">The Law of Success</div>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="hill.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Hill Summary
-          </a>
+
+        <div class="quote">
+          "The modern Muslim mind has not died from lack of faith, but from the abandonment of thought — a quiet surrender of reason that turned revelation into ritual and inquiry into taboo."
         </div>
+
+        <div class="works-list">
+          <div class="works-title">Key Works:</div>
+          <div class="work-item">Idrak-e-Zawal-e-Ummat (2 volumes)</div>
+          <div class="work-item">Lastam Pokh</div>
+          <div class="work-item">Kitab ul Urooj</div>
+          <div class="work-item">Islam: Negotiating the Future</div>
+          <div class="work-item">Creating a Future Islamic Civilization</div>
+        </div>
+
+        <div class="tags-container">
+          <span class="author-tag">Islamic Reform</span>
+          <span class="author-tag">Qur'anic Hermeneutics</span>
+          <span class="author-tag">Muslim Intellectual Revival</span>
+          <span class="author-tag">Post-Colonial Muslim Thought</span>
+          <span class="author-tag">Civilizational Studies</span>
+          <span class="author-tag">Contemporary Islamic Thought</span>
+        </div>
+
       </div>
 
-      <!-- Ahmed Hulusi -->
-      <div class="author-card" data-categories="spirituality">
-        <div class="author-header">
-          <h2 class="author-name">Ahmed Hulusi</h2>
-          <p class="author-field">Spiritual Teacher & Author</p>
-        </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Ahmed Hulusi is a contemporary spiritual teacher known for his unique interpretations of Islamic spirituality...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Divine Reality</div>
-              <p>Exploring the nature of existence through the lens of Islamic mysticism...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Decoding the Quran</div>
-              <div class="work-item">The Observing One</div>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="hulusi.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Hulusi Summary
-          </a>
-        </div>
-      </div>
+      <button class="read-more-btn">
+        Read More <i class="fas fa-chevron-down"></i>
+      </button>
 
-      <!-- Hans Rosling -->
-      <div class="author-card" data-categories="science social-change">
-        <div class="author-header">
-          <h2 class="author-name">Hans, Ola & Anna Rosling</h2>
-          <p class="author-field">Global Health & Data Visualization</p>
-        </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>The Rosling family has revolutionized how we understand global development through data visualization...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Factfulness</div>
-              <p>Using data to challenge misconceptions about global development...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Factfulness</div>
-              <div class="work-item">Gapminder Foundation Tools</div>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="rosling.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Rosling Summary
-          </a>
-        </div>
-      </div>
-
-      <!-- Dr. Muhammad Tahir-ul-Qadri -->
-      <div class="author-card" data-categories="spirituality social-change">
-        <div class="author-header">
-          <h2 class="author-name">Dr. Muhammad Tahir-ul-Qadri</h2>
-          <p class="author-field">Islamic Scholar & Reformist</p>
-        </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Dr. Muhammad Tahir-ul-Qadri is a prominent Pakistani Islamic scholar and reformist...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Islamic Renaissance</div>
-              <p>Promoting a contemporary understanding of Islam...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Fatwa on Terrorism</div>
-              <div class="work-item">Irfan-ul-Quran</div>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="tahir.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Tahir Summary
-          </a>
-        </div>
-      </div>
-
-      <!-- John Walbridge -->
-      <div class="author-card" data-categories="spirituality">
-        <div class="author-header">
-          <h2 class="author-name">John Walbridge</h2>
-          <p class="author-field">Islamic Studies Scholar</p>
-        </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>John Walbridge is a prominent scholar specializing in Islamic philosophy...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Bahá'í Studies</div>
-              <p>Academic exploration of Bahá'í history and theology...</p>
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">The Wisdom of the Mystic East</div>
-              <div class="work-item">Sacred Acts, Sacred Space, Sacred Time</div>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="walbridge.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Walbridge Summary
-          </a>
-        </div>
-      </div>
-
-      <!-- Edward W. Said -->
-      <div class="author-card" data-categories="education social-change spirituality">
-        <div class="author-header">
-          <h2 class="author-name">Edward W. Said</h2>
-          <p class="author-field">Literary Critic & Post-Colonial Scholar</p>
-        </div>
-        <div class="author-content">
-          <div class="author-summary">
-            <p>Edward W. Said was a Palestinian-American intellectual who fundamentally transformed cultural and political discourse through his groundbreaking work on post-colonialism and Orientalism...</p>
-          </div>
-          
-          <div class="author-details">
-            <div class="key-concept">
-              <div class="concept-title">Orientalism</div>
-              <p>Said's critique of how Western scholarship created "the Orient" as an object of knowledge and power, fundamentally challenging colonial narratives...</p>
-            </div>
-            
-            <div class="quote">
-              "The Orient is not merely a geographical fact, but a Western intellectual construct that produces the very reality it claims to describe."
-            </div>
-            
-            <div class="works-list">
-              <div class="works-title">Key Works:</div>
-              <div class="work-item">Orientalism (1978)</div>
-              <div class="work-item">Culture and Imperialism (1993)</div>
-              <div class="work-item">The World, the Text, and the Critic</div>
-              <div class="work-item">Out of Place: A Memoir</div>
-            </div>
-            
-            <div class="tags-container">
-              <span class="author-tag">Post-Colonial Studies</span>
-              <span class="author-tag">Cultural Criticism</span>
-              <span class="author-tag">Palestinian Advocacy</span>
-            </div>
-          </div>
-          
-          <button class="read-more-btn">
-            Read More <i class="fas fa-chevron-down"></i>
-          </button>
-          
-          <a href="edward.html" target="_blank" class="author-summary-btn">
-            <i class="fas fa-book-open"></i> View Edward Summary
-          </a>
-        </div>
-      </div>
+      <a href="rashid.html" target="_blank" class="author-summary-btn">
+        <i class="fas fa-book-open"></i> View Rashid Summary
+      </a>
 
     </div>
+  </div>
+
+</div>
+
+
+
   </main>
 
   <footer>
@@ -777,6 +979,26 @@
   </footer>
 
   <script>
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    menuOverlay.addEventListener('click', toggleMobileMenu);
+    
+    // Close menu when clicking on a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', toggleMobileMenu);
+    });
+    
     // Filter functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
     const authorCards = document.querySelectorAll('.author-card');

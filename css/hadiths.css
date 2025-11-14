@@ -1,0 +1,161 @@
+/* Hadith Modal Styles */
+.hadith-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.hadith-modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hadith-modal-content {
+  background: linear-gradient(135deg, #1a472a 0%, #2e8b57 100%);
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideInUp 0.5s ease;
+  color: white;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hadith-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hadith-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.hadith-icon {
+  font-size: 3rem;
+  color: #d4af37;
+  margin-bottom: 1.5rem;
+}
+
+.hadith-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #d4af37;
+}
+
+.hadith-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #d4af37;
+}
+
+.hadith-source {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.hadith-next-btn {
+  background: #d4af37;
+  color: #1a1a1a;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.hadith-next-btn:hover {
+  background: #c29726;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Floating Hadith Button */
+.hadith-float {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  background: linear-gradient(135deg, #1a472a, #2e8b57);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 10px 30px rgba(26, 71, 42, 0.5);
+  z-index: 99;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.hadith-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-tooltip {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hadith-modal-content {
+    padding: 2rem;
+  }
+  .hadith-title {
+    font-size: 1.5rem;
+  }
+  .hadith-text {
+    font-size: 1rem;
+  }
+}

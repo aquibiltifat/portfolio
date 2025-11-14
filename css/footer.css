@@ -1,0 +1,108 @@
+/* Footer & Social Styles */
+
+footer {
+  background: linear-gradient(135deg, var(--primary) 0%, #144a61 100%);
+  color: #fff;
+  text-align: center;
+  padding: 40px 0 30px;
+  margin-top: 50px;
+  border-radius: 40px 40px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent), var(--secondary));
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-socials a {
+  color: var(--secondary);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.footer-socials a:hover { 
+  color: #fff;
+  background: var(--accent);
+  transform: translateY(-5px) rotate(10deg);
+}
+
+.footer-text {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-top: 15px;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+  background: #128c7e;
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float i {
+  font-size: 30px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.8);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+}

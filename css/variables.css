@@ -1,0 +1,43 @@
+/* Color Variables & Design System */
+:root {
+  --primary: #1a5f7a;
+  --secondary: #d4af37;
+  --accent: #2d9d78;
+  --background: #f8f6f2;
+  --dark: #2c3e50;
+  --light: #f9f9f9;
+  --shadow: 0 4px 16px rgba(38, 50, 56, 0.08);
+  --shadow-deep: 0 8px 32px rgba(19, 95, 122, 0.15);
+  --border-light: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background);
+  color: var(--dark);
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(26, 95, 122, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 40% 40%, rgba(45, 157, 120, 0.1) 0%, transparent 60%);
+  z-index: -1;
+  filter: blur(3px);
+}
