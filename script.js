@@ -363,25 +363,6 @@ function showIslamicToast(message, type = 'success') {
   }, 4000);
 }
 
-// Add floating Quran verse on scroll
-function initFloatingVerses() {
-  const verses = [
-    "And He is with you wherever you are. - Quran 57:4",
-    "Indeed, with hardship comes ease. - Quran 94:6",
-    "So remember Me; I will remember you. - Quran 2:152",
-    "Allah does not burden a soul beyond that it can bear. - Quran 2:286"
-  ];
-  
-  let verseShown = false;
-  
-  window.addEventListener('scroll', () => {
-    if (verseShown || window.scrollY < 500) return;
-    
-    const verse = verses[Math.floor(Math.random() * verses.length)];
-    showFloatingVerse(verse);
-    verseShown = true;
-  });
-}
 
 function showFloatingVerse(verse) {
   const verseEl = document.createElement('div');
