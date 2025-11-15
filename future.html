@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Vision: Foreign Languages Initiative | Faiz Ali Qadri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="nav-logo">
+                <span>Faiz Ali Qadri</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="videos.html">Videos</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="connect.html">Connect</a>
+            </div>
+        </nav>
+    </header>
+
+   <!-- Desktop Hamburger Menu -->
+  <div class="desktop-hamburger top-left">
+    <input type="checkbox" id="desktop-menu-toggle">
+    <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    
+    <div class="desktop-menu">
+      <div class="desktop-menu-header">
+        <h3>Explore More</h3>
+        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="desktop-menu-links">
+        <a href="intellectual-journey.html" class="desktop-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="desktop-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="desktop-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="desktop-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="desktop-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="desktop-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="future.html" class="desktop-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Future Projects</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Hamburger Menu -->
+  <div class="mobile-hamburger">
+    <input type="checkbox" id="mobile-menu-toggle">
+    <label for="mobile-menu-toggle" class="mobile-menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    
+    <div class="mobile-menu">
+      <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="mobile-menu-header">
+        <div class="nav-logo">Dr. Rahman</div>
+        <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
+      </div>
+      
+      <div class="mobile-menu-links">
+        <a href="#home" class="mobile-menu-link">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#videos" class="mobile-menu-link">
+          <i class="fas fa-play-circle"></i>
+          <span>Videos</span>
+        </a>
+        <a href="#books" class="mobile-menu-link">
+          <i class="fas fa-book"></i>
+          <span>Books</span>
+        </a>
+        <a href="#gallery" class="mobile-menu-link">
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
+        </a>
+        <a href="#contact" class="mobile-menu-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+        <div class="menu-divider"></div>
+        <a href="intellectual-journey.html" class="mobile-menu-link">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="mobile-menu-link">
+          <i class="fas fa-mountain"></i>
+          <span>Path Struggle</span>
+        </a>
+        <a href="social-projects.html" class="mobile-menu-link">
+          <i class="fas fa-hands-helping"></i>
+          <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="mobile-menu-link">
+          <i class="fas fa-link"></i>
+          <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="mobile-menu-link">
+          <i class="fas fa-book-open"></i>
+          <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="mobile-menu-link">
+          <i class="fas fa-user-graduate"></i>
+          <span>Recommended Authors</span>
+        </a>
+        <a href="future.html" class="mobile-menu-link">
+          <i class="fas fa-film"></i>
+          <span>Future Projects</span>
+        </a>
+
+        </a>
+      </div>
+    </div>
+  </div>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Foreign Languages Initiative</h1>
+            <p>Building Globally Competent Communities</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <!-- Introduction -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>My Vision</h2>
+                <p>My foundational vision has always been to prepare our community for all the future challenges and international opportunities that the world's changing situation is presenting to us. Today's global economic landscape is no longer just degree-based but is increasingly becoming skills-based—and among those skills, the most valuable and demand-driven skill is proficiency in foreign languages.</p>
+                
+                <div class="stats-counters">
+                    <div class="counter-card">
+                        <span class="counter-num">40%</span>
+                        <span class="counter-label">Global Workforce Shift by 2030</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-num">50%</span>
+                        <span class="counter-label">Higher Hiring for Multilinguals</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-num">35%</span>
+                        <span class="counter-label">Higher Salary Potential</span>
+                    </div>
+                </div>
+                
+                <p>According to data from the World Economic Forum (WEF), by 2030, 40% of the global workforce will have shifted to roles where cross-cultural communication, international collaboration, and multilingual competencies will be basic requirements. Similarly, according to a report by the European Commission, the hiring probability for multilingual professionals is 40-50% higher compared to single-language professionals.</p>
+                
+                <p>My responsibility is not just to see my community grow—but to create those platforms and gateways for them that can change the direction of their lives and careers.</p>
+                <p>This thought has shown MERCI Foundation the path toward its next big step.</p>
+            </div>
+        </section>
+
+        <!-- Global Opportunities Program -->
+        <section class="content-section">
+            <h2 class="section-title">Global Opportunities Program</h2>
+            <div class="content-card">
+                <h3>Foreign Languages for Global Careers</h3>
+                <p>I firmly believe that in today's global world, language is not just a medium of communication but is the simplest and most powerful tool for economic mobility, international exposure, and career transformation.</p>
+                <p>How long will our youth remain restricted to only local job markets? When the world is open to them, it is our responsibility to open those doors for them where the job markets of the European Union, Middle East, East Asia, and Africa are waiting for them.</p>
+                <p>Understanding this need, MERCI Foundation is soon launching its Dedicated Foreign Language Program—an initiative that will directly connect our students and professionals with international work culture, global industries, and multinational corporations.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="wisdom-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h4>Our Objective</h4>
+                        <p>To prepare our students as global citizens.</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="wisdom-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Global Connections</h4>
+                        <p>To connect them with markets where industries like hospitality, aviation, technology, education, translation, and international business hire lakhs of multilingual professionals every year.</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="wisdom-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Economic Growth</h4>
+                        <p>To double and in some cases triple their earning potential—because data shows that the salaries of multilingual individuals in global markets are 20-35% higher.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase One Languages -->
+        <section class="content-section">
+            <h2 class="section-title">Phase One — Practical and Resource-Aligned Start</h2>
+            <div class="content-card">
+                <p>Our strategy is always realist and resource-optimized. Therefore, in the first phase, we are focusing on those languages whose global demand, job availability, and cultural relevance are already proven:</p>
+                
+                <div class="quranic-guidance">
+                    <div class="guidance-card">
+                        <h3>French</h3>
+                        <div class="wisdom-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <p>The official language of 29 countries, accompanying massive economic growth in Africa and Europe.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h3>German</h3>
+                        <div class="wisdom-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <p>The gateway to Europe's strongest economy and high-paying technical/engineering job markets.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h3>Arabic</h3>
+                        <div class="wisdom-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <p>The booming industry of the Middle East, the employment hubs of the Gulf states, and the most accessible foreign market for South Asia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Language-Specific Analysis -->
+        <section class="content-section">
+            <h2 class="section-title">Language-Specific Market Analysis</h2>
+            
+            <!-- German -->
+            <div class="content-card">
+                <h3>German: The Language of Engineering and Innovation</h3>
+                <div class="detail-content">
+                    <h4>Market Context</h4>
+                    <p>Germany is Europe's largest economy, the world's second-largest exporter, and India's largest trading partner in the European Union. This strong economic tie drives a huge demand for German-speaking professionals in India.</p>
+                    
+                    <h4>High-Demand Sectors in India</h4>
+                    <ul>
+                        <li><strong>Engineering, Automotive, and Manufacturing:</strong> German companies like BMW, Volkswagen, Bosch, and Siemens have significant operations in India.</li>
+                        <li><strong>Information Technology (IT):</strong> Germany's IT sector is booming with high vacancies.</li>
+                        <li><strong>Banking, Finance, and BPO/KPO:</strong> German-based banks like Deutsche Bank value German-fluent professionals.</li>
+                        <li><strong>Education and Tourism:</strong> The demand for German language teachers is increasing in Indian universities.</li>
+                    </ul>
+                    
+                    <h4>Salary Expectations</h4>
+                    <p>German language specialists command high salaries, often 20-30% more than their counterparts. Expected annual salaries range from ₹3-10 lakhs for banking/BPO and up to ₹20 lakhs per annum for experienced IT professionals with German proficiency.</p>
+                </div>
+            </div>
+            
+            <!-- French -->
+            <div class="content-card">
+                <h3>French: The Language of Diplomacy and Global Culture</h3>
+                <div class="detail-content">
+                    <h4>Market Context</h4>
+                    <p>French is a global language spoken by over 300 million people in 29 countries and is an official language of international organizations like the United Nations, NATO, and the European Union.</p>
+                    
+                    <h4>High-Demand Sectors in India</h4>
+                    <ul>
+                        <li><strong>IT, BPO, and Customer Support:</strong> High demand for French speakers in MNCs, BPOs, and call centers.</li>
+                        <li><strong>Tourism and Hospitality:</strong> French speakers are preferred as tour guides, hotel staff, and event managers.</li>
+                        <li><strong>Education:</strong> The demand for French language teachers in Indian schools is constantly growing.</li>
+                        <li><strong>Foreign Services and Embassies:</strong> A pathway to prestigious careers in the Indian Foreign Service (IFS).</li>
+                    </ul>
+                    
+                    <h4>Salary Expectations</h4>
+                    <p>A French translator in India can earn a basic salary of approximately ₹4.8 lakhs per year. With experience and higher proficiency, the salary can reach ₹7-10 lakhs per year.</p>
+                </div>
+            </div>
+            
+            <!-- Arabic -->
+            <div class="content-card">
+                <h3>Arabic: A Bridge to Commerce and the Middle East</h3>
+                <div class="detail-content">
+                    <h4>Market Context</h4>
+                    <p>The Arabic-speaking world is a rapidly growing market with a combined GDP of $2.5 trillion. Countries like the UAE, Saudi Arabia, and Qatar are major hubs for trade, finance, and investment, with strong economic ties to India.</p>
+                    
+                    <h4>High-Demand Sectors (India and the Middle East)</h4>
+                    <ul>
+                        <li><strong>Business, Finance, and Banking:</strong> International banks and financial firms need Arabic speakers to manage business in the Middle East.</li>
+                        <li><strong>Construction, Real Estate, and Petrochemicals:</strong> Large investments in these sectors have created high demand for professionals.</li>
+                        <li><strong>Hospitality, Aviation, and Logistics:</strong> The thriving tourism and logistics industries require Arabic speakers.</li>
+                        <li><strong>Diplomacy and Journalism:</strong> As one of the six official UN languages, Arabic opens doors to jobs in international organizations.</li>
+                    </ul>
+                    
+                    <h4>Strategic Advantage</h4>
+                    <p>French and German are the most popular foreign languages learned in India, making these markets competitive. In contrast, very few people in India can speak Arabic, while economic ties with the Middle East are massive. This presents a unique opportunity for low-competition, high-demand opportunities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparative Table -->
+        <section class="content-section">
+            <h2 class="section-title">Career Opportunities at a Glance</h2>
+            <div class="content-card">
+                <div class="table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Key Domestic Sectors</th>
+                                <th>Key International Regions</th>
+                                <th>High-Demand Job Roles</th>
+                                <th>Average Annual Salary (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>German</strong></td>
+                                <td>Engineering, Automotive, IT, Manufacturing, Banking</td>
+                                <td>Germany, Austria, Switzerland (DACH region)</td>
+                                <td>Software Developer, Mechanical Engineer, Data Analyst</td>
+                                <td>₹4.5 Lakhs - ₹15 Lakhs+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>French</strong></td>
+                                <td>ITES, BPO, Tourism & Hospitality, Education</td>
+                                <td>France, Canada, Switzerland, Belgium, African countries</td>
+                                <td>Customer Support Specialist, Translator, Language Teacher</td>
+                                <td>₹4 Lakhs - ₹10 Lakhs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Arabic</strong></td>
+                                <td>Business & Finance, Logistics, Energy, Hospitality</td>
+                                <td>Middle East and North Africa (MENA) region</td>
+                                <td>Financial Analyst, Business Consultant, Hotel Manager</td>
+                                <td>₹4 Lakhs - ₹12 Lakhs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CEFR Framework -->
+        <section class="content-section">
+            <h2 class="section-title">Foundational Levels (A1 and A2)</h2>
+            <div class="content-card">
+                <h3>Understanding the CEFR Framework</h3>
+                <p>To standardize the language learning journey, the Common European Framework of Reference for Languages (CEFR) is used. The MERCI Foundation's A1 and A2 courses will be based on this global standard.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h4>A1 (Breakthrough/Beginner)</h4>
+                        <p>At this level, students can understand and use familiar everyday expressions and very basic phrases. They can introduce themselves and others, and can ask and answer questions about personal details.</p>
+                    </div>
+                    <div class="content-card">
+                        <h4>A2 (Waystage/Elementary)</h4>
+                        <p>At this level, students can understand sentences and frequently used expressions related to personal and family information, shopping, local geography, and employment.</p>
+                    </div>
+                </div>
+                
+                <h3>Career Benefits of A1/A2 Certification</h3>
+                <p>While A1/A2 levels are not sufficient for roles requiring professional fluency, they offer significant foundational benefits:</p>
+                
+                <div class="detail-content">
+                    <ul>
+                        <li><strong>Resume Enhancement:</strong> Including a CEFR certificate demonstrates initiative, a global mindset, and commitment to self-improvement.</li>
+                        <li><strong>Gateway to Entry-Level Roles:</strong> A1/A2 proficiency is valuable for entry-level positions in tourism, hospitality, and basic customer service.</li>
+                        <li><strong>A Critical Stepping Stone:</strong> A1/A2 certification is the necessary first step for higher education applications and achieving more professionally valuable B1/B2 levels.</li>
+                    </ul>
+                </div>
+                
+                <p>A1/A2 certification acts as a signal beyond just language knowledge. An employer in a non-linguistic field may value the discipline, global awareness, and willingness to learn new skills that the certificate represents.</p>
+            </div>
+        </section>
+
+        <!-- Strategic Recommendations -->
+        <section class="content-section">
+            <h2 class="section-title">Strategic Recommendations</h2>
+            <div class="content-card">
+                <p>This analysis underscores the vast, multifaceted value of learning German, French, and Arabic. These languages are not just tools of communication, but gateways to global careers, international mobility, and personal growth.</p>
+                
+                <div class="detail-content">
+                    <h4>For the MERCI Foundation, the following strategic recommendations are proposed:</h4>
+                    <ul>
+                        <li><strong>Develop Career-Aligned Curriculum Tracks:</strong> Create specialized modules within each language course (e.g., "German for Engineers," "French for Diplomats," "Arabic for Business").</li>
+                        <li><strong>Establish a Global Advisory Cell:</strong> Provide dedicated counseling on studying abroad, scholarship applications, and immigration pathways.</li>
+                        <li><strong>Market Strategically:</strong> Highlight the unique benefits of each language—German for tech careers, French for Canadian immigration, and Arabic for the low-competition Gulf market.</li>
+                        <li><strong>Emphasize Foundational Value:</strong> Position the A1/A2 courses as essential "employability boosters" for students in all fields.</li>
+                    </ul>
+                </div>
+                
+                <p>By implementing these strategies, the MERCI Foundation can establish its new course not just as a language program, but as a premier institution for launching global careers.</p>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section">
+            <div class="content-card text-center">
+                <h2>Join the Language Revolution</h2>
+                <p>Be part of this transformative initiative to build globally competent communities.</p>
+                <button class="cta-btn">Express Interest</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2023 Faiz Ali Qadri. All rights reserved.</p>
+                <p>Building bridges through knowledge and language.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Simple counter animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.counter-num');
+            
+            counters.forEach(counter => {
+                const target = +counter.innerText.replace('%', '');
+                let count = 0;
+                const increment = target / 100;
+                
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count) + '%';
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target + '%';
+                    }
+                };
+                
+                // Start counter when element is in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCount();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
+            
+            // Initialize hamburger menu
+            initHamburgerMenu();
+        });
+        
+        // Hamburger Menu Functionality
+        function initHamburgerMenu() {
+            const toggles = Array.from(document.querySelectorAll('.hamburger-menu input[type="checkbox"]')).filter(Boolean);
+            
+            toggles.forEach(toggle => {
+                const parent = toggle.closest('.hamburger-menu');
+                if (!parent) return;
+                const menu = parent.querySelector('.menu');
+                const links = menu ? Array.from(menu.querySelectorAll('a')) : [];
+                
+                links.forEach(link => link.addEventListener('click', () => {
+                    toggle.checked = false;
+                    document.body.style.overflow = 'auto';
+                }));
+                
+                toggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    toggles.forEach(t => { t.checked = false; });
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
