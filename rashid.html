@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>An Intellectual Autopsy of the Modern Muslim Mind: Professor Rashid Shaz</title>
+  <style>
+    :root {
+      --primary: #2c1810;
+      --secondary: #8b4513;
+      --accent: #daa520;
+      --light: #f5f5dc;
+      --dark: #2c2c2c;
+      --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.7;
+      color: var(--dark);
+      background: var(--light);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+    .dark-mode {
+      --primary: #daa520;
+      --secondary: #cd7f32;
+      --accent: #d4af37;
+      --light: #181818;
+      --dark: #f5f5dc;
+      background: #181818;
+      color: #f5f5dc;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--primary), #1a0f0a);
+      color: white;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.09);
+      position: relative;
+      overflow: hidden;
+    }
+    .controls {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+    .control-btn {
+      background: rgba(255,255,255,0.22);
+      color: white;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .control-btn:hover {
+      background: rgba(255,255,255,0.33);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 350;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #toc {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #f4f0e6;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+    .dark-mode #toc {
+      background: #2a2a2a;
+    }
+    #toc ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    #toc ul li {
+      flex-grow: 1;
+      min-width: 150px;
+    }
+    #toc a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-style: normal;
+      transition: color 0.2s;
+    }
+    #toc a:hover, #toc a.active-toc {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    input#searchBox {
+      width: 70%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s;
+    }
+    input#searchBox:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .highlight {
+      background: linear-gradient(135deg, rgba(44,24,16,0.07), rgba(218,165,32,0.08));
+      border-left: 5px solid var(--accent);
+      padding: 1.7rem 1.2rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+    .dark-mode .highlight {
+      background: linear-gradient(135deg, rgba(218,165,32,0.11), rgba(44,24,16,0.09));
+    }
+    section {
+      margin: 3rem 0;
+    }
+    h2 {
+      color: var(--primary);
+      border-bottom: 2.5px solid var(--accent);
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+    }
+    h3 {
+      color: var(--secondary);
+      margin-top: 2.2rem;
+      font-weight: 500;
+    }
+    p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+    ul, ol {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    li {
+      margin-bottom: 0.8rem;
+    }
+    .conclusion {
+      background: linear-gradient(135deg, rgba(218,165,32,0.05), rgba(44,24,16,0.03));
+      border-radius: 14px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+      border-left: 5px solid var(--accent);
+    }
+    .dark-mode .conclusion {
+      background: linear-gradient(135deg, rgba(44,24,16,0.06), rgba(218,165,32,0.09));
+    }
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+    .dark-mode footer {
+      background: #2c2c2c;
+      color: #fff9e3;
+    }
+    #scrollBarContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #ddd;
+      z-index: 200;
+    }
+    #scrollBar {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 12px 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.17);
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 250;
+      transition: background 0.3s;
+    }
+    #backToTop:hover {
+      background: var(--accent);
+    }
+    mark.page-search {
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid var(--secondary);
+      padding: 12px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background-color: rgba(139, 69, 19, 0.1);
+      font-weight: bold;
+    }
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      section {
+        margin: 2.2rem 0;
+      }
+      #toc ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      #toc ul li {
+        min-width: auto;
+      }
+      input#searchBox {
+        width: 100%;
+      }
+      .controls {
+        position: relative;
+        top: auto;
+        right: auto;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="controls">
+      <button class="control-btn" id="themeToggle">Dark Mode</button>
+      <button class="control-btn" id="fontIncrease">A+</button>
+      <button class="control-btn" id="fontDecrease">A-</button>
+      <a href="recommended-books.html" class="control-btn">← Back to Authors</a>
+    </div>
+    <h1>An Intellectual Autopsy of the Modern Muslim Mind</h1>
+    <div class="subtitle">Professor Rashid Shaz: Diagnostician of Civilizational Decline</div>
+  </header>
+
+  <nav id="toc">
+    <strong>Jump to:</strong>
+    <ul>
+      <li><a href="#section1">The Global Iconoclast</a></li>
+      <li><a href="#section2">Unified Field Theory of Decline</a></li>
+      <li><a href="#section3">The Shazian Remedy</a></li>
+      <li><a href="#section4">Navigating the Corpus</a></li>
+      <li><a href="#section5">Intellectual Contrasts</a></li>
+      <li><a href="#section6">Three Radical Dimensions</a></li>
+      <li><a href="#section7">Ideal Reader Profile</a></li>
+    </ul>
+  </nav>
+
+  <input type="text" id="searchBox" placeholder="Search this page..." />
+
+  <div id="scrollBarContainer">
+    <div id="scrollBar"></div>
+  </div>
+
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <section id="section1">
+    <h2>The Global Significance of an Intellectual Iconoclast</h2>
+    <p>In the complex landscape of contemporary Islamic thought, Professor Rashid Shaz emerges as a significant, polemical, and unavoidable figure. Based at Aligarh Muslim University (AMU) as a professor of English, Shaz's influence extends far beyond the confines of a single academic department or nation. His importance in the global intellectual landscape is defined by his unflinching role as a diagnostician—an intellectual pathologist performing a "forensic dissection of the malaise" that he argues has afflicted the global Muslim community (Ummah) for centuries.</p>
+    <div class="highlight">
+      Shaz's public life presents a sophisticated duality: the global diplomat versus the internal iconoclast. This duality explains how one man can be both a celebrated ambassador for interfaith dialogue and a figure declared a "kafir" by leading seminaries.
+    </div>
+    <p>Professor Shaz's entire project is encapsulated in a single, precise distinction he articulated: "The future depends not on Islamic evangelism, or any other evangelism for that matter... but on Islamic intellectualism." He is not a da'i (evangelist) concerned with proselytization or ritual conformity. He is an intellectual mujaddid (reformer) demanding a "paradigm shift in our thinking."</p>
+    <h3>The Core Diagnosis</h3>
+    <p>His central diagnosis, explored across his corpus, is that the "abysmal and pathetic" condition of the Ummah is not, at its root, a political or economic failure. It is an epistemological and psychological one. His book <em>Where We Went Wrong?</em> is subtitled <em>The Painful Story of the Closing of the Muslim Mind</em>. This "closing" is the "malaise" he seeks to dissect—a paralysis of thought that has left the Muslim world trapped in imitation (taqlīd) and unable to produce the "progressive ethos of early Islamic civilization."</p>
+  </section>
+
+  <section id="section2">
+    <h2>The Core Thesis: A Unified Field Theory of Islamic Decline</h2>
+    <p>Professor Shaz's most unique intellectual contribution is his articulation of a "unified field theory" of Islamic civilizational decline. His core thesis is that "prophetic Islam"—a dynamic, rational, and intellectually vibrant worldview rooted directly in the Qur'an—was systematically "hijacked" and "corrupted" by three distinct historical forces.</p>
+    
+    <h3>1. The "Onslaught" of Greek Philosophy</h3>
+    <p>Shaz identifies the first "foreign influence" as the "onslaught of Greek Philosophy on the Muslim Mind." He argues that the Muslim world's encounter with and absorption of Greek logic was a catastrophic epistemological wrong turn. This "onslaught" led directly to the formation of Kalam (speculative theology), which replaced the Qur'an's direct, empirical approach with abstract, "un-Islamic" debates.</p>
+    
+    <h3>2. The "Emergence of Clergy"</h3>
+    <p>The philosophical hijacking directly enabled a sociological one: the "Emergence of Clergy and the Division of Knowledge." The complex language of Kalam and Fiqh created a professional class of scholars who perpetrated what Shaz views as a "major paradigm shift": the division of knowledge into sharei and non-sharei sciences (religious and secular). This division "blocked the emergence of scientific and rational thinking among Muslims."</p>
+    
+    <h3>3. The "Sufi Myth"</h3>
+    <p>Professor Shaz's most polemical critique is reserved for mysticism. In <em>The Sufi Myth</em>, he argues that Sufism was not a harmless spiritual dimension but an entirely "new faith" that "corrupted" the original. The core "blasphemy" of Sufism, in his view, is its claim to a "continuous divine link" known as Ilham (inspiration), effectively creating a "third source of Islam" beside the Qur'an and Sunnah.</p>
+    <div class="highlight">
+      This critique is existentially different from traditional intra-Muslim debates. Shaz is not critiquing practices; he is rejecting Sufism's entire existence, arguing its core epistemology is "heretical" and its social structure "polytheistic."
+    </div>
+  </section>
+
+  <section id="section3">
+    <h2>The Shazian Remedy: A "Shocking and Iconoclastic" Return to the Qur'an</h2>
+    <p>Having diagnosed the "malaise" as a three-fold "hijacking," Professor Shaz proposes a "remedy" that is as "radical" and "iconoclastic" as his critique. His solution is not to reform the tradition, but to abandon it and return to the "one source around which all Muslims can unite - the Qur'an."</p>
+    
+    <h3>The Prerequisite: A "New Muslim Mind"</h3>
+    <p>Shaz is explicit: the tradition is unsalvageable because the "traditional mind" is the disease, not the cure. He states, "Those eager to make a new beginning must accept beforehand that the traditional mind will lead them to nowhere. A new Muslim mind is the minimum to start with." This is not islah (reform) in the traditional sense; it is a call for complete demolition and reconstruction.</p>
+    
+    <h3>The Methodology: "Liberating the Quran"</h3>
+    <p>The tool for building this "new mind" is a "rational, analytical" methodology focused on the Qur'an. "Liberating" the Qur'an means extricating it from the 1400-year-old "labyrinth of commentary" that has imprisoned the text. This liberation must occur on multiple fronts:</p>
+    <ul>
+      <li><strong>Liberation from Kalam:</strong> Freeing the text from "Greek method of interpretation"</li>
+      <li><strong>Liberation from Tafsir:</strong> Freeing from "discredited narratives" and "Jewish sources"</li>
+      <li><strong>Liberation from Fiqh:</strong> Freeing from the "fallacies of Fiqh" and jurists</li>
+      <li><strong>Liberation from Mysticism:</strong> Freeing from Sufi "mystical insights"</li>
+    </ul>
+    <div class="highlight">
+      Shaz's project is to read the Qur'an as if this entire "corrupted" tradition never happened, returning to what he calls the "unfiltered core" of the revelation.
+    </div>
+  </section>
+
+  <section id="section4">
+    <h2>Ideal Entry Point and Navigating the Shazian Corpus</h2>
+    <p>Professor Shaz's bibliography is not a collection of disparate books, but a single, "coherently constructed argument" that has evolved over decades. His project moves from diagnosis of decline to full-blown historical-theological autopsy.</p>
+    
+    <h3>Recommended Starting Point: Islam: Another Chance?</h3>
+    <p>For the intellectually curious reader, the ideal entry point is unequivocally <em>Islam: Another Chance? A Rashid Shaz Reader</em>. This curated collection presents his "one strong and coherently constructed argument" in a cumulative, logical progression. It delivers the "nub" of his thought and includes his "Manifesto of United Islam."</p>
+    
+    <h3>Other Key Works</h3>
+    <ul>
+      <li><strong>Idrak-e-Zawal-e-Ummat:</strong> His foundational multi-volume work in Urdu, first articulating the "causes of decline"</li>
+      <li><strong>Where We Went Wrong:</strong> The historical evidence substantiating his diagnosis</li>
+      <li><strong>Kodra: A Shia-Sunni Odyssey:</strong> His iconoclastic methodology applied in literary form</li>
+    </ul>
+  </section>
+
+  <section id="section5">
+    <h2>Intellectual & Political Contrasts: Situating Shaz in Contemporary Thought</h2>
+    <p>Professor Shaz is frequently grouped with other "progressive" reformers, but lumping them together obscures crucial differences in their methodologies and conclusions.</p>
+    
+    <h3>Shaz vs. Javed Ghamidi: The Demolitionist vs. The Reorganizer</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Javed Ghamidi (The "Re-organizer")</th>
+          <th>Rashid Shaz (The "Demolitionist")</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Primary Source(s)</td>
+          <td>Qur'an AND Mutawatir Sunnah</td>
+          <td>Qur'an alone (as the "unfiltered core")</td>
+        </tr>
+        <tr>
+          <td>View of Hadith</td>
+          <td>A record of history; to be critically filtered</td>
+          <td>Part of the "labyrinth of commentary" that "muddled" Islam</td>
+        </tr>
+        <tr>
+          <td>View of Tradition</td>
+          <td>In need of radical re-organization</td>
+          <td>The source of the "malaise"; must be bypassed</td>
+        </tr>
+        <tr>
+          <td>Intellectual Project</td>
+          <td>To re-engineer Islamic jurisprudence</td>
+          <td>To liberate the Qur'an from Islamic jurisprudence</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Shaz vs. Traditional Ulema</h3>
+    <p>The conflict is absolute. Traditional Ulema operate within the framework of the post-prophetic tradition. Professor Shaz stands entirely outside this 1,000-year-old framework. He argues that the framework itself is the problem. This is precisely why he is seen as "attacking the foundations of Islamic Jurisprudence" and why the 2015 fatwa of kufr was issued against him.</p>
+    <div class="highlight">
+      The fatwa was not a mere disagreement; it was the traditional framework's only possible defense mechanism against a thinker who seeks to invalidate its very existence.
+    </div>
+  </section>
+
+  <section id="section6">
+    <h2>Three Dimensions That Define the Shazian Project</h2>
+    <p>Beyond his general critique, Professor Shaz has made several specific, radical intellectual moves that reveal the practical implications of his thought.</p>
+    
+    <h3>1. The Political Theorist: The "Milli Parliament"</h3>
+    <p>Following the 1992 demolition of the Babri Masjid, Shaz founded the "Milli Parliament" for the Ummah's self-reflection. His sophisticated analysis argued that "Nehru's secularism was like a mirage" that damaged Indian Muslims psychologically, theologically, and politically. This explains his controversial "welcome" of Narendra Modi's 2014 victory—not as an endorsement, but as a declaration that "the dark era of pseudo-secularism is over."</p>
+    
+    <h3>2. The Interfaith Radical: Reviving Shibh-Ahle-Kitab</h3>
+    <p>Shaz calls for a theological "readjustment" arguing that "God-conscious sects among the Hindus fulfil the criteria of ahle kitab." This monumental move theologically dismantles the "otherness" of Hindus from a classical Islamic perspective, providing a Qur'anically-grounded framework for "harmonious coexistence."</p>
+    
+    <h3>3. The Theological Iconoclast: Deconstructing Al-Aqsa</h3>
+    <p>One reason for his fatwa was his explosive view on Jerusalem: "Muslims cannot lay claim to the Masjid Al Aqsa." Shaz argues this sanctity was a historical construction by the Umayyad Caliph Abdul Malik bin Marwan for political reasons, layered on theological interpretations influenced by non-Islamic sources.</p>
+    <div class="highlight">
+      This position reveals his method in its purest, most "shocking" form, and why the traditional establishment considers him a threat "attacking the foundations" of their entire intellectual edifice.
+    </div>
+  </section>
+
+  <section id="section7" class="conclusion">
+    <h2>Recommendation and Ideal Reader Profile</h2>
+    <p>Professor Rashid Shaz is not a comforting author. He is a "thought leader" who provides no easy answers, only a "forensic dissection" of a civilizational "malaise" and a "terrifying idea": to "forget... age-old differences" and start anew from the Qur'an alone.</p>
+    
+    <h3>Who Will Benefit Most</h3>
+    <ul>
+      <li><strong>The Intellectual Risk-Taker:</strong> Readers willing to have their fundamental assumptions about history, religion, and tradition challenged</li>
+      <li><strong>The Systems-Thinker:</strong> Those seeking deep, systemic diagnosis of dysfunction rather than simple platitudes</li>
+      <li><strong>The "New Mind" (Students & Professionals):</strong> The new generation to whom Shaz explicitly appeals to take intellectual ownership away from the "clergy"</li>
+    </ul>
+    
+    <div class="highlight">
+      Rashid Shaz is a quintessential "flagship author" for any platform dedicated to authoritative and original thought. His work is a powerful antidote to "imitation" (Taqlīd) and "fragmentation" (Tajzi'ah)—the very mental habits he identifies as the core of the "Muslim malaise."
+    </div>
+    
+    <p>To engage with his work is to participate in an "analytical dissection" of one's own mind and worldview. He is, for the intellectually courageous reader, essential.</p>
+  </section>
+
+  <footer>
+    Professor Rashid Shaz: The Intellectual Pathologist &mdash; Diagnosing Civilizational Malaise
+  </footer>
+
+  <script>
+    // Dark mode toggle with localStorage persistence
+    const themeToggle = document.getElementById('themeToggle');
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeToggle.textContent = 'Light Mode';
+      }
+      const savedFontSize = localStorage.getItem('fontSize');
+      if (savedFontSize) {
+        fontSize = parseFloat(savedFontSize);
+        document.body.style.fontSize = fontSize + "rem";
+      }
+      highlightCurrentTOCSection();
+    });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Font size controls with persistence
+    let fontSize = 1;
+    const fontIncrease = document.getElementById('fontIncrease');
+    const fontDecrease = document.getElementById('fontDecrease');
+    fontIncrease.addEventListener('click', () => {
+      if (fontSize < 1.4) fontSize += 0.1;
+      document.body.style.fontSize = fontSize + "rem";
+      localStorage.setItem('fontSize', fontSize.toFixed(1));
+    });
+    fontDecrease.addEventListener('click', () => {
+      if (fontSize > 0.85) fontSize -= 0.1;
+      document.body.style.fontSize = fontSize + "rem";
+      localStorage.setItem('fontSize', fontSize.toFixed(1));
+    });
+
+    // Table of contents smooth scroll
+    document.querySelectorAll('#toc a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sec = document.querySelector(this.getAttribute('href'));
+        if(sec) sec.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Highlight current TOC section
+    function highlightCurrentTOCSection() {
+      const sections = document.querySelectorAll('section[id]');
+      const tocLinks = document.querySelectorAll('#toc a');
+      window.addEventListener('scroll', () => {
+        let currentId = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) {
+            currentId = section.id;
+          }
+        });
+        tocLinks.forEach(link => {
+          link.classList.remove('active-toc');
+          if (link.getAttribute('href') === '#' + currentId) {
+            link.classList.add('active-toc');
+          }
+        });
+      });
+    }
+
+    // Page search highlighting
+    const searchBox = document.getElementById('searchBox');
+    searchBox.addEventListener('input', function() {
+      const term = this.value.trim();
+      document.querySelectorAll('mark.page-search').forEach(m => {
+        m.replaceWith(document.createTextNode(m.textContent));
+      });
+      if(!term) return;
+      const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      document.querySelectorAll('section').forEach(section => {
+        section.innerHTML = section.innerHTML.replace(regex, '<mark class="page-search">$1</mark>');
+      });
+    });
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const scrollBar = document.getElementById('scrollBar');
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if(scrollHeight === 0) scrollBar.style.width = "100%";
+      else scrollBar.style.width = `${(window.scrollY / scrollHeight) * 100}%`;
+    });
+
+    // Back to Top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
