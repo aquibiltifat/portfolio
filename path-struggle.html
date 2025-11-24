@@ -1,316 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Path Struggle - Faiz Ali Qadri</title>
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Path of Struggle - Faiz Ali Qadri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       :root {
+  --primary: #1a5f7a;
+  --secondary: #d4af37;
+  --accent: #2d9d78;
+  --background: #f8f6f2;
+  --dark: #2c3e50;
+  --light: #f9f9f9;
+  --shadow: 0 4px 16px rgba(38, 50, 56, 0.08);
+  --shadow-deep: 0 8px 32px rgba(19, 95, 122, 0.15);
+  --border-light: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background);
+  color: var(--dark);
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(26, 95, 122, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 40% 40%, rgba(45, 157, 120, 0.1) 0%, transparent 60%);
+  z-index: -1;
+  filter: blur(3px);
+}
+
+/* Header & Navigation */
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, #144a61 100%);
+  color: #fff;
+  box-shadow: var(--shadow-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent), var(--secondary));
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26, 95, 122, 0.2);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.nav-logo::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--secondary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--secondary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.05), rgba(138, 185, 150, 0.1));
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Content Sections */
+        .section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .section-title i {
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+
+        .section-content {
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .highlight-box {
+            background: rgba(138, 185, 150, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-path {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            z-index: 3;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            flex: 1;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Language Cards */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .language-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+        }
+
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-text p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                align-self: flex-start;
+            }
+
+            .timeline-path {
+                left: 30px;
+            }
+
+            .languages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <div class="nav-logo">Faiz Ali Qadri</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#videos">Videos</a>
-      <a href="index.html#books">Books</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </nav>
-</header>
+    <header>
+        <nav class="container">
+            <div class="nav-logo">Faiz Ali Qadri</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#journey">Journey</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-<main>
-   <!-- Desktop Hamburger Menu -->
-  <div class="desktop-hamburger top-left">
-    <input type="checkbox" id="desktop-menu-toggle">
-    <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
-      <i class="fas fa-bars"></i>
-    </label>
-    
-    <div class="desktop-menu">
-      <div class="desktop-menu-header">
-        <h3>Explore More</h3>
-        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="desktop-menu-links">
-        <a href="intellectual-journey.html" class="desktop-menu-link">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Intellectual Journey</span>
-        </a>
-        <a href="path-struggle.html" class="desktop-menu-link">
-          <i class="fas fa-mountain"></i>
-          <span>Path Struggle</span>
-        </a>
-        <a href="social-projects.html" class="desktop-menu-link">
-          <i class="fas fa-hands-helping"></i>
-          <span>Social Projects</span>
-        </a>
-        <a href="connect.html" class="desktop-menu-link">
-          <i class="fas fa-link"></i>
-          <span>Connect</span>
-        </a>
-        <a href="recommended-books.html" class="desktop-menu-link">
-          <i class="fas fa-book-open"></i>
-          <span>Recommended Books</span>
-        </a>
-        <a href="recommended-authors.html" class="desktop-menu-link">
-          <i class="fas fa-user-graduate"></i>
-          <span>Recommended Authors</span>
-        </a>
-        <a href="recommended-movies.html" class="desktop-menu-link">
-          <i class="fas fa-film"></i>
-          <span>Future Projects</span>
-        </a>
-      </div>
-    </div>
-  </div>
+    <main class="container">
+        <section class="hero">
+            <h1>🌿 Path of Struggle</h1>
+            <div class="hero-subtitle">A Journey of Service, Learning, and Collective Upliftment</div>
+            <div class="author">By: Faiz Ali Qadri</div>
+        </section>
 
-  <!-- Mobile Hamburger Menu -->
-  <div class="mobile-hamburger">
-    <input type="checkbox" id="mobile-menu-toggle">
-    <label for="mobile-menu-toggle" class="mobile-menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-    
-    <div class="mobile-menu">
-      <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
-        <i class="fas fa-times"></i>
-      </button>
-      
-      <div class="mobile-menu-header">
-        <div class="nav-logo">Faiz Ali Qadri</div>
-        <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
-      </div>
-      
-      <div class="mobile-menu-links">
-        <a href="index.html" class="mobile-menu-link">
-          <i class="fas fa-home"></i>
-          <span>Home</span>
-        </a>
-        <a href="index.html#videos" class="mobile-menu-link">
-          <i class="fas fa-play-circle"></i>
-          <span>Videos</span>
-        </a>
-        <a href="index.html#books" class="mobile-menu-link">
-          <i class="fas fa-book"></i>
-          <span>Books</span>
-        </a>
-        <a href="index.html#gallery" class="mobile-menu-link">
-          <i class="fas fa-images"></i>
-          <span>Gallery</span>
-        </a>
-        <a href="index.html#contact" class="mobile-menu-link">
-          <i class="fas fa-envelope"></i>
-          <span>Contact</span>
-        </a>
-        <div class="menu-divider"></div>
-        <a href="intellectual-journey.html" class="mobile-menu-link">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Intellectual Journey</span>
-        </a>
-        <a href="path-struggle.html" class="mobile-menu-link">
-          <i class="fas fa-mountain"></i>
-          <span>Path Struggle</span>
-        </a>
-        <a href="social-projects.html" class="mobile-menu-link">
-          <i class="fas fa-hands-helping"></i>
-          <span>Social Projects</span>
-        </a>
-        <a href="connect.html" class="mobile-menu-link">
-          <i class="fas fa-link"></i>
-          <span>Connect</span>
-        </a>
-        <a href="recommended-books.html" class="mobile-menu-link">
-          <i class="fas fa-book-open"></i>
-          <span>Recommended Books</span>
-        </a>
-        <a href="recommended-authors.html" class="mobile-menu-link">
-          <i class="fas fa-user-graduate"></i>
-          <span>Recommended Authors</span>
-        </a>
-        <a href="future.html" class="mobile-menu-link">
-          <i class="fas fa-film"></i>
-          <span>Future Project</span>
-        </a>
-      </div>
-    </div>
-  </div>
+        <section class="section" id="journey">
+            <h2 class="section-title"><i class="fas fa-seedling"></i> The Beginning</h2>
+            <div class="section-content">
+                <p>There are certain moments in life when faith transforms into action and compassion becomes a direction. My journey began in 2013, during the blessed month of Rabi' al-Awwal, when I first visited a hospital to distribute fruits in remembrance of the birth of the Mercy to Mankind, Prophet Muhammad ﷺ.</p>
+                
+                <p>The smiles on the faces of the patients were more nourishing than the fruits in our hands. When some of the patients—many of them non-Muslims—asked why we were doing this, I replied:</p>
+                
+                <blockquote>"We share this in honour of the birth of Prophet Muhammad ﷺ."</blockquote>
+                
+                <p>Their faces changed with a sincere expression of respect—and they joined their palms, acknowledging his sanctity. That moment engraved in my heart that the Prophetic light touches every soul, regardless of creed.</p>
+                
+                <p>From that experience emerged a new tradition in our locality—a public food distribution, known as Langar-e-Rasool ﷺ—which continued for several years. Alongside my friends, I took part in the historic Juloos-e-Muhammadi in Kanpur, reciting salutations upon the Prophet ﷺ until sunset, before returning home after Maghrib in Phoolbagh.</p>
+                
+                <p>The spiritual rhythm of Rabi' al-Awwal continues to this day.</p>
+            </div>
+        </section>
 
-  <section class="page-hero">
-    <h1>Path Struggle</h1>
-    <p>The challenges and obstacles that shaped my journey in Islamic scholarship</p>
-  </section>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-expand-arrows-alt"></i> Expansion into Righteous Gatherings</h2>
+            <div class="section-content">
+                <p>From that starting point, our circle of work expanded into religious and educational gatherings:</p>
+                
+                <ul>
+                    <li><strong>Milad Conferences</strong></li>
+                    <li><strong>Seerah Seminars</strong></li>
+                    <li><strong>Gosha-e-Durood Majalis</strong></li>
+                    <li><strong>Education Day</strong> on the birth anniversary of <strong>Imam Ahmad Raza Khan Barelvi</strong> (10th Shawwal), who reminded the world that:</li>
+                </ul>
+                
+                <blockquote>"Knowledge is life, and ignorance is death."</blockquote>
+                
+                <p>We soon realized that sincere remembrance must naturally flow into <strong>service to humanity</strong>. Thus, we began social welfare initiatives:</p>
+                
+                <ul>
+                    <li>Winter <strong>blanket and sweater distribution</strong></li>
+                    <li><strong>Warm bedding sheets</strong> for the homeless</li>
+                    <li>And later, <strong>Ramadan Ration Programs</strong></li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p>During the <strong>COVID-19 lockdown</strong>, we were blessed to support <strong>more than 5,000 families</strong> with essential food supplies. We did not consider this an achievement, but a responsibility—an amanah.</p>
+                </div>
+            </div>
+        </section>
 
-  <section class="page-content">
-    <div class="section-title">Overcoming Adversity</div>
-    
-    <div class="struggle-timeline">
-      <div class="timeline-path"></div>
-      
-      <div class="struggle-item">
-        <div class="struggle-icon">
-          <i class="fas fa-book"></i>
-        </div>
-        <div class="struggle-content">
-          <h3>Early Educational Barriers</h3>
-          <div class="struggle-date">1995-1998</div>
-          <p>Limited access to quality Islamic education in my rural community forced me to travel 3 hours daily to attend Quranic school. Financial constraints meant I often studied by candlelight and shared textbooks with classmates.</p>
-          <div class="struggle-lesson">
-            <strong>Lesson Learned:</strong> Persistence in seeking knowledge pleases Allah, no matter the obstacles.
-          </div>
-        </div>
-      </div>
-      
-      <div class="struggle-item">
-        <div class="struggle-icon">
-          <i class="fas fa-language"></i>
-        </div>
-        <div class="struggle-content">
-          <h3>Language Barrier in Egypt</h3>
-          <div class="struggle-date">2001-2003</div>
-          <p>Studying at Al-Azhar University with limited Arabic proficiency was immensely challenging. I spent nights memorizing vocabulary while working part-time to support my studies. Many times I considered returning home.</p>
-          <div class="struggle-lesson">
-            <strong>Lesson Learned:</strong> Allah tests those He loves with difficulties to strengthen their resolve.
-          </div>
-        </div>
-      </div>
-      
-      <div class="struggle-item">
-        <div class="struggle-icon">
-          <i class="fas fa-heartbeat"></i>
-        </div>
-        <div class="struggle-content">
-          <h3>Health Challenges</h3>
-          <div class="struggle-date">2007</div>
-          <p>During my PhD research, I was diagnosed with a serious illness that required extensive treatment. For six months, I balanced hospital visits with completing my dissertation, often writing from my hospital bed.</p>
-          <div class="struggle-lesson">
-            <strong>Lesson Learned:</strong> Every hardship contains blessings if we have patience and trust in Allah's plan.
-          </div>
-        </div>
-      </div>
-      
-      <div class="struggle-item">
-        <div class="struggle-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="struggle-content">
-          <h3>Community Resistance</h3>
-          <div class="struggle-date">2010-2012</div>
-          <p>When establishing my first Islamic center, I faced significant resistance from community members who misunderstood my modern approach to teaching traditional Islamic values. There were protests and attempts to shut down the center.</p>
-          <div class="struggle-lesson">
-            <strong>Lesson Learned:</strong> Speaking truth with wisdom and beautiful preaching can overcome even the strongest opposition.
-          </div>
-        </div>
-      </div>
-      
-      <div class="struggle-item">
-        <div class="struggle-icon">
-          <i class="fas fa-globe"></i>
-        </div>
-        <div class="struggle-content">
-          <h3>Cultural Adaptation</h3>
-          <div class="struggle-date">2015-2017</div>
-          <p>Expanding my work to international communities required adapting Islamic teachings to different cultural contexts while maintaining theological integrity. This balancing act was both challenging and enlightening.</p>
-          <div class="struggle-lesson">
-            <strong>Lesson Learned:</strong> Islam's beauty lies in its adaptability to all cultures while preserving core principles.
-          </div>
-        </div>
-      </div>
-    </div>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education as the Long-Term Solution</h2>
+            <div class="section-content">
+                <p>With time, a conviction settled in my heart:</p>
+                
+                <blockquote>"Charity relieves hunger for a night, but education ends hunger for generations."</blockquote>
+                
+                <p>The community was suffering from:</p>
+                
+                <ul>
+                    <li>Economic marginalization</li>
+                    <li>Political underrepresentation</li>
+                    <li>Low literacy and career opportunities</li>
+                </ul>
+                
+                <p>This reinforced what <strong>Maulana Abul Hasan Ali Nadwi</strong> wrote, that the revival of a people begins with <em>"Tarbiyat and Ilm—moral training and knowledge."</em></p>
+                
+                <p>Thus, we began supporting <strong>career counselling</strong> and <strong>scholarships</strong> for talented students.</p>
+                
+                <p>But the world was changing rapidly, and a deeper realization emerged:</p>
+                
+                <div class="highlight-box">
+                    <p>To uplift the community, we must shift from the <strong>informal sector to the formal economy</strong>, strengthening digital and industrial competencies.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="section-title">Quranic Guidance Through Struggles</div>
-    
-    <div class="quranic-guidance">
-      <div class="guidance-card">
-        <div class="ayah-arabic">وَإِن تَصْبِرُوا۟ وَتَتَّقُوا۟ فَإِنَّ ذَٰلِكَ مِنْ عَزْمِ ٱلْأُمُورِ</div>
-        <div class="ayah-translation">"And if you are patient and fear Allah, indeed, that is of the matters [worthy] of determination."</div>
-        <div class="ayah-reference">Surah Al-Imran (3:186)</div>
-      </div>
-      
-      <div class="guidance-card">
-        <div class="ayah-arabic">فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا</div>
-        <div class="ayah-translation">"For indeed, with hardship [will be] ease."</div>
-        <div class="ayah-reference">Surah Ash-Sharh (94:5)</div>
-      </div>
-      
-      <div class="guidance-card">
-        <div class="ayah-arabic">إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ</div>
-        <div class="ayah-translation">"Indeed, Allah is with the patient."</div>
-        <div class="ayah-reference">Surah Al-Baqarah (2:153)</div>
-      </div>
-    </div>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-turning-point"></i> 2021 – Minhaj Educational Conclave (A Turning Point)</h2>
+            <div class="section-content">
+                <p>In <strong>2021</strong>, I was invited to deliver a speech on:</p>
+                
+                <p><strong>"Islam and Europe: History and the Significance of Muslim Civilization"</strong></p>
+                
+                <p>at the <strong>Merchant Chamber Hall</strong>, organized by <strong>Minhaj-ul-Quran India</strong> under the title <em>Minhaj Educational Conclave</em>.</p>
+                
+                <p>Our <strong>Chief Guest</strong> was the distinguished scholar <strong>Allama Ubaid Ullah Khan Azmi</strong>, and the <strong>Special Guest</strong> was <strong>Sameer Siddiqui</strong>, renowned <strong>IAS Coach</strong>. Speaking on the intellectual legacy of Islam in Europe—Al-Andalus, Sicily, Ottoman Balkans—strengthened in me a greater responsibility: the responsibility to reconnect our youth with the intellectual magnificence of their civilization.</p>
+                
+                <p>Here I reflected upon <strong>Allama Iqbal's words</strong>:</p>
+                
+                <blockquote>"Nations are born in the hearts of poets; they prosper and die in the hands of politicians."</blockquote>
+                
+                <p>Iqbal's vision of the <em>Momin</em>—the spiritually awakened, morally grounded, and socially beneficial human being—became a defining compass in my journey.</p>
+            </div>
+        </section>
 
-    <div class="section-title">Wisdom Gained</div>
-    
-    <div class="wisdom-grid">
-      <div class="wisdom-card">
-        <div class="wisdom-icon">
-          <i class="fas fa-hand-holding-heart"></i>
-        </div>
-        <h3>Patience (Sabr)</h3>
-        <p>True patience isn't passive endurance but active perseverance with faith in Allah's timing and wisdom.</p>
-      </div>
-      
-      <div class="wisdom-card">
-        <div class="wisdom-icon">
-          <i class="fas fa-pray"></i>
-        </div>
-        <h3>Trust (Tawakkul)</h3>
-        <p>Placing complete trust in Allah while taking practical steps is the balance every believer must find.</p>
-      </div>
-      
-      <div class="wisdom-card">
-        <div class="wisdom-icon">
-          <i class="fas fa-heart"></i>
-        </div>
-        <h3>Gratitude (Shukr)</h3>
-        <p>Every difficulty contains hidden blessings that only become apparent with reflection and gratitude.</p>
-      </div>
-      
-      <div class="wisdom-card">
-        <div class="wisdom-icon">
-          <i class="fas fa-hands-helping"></i>
-        </div>
-        <h3>Community (Ummah)</h3>
-        <p>No struggle is faced alone when we remember we're part of a global community of believers.</p>
-      </div>
-    </div>
-  </section>
-</main>
+        <section class="section" id="projects">
+            <h2 class="section-title"><i class="fas fa-university"></i> Institutional Vision: MERCI Educational & Welfare Foundation</h2>
+            <div class="section-content">
+                <p>To turn this mission into a structured movement, we established:</p>
+                
+                <h3>🌿 MERCI Foundation</h3>
+                <p><em>(MERCI Educational & Welfare Foundation)</em></p>
+                
+                <p>Our goal was not only to assist people in distress, but to <strong>create a human chain of compassion</strong>, where one transformed person becomes a means of transforming another. As I wrote in my mission reflections:</p>
+                
+                <blockquote>"Service is not a project; it is a way of being."</blockquote>
+            </div>
+        </section>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-socials">
-      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
-    </div>
-    <div class="footer-text">
-      <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
-      <p>May Allah accept our sincere efforts and guide us to the straight path</p>
-    </div>
-  </div>
-  
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/+918303682611?text=Hello%20MERCI%20Foundation,%20I%20would%20like%20to%20know%20more%20about%20your%20programs." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us</span>
-    </a>
-</footer>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Skill Development & ASDC Kanpur</h2>
+            <div class="section-content">
+                <p>Through data-driven analysis of global market transitions and industry demands, we identified critical future-skills. With collaboration from <strong>The Quran Foundation</strong> and <strong>SEED</strong>, we worked toward empowering youth in:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-path"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Digital Marketing</h3>
+                            <p>Comprehensive training in modern digital marketing strategies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Accounting & Tally</h3>
+                            <p>Financial management and accounting software training</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Web Development</h3>
+                            <p>Full-stack web development with modern technologies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Communication & Personality Development</h3>
+                            <p>Enhancing soft skills and professional presence</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Graphic Designing & 3D Animation</h3>
+                            <p>Creative design skills for digital media</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><em>(Video Editing training is being added)</em></p>
+                
+                <p>Thus, the <strong>ASDC Institute</strong> was opened in Kanpur—an initiative to build a skilled, confident, and career-ready generation.</p>
+            </div>
+        </section>
 
-<script src="script.js"></script>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-globe-americas"></i> Foreign Languages: Gateway to a Global Future</h2>
+            <div class="section-content">
+                <p>My deep interest in <strong>foreign languages</strong> further shaped our direction. I believe our youth should not be confined within linguistic borders, but be prepared for global opportunities. Our long-term plan includes:</p>
+                
+                <div class="languages-grid">
+                    <div class="language-card">
+                        <div class="language-icon">🌿</div>
+                        <h3>German</h3>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-icon">🌿</div>
+                        <h3>French</h3>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-icon">🌿</div>
+                        <h3>Arabic</h3>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-icon">🌿</div>
+                        <h3>Chinese</h3>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-icon">🌿</div>
+                        <h3>Japanese</h3>
+                    </div>
+                </div>
+                
+                <p><strong>Phase-1: French, German, and Arabic</strong> (Launching under MERCI Foundation)</p>
+                
+                <p>Because tomorrow belongs to those who can speak to the world—not just in words, but with knowledge.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-users"></i> Leadership & Entrepreneurship Development</h2>
+            <div class="section-content">
+                <p>Our next developmental focus is to identify youth who:</p>
+                
+                <ul>
+                    <li>Think <strong>beyond employment</strong> toward enterprise</li>
+                    <li>Are <strong>innovative, collaborative, and ethically grounded</strong></li>
+                    <li>Have the courage to <strong>create opportunities, not just seek them</strong></li>
+                </ul>
+                
+                <p>As Iqbal said:</p>
+                
+                <blockquote>"Khudi ko kar buland itna, ke har taqdeer se pehle,<br>
+                Khuda bande se khud pooche, bata teri raza kya hai."</blockquote>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-road"></i> The Journey Continues</h2>
+            <div class="section-content">
+                <p>I do not claim that this path has been easy. There were misunderstandings, doubts, and resistance. Yet, we continued—with reliance on Allah and belief that:</p>
+                
+                <blockquote>"Action done for the pleasure of the Creator does not wait for the approval of creation."</blockquote>
+                
+                <p>This journey—from <strong>fruit distribution to skill development</strong>, from <strong>charity to institutional transformation</strong>, from <strong>local service to global vision</strong>—is not my journey alone. It is a shared path walked with countless volunteers, scholars, teachers, donors, and well-wishers.</p>
+                
+                <div class="highlight-box">
+                    <p>And we walk forward still…<br>
+                    with faith in God,<br>
+                    Love for His Messenger ﷺ,<br>
+                    and hope for humanity.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-socials">
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
+                <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to add fade-in animation to sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>

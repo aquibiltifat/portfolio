@@ -363,7 +363,6 @@ function showIslamicToast(message, type = 'success') {
   }, 4000);
 }
 
-
 function showFloatingVerse(verse) {
   const verseEl = document.createElement('div');
   verseEl.style.cssText = `
