@@ -1,435 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Intellectual Journey - Faiz Ali Qadri</title>
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Intellectual Journey | Interactive Infographic</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lateef&family=Inter:wght@300;400;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .font-serif-title {
+            font-family: 'Cinzel', serif;
+        }
+        .font-prose {
+            font-family: 'Libre Baskerville', serif;
+            line-height: 1.9;
+        }
+        .font-arabic {
+            font-family: 'Lateef', serif;
+            font-size: 1.8em;
+            line-height: 1.5;
+            direction: rtl;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-text {
+            color: #fbbf24;
+            background: linear-gradient(to right, #fbbf24, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.9));
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fbbf24;
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <div class="nav-logo">Faiz Ali Qadri</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#videos">Videos</a>
-      <a href="index.html#books">Books</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </nav>
-</header>
+    <div id="root"></div>
 
-<main>
-   <!-- Desktop Hamburger Menu -->
-  <div class="desktop-hamburger top-left">
-    <input type="checkbox" id="desktop-menu-toggle">
-    <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
-      <i class="fas fa-bars"></i>
-    </label>
-    
-    <div class="desktop-menu">
-      <div class="desktop-menu-header">
-        <h3>Explore More</h3>
-        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="desktop-menu-links">
-        <a href="intellectual-journey.html" class="desktop-menu-link">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Intellectual Journey</span>
-        </a>
-        <a href="path-struggle.html" class="desktop-menu-link">
-          <i class="fas fa-mountain"></i>
-          <span>Path Struggle</span>
-        </a>
-        <a href="social-projects.html" class="desktop-menu-link">
-          <i class="fas fa-hands-helping"></i>
-          <span>Social Projects</span>
-        </a>
-        <a href="connect.html" class="desktop-menu-link">
-          <i class="fas fa-link"></i>
-          <span>Connect</span>
-        </a>
-        <a href="recommended-books.html" class="desktop-menu-link">
-          <i class="fas fa-book-open"></i>
-          <span>Recommended Books</span>
-        </a>
-        <a href="recommended-authors.html" class="desktop-menu-link">
-          <i class="fas fa-user-graduate"></i>
-          <span>Recommended Authors</span>
-        </a>
-        <a href="future.html" class="desktop-menu-link">
-          <i class="fas fa-film"></i>
-          <span>Future Projects</span>
-        </a>
-      </div>
-    </div>
-  </div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const { motion, useScroll, useTransform, useSpring } = window.Motion;
 
-  <!-- Mobile Hamburger Menu -->
-  <div class="mobile-hamburger">
-    <input type="checkbox" id="mobile-menu-toggle">
-    <label for="mobile-menu-toggle" class="mobile-menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-    
-    <div class="mobile-menu">
-      <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
-        <i class="fas fa-times"></i>
-      </button>
-      
-      <div class="mobile-menu-header">
-        <div class="nav-logo">Faiz Ali Qadri</div>
-        <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
-      </div>
-      
-      <div class="mobile-menu-links">
-        <a href="index.html" class="mobile-menu-link">
-          <i class="fas fa-home"></i>
-          <span>Home</span>
-        </a>
-        <a href="index.html#videos" class="mobile-menu-link">
-          <i class="fas fa-play-circle"></i>
-          <span>Videos</span>
-        </a>
-        <a href="index.html#books" class="mobile-menu-link">
-          <i class="fas fa-book"></i>
-          <span>Books</span>
-        </a>
-        <a href="index.html#gallery" class="mobile-menu-link">
-          <i class="fas fa-images"></i>
-          <span>Gallery</span>
-        </a>
-        <a href="index.html#contact" class="mobile-menu-link">
-          <i class="fas fa-envelope"></i>
-          <span>Contact</span>
-        </a>
-        <div class="menu-divider"></div>
-        <a href="intellectual-journey.html" class="mobile-menu-link">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Intellectual Journey</span>
-        </a>
-        <a href="path-struggle.html" class="mobile-menu-link">
-          <i class="fas fa-mountain"></i>
-          <span>Path Struggle</span>
-        </a>
-        <a href="social-projects.html" class="mobile-menu-link">
-          <i class="fas fa-hands-helping"></i>
-          <span>Social Projects</span>
-        </a>
-        <a href="connect.html" class="mobile-menu-link">
-          <i class="fas fa-link"></i>
-          <span>Connect</span>
-        </a>
-        <a href="recommended-books.html" class="mobile-menu-link">
-          <i class="fas fa-book-open"></i>
-          <span>Recommended Books</span>
-        </a>
-        <a href="recommended-authors.html" class="mobile-menu-link">
-          <i class="fas fa-user-graduate"></i>
-          <span>Recommended Authors</span>
-        </a>
-        <a href="future.html" class="mobile-menu-link">
-          <i class="fas fa-film"></i>
-          <span>Future Projects</span>
-        </a>
-      </div>
-    </div>
-  </div>
+        // --- Icons Component ---
+        const Icons = {
+            Scroll: () => <i data-lucide="scroll" className="w-6 h-6" />,
+            BookOpen: () => <i data-lucide="book-open" className="w-6 h-6" />,
+            Scale: () => <i data-lucide="scale" className="w-6 h-6" />,
+            Globe: () => <i data-lucide="globe" className="w-6 h-6" />,
+            Heart: () => <i data-lucide="heart" className="w-6 h-6" />,
+            Brain: () => <i data-lucide="brain" className="w-6 h-6" />,
+            Lightbulb: () => <i data-lucide="lightbulb" className="w-6 h-6" />,
+            Compass: () => <i data-lucide="compass" className="w-6 h-6" />,
+            Menu: () => <i data-lucide="menu" className="w-6 h-6" />,
+            X: () => <i data-lucide="x" className="w-6 h-6" />
+        };
 
-  <section class="page-hero">
-    <h1>Intellectual Journey</h1>
-    <p>My path of knowledge, learning, and spiritual growth through Islamic scholarship</p>
-  </section>
+        // --- Visual Components (Illustrations) ---
 
-  <section class="page-content">
-    <div class="content-grid">
-      <div class="content-card">
-        <h3><i class="fas fa-book-open"></i> Early Education</h3>
-        <p>My journey began at the age of 7 with memorization of the Holy Quran under the guidance of renowned Qaris. This foundation in Quranic studies shaped my understanding of Islamic principles and values.</p>
-      </div>
-      
-      <div class="content-card">
-        <h3><i class="fas fa-graduation-cap"></i> Formal Studies</h3>
-        <p>I pursued formal Islamic education at Al-Azhar University, where I specialized in Quranic Tafseer and Hadith sciences. This period was crucial in developing my analytical and critical thinking skills.</p>
-      </div>
-      
-      <div class="content-card">
-        <h3><i class="fas fa-lightbulb"></i> Spiritual Awakening</h3>
-        <p>During my studies, I experienced a profound spiritual awakening that deepened my connection with Islamic teachings and motivated me to share this knowledge with others.</p>
-      </div>
-    </div>
+        const CycleOfCivilization = () => (
+            <div className="relative w-full h-64 flex items-center justify-center my-8">
+                {/* Animated Rings */}
+                <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute w-48 h-48 border-2 border-dashed border-amber-500/30 rounded-full"
+                />
+                <motion.div 
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                    className="absolute w-32 h-32 border-2 border-dotted border-amber-500/50 rounded-full"
+                />
+                
+                {/* Core Text */}
+                <div className="z-10 text-center p-4 bg-slate-900/80 rounded-full border border-amber-500/50 backdrop-blur-sm">
+                    <div className="text-amber-400 font-bold text-lg">Asabiyyah</div>
+                    <div className="text-[10px] uppercase tracking-widest text-slate-400">Social Cohesion</div>
+                </div>
 
-    <div class="section-title">Academic Timeline</div>
-    
-    <div class="timeline">
-      <div class="timeline-item">
-        <span class="timeline-date">1995-2000</span>
-        <h3>Quran Memorization</h3>
-        <p>Completed Hifz of the Holy Quran at Darul Uloom Islamic Center under Sheikh Ahmed Al-Misri</p>
-      </div>
-      
-      <div class="timeline-item">
-        <span class="timeline-date">2000-2005</span>
-        <h3>Islamic Studies Degree</h3>
-        <p>Bachelor of Islamic Studies from International Islamic University, specializing in Tafseer and Hadith</p>
-      </div>
-      
-      <div class="timeline-item">
-        <span class="timeline-date">2005-2008</span>
-        <h3>Advanced Studies</h3>
-        <p>Master's degree in Islamic Jurisprudence from Al-Azhar University, Cairo</p>
-      </div>
-      
-      <div class="timeline-item">
-        <span class="timeline-date">2008-2012</span>
-        <h3>PhD Research</h3>
-        <p>Doctoral research on "Modern Applications of Islamic Principles in Contemporary Society"</p>
-      </div>
-      
-      <div class="timeline-item">
-        <span class="timeline-date">2012-Present</span>
-        <h3>Teaching & Scholarship</h3>
-        <p>Established Islamic education centers and published numerous books on Islamic teachings</p>
-      </div>
-    </div>
+                {/* Satellite Nodes */}
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded border border-slate-600 text-green-400">Rise</div>
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded border border-slate-600 text-red-400">Fall</div>
+                <div className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-slate-800 text-xs px-2 py-1 rounded border border-slate-600 text-blue-400">Power</div>
+                <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-slate-800 text-xs px-2 py-1 rounded border border-slate-600 text-orange-400">Luxury</div>
+            </div>
+        );
 
-    <div class="section-title">My Intellectual Journey: Between Faith, Reason, and Action</div>
-    
-    <div class="chapter">
-      <div class="chapter-header">
-        <div class="chapter-number">1</div>
-        <h2 class="chapter-title">The Foundation: The Spark of "Why?"</h2>
-      </div>
-      <p class="chapter-subtitle">A Journey — of knowing who we are, why we believe, and how it is all interconnected.</p>
-      
-      <div class="chapter-content">
-        <p>My intellectual journey began not within the four walls of a formal university, but in my mother's lap and the intimate atmosphere of a home, where my relentless curiosity-filled mind was shaped by emotional stability and spiritual discipline, and trained to undertake the journey of knowing the reality of things by establishing questions.</p>
-        
-        <p>My questions began with the physical world— "Why is the color of the sky blue? Who created the sky?" — then they moved towards ethical dilemmas— "What is the standard of right and wrong? Is right right for everyone and wrong wrong for everyone?" — and finally transformed into existential concerns: "Where do we stand in this vast universe? Does our existence have a purpose in this whole cosmos? If so, what is it, and how is that purpose to be achieved?"</p>
-        
-        <div class="highlight">
-          <p>It was my mother who provided an epistemological framework to this curiosity of mine. She taught that 'Ilm' (knowledge) which is acquired to benefit people is in itself an 'Ibadat' (worship).</p>
-        </div>
-        
-        <p>This principle was imprinted in my mind when I first heard the Hadith, which became the academic tenet of my life:</p>
-        
-        <div class="quote">
-          <p>"Seek knowledge from the cradle to the grave." (Hadith - This hadith is very famous but weak (da'eef) in authenticity)</p>
-        </div>
-        
-        <p>This was not just an instruction; it was a spiritual mandate for lifelong learning.</p>
-        
-        <p>Upon this foundation rested my first intellectual liberation: the understanding that asking questions is not Kufr (blasphemy), but a means of reaching the higher stages of Iman (faith). My faith did not stifle my reason, but rather encouraged it. After all, the divine imperative that was revealed was 'Iqra' (Read):</p>
-        
-        <div class="quote">
-          <p>"Read in the name of your Lord who created." (Qur'an 96:1)</p>
-        </div>
-        
-        <p>This ended any supposed conflict between knowledge and faith before it could begin.</p>
-        
-        <p>My maternal grandfather made this theoretical foundation practical. He would take me to the Mosque to offer Fajr (the morning prayer), and on the way back would turn the pages of history— sometimes the narrative of Karbala, which was a lesson in sacrifice and moral courage, and sometimes the event of Hijrah, which was a sociological study of strategy and community-building. It was there that I learned that history is not merely a compilation of past dates, but 'Tarbiyyah' — that is, the inner refinement and ethical training of the personality.</p>
-        
-        <p>Those gatherings at home— where there was the emotional commemoration of Milad un Nabi صلى الله عليه وسلم, where the high character and teachings of the Last Prophet of Allah, Hazrat Muhammad صلى الله عليه وسلم, were discussed, where there was dialogue on Qur'an and Hadith— were informal seminars for me. It was in these discussions that the first spark of 'Fikr' — meaning deep reflection and critical thinking — was ignited within me.</p>
-        
-        <p>This dual training gave a distinct dimension to my thinking. Science gave me an understanding of 'how' (the mechanism), while Religion asked me the question of 'why' (the teleology). The confluence of these two became a continuous question in my mind, which still drives my journey today: "Is there a purpose behind everything— if yes, then what is that purpose (Telos)?"</p>
-      </div>
-    </div>
-    
-    <div class="chapter">
-      <div class="chapter-header">
-        <div class="chapter-number">2</div>
-        <h2 class="chapter-title">The Framework: The Lens of the Past</h2>
-      </div>
-      
-      <div class="chapter-content">
-        <p>As I grew older, that fire of "why" deepened. I realized — to understand today, it is essential to know yesterday. Nations that are oblivious to their past also have their future in darkness.</p>
-        
-        <p>For me, history was not just the dates of kings — it was the book of human experience. My early worldview was shaped through spiritual upbringing and foundational Islamic concepts. But as my curiosity matured, I felt the need to understand how earlier Muslim scholars had systematized knowledge, society, and morality. This naturally led me into the deeper intellectual tradition of Islamic philosophy, where thinkers like Ibn Khaldun, Al-Ghazali, and others offered complete frameworks to connect faith, reason, and human behavior.</p>
-        
-        <p>I read Ibn Khaldun, whose Al-Muqaddimah taught that society is like a living organism — which is born on 'Asabiyyah' (social cohesion), grows, and then becomes decadent. This gave me a cyclical view of the rise and fall of nations.</p>
-        
-        <div class="highlight">
-          <p>If we study the Qur'an, in Surah Al-Imran (Chapter 3), verse 140: "And such are the days—We rotate them among mankind."</p>
-        </div>
-        
-        <p>In this verse, the concept of rotation directly confirms Ibn Khaldun's "cyclical view". It is the law of Allah (which is also called Sunnatullah) that power and rule do not remain with any one nation or group forever.</p>
-        
-        <p>Meanwhile, Al-Ghazali in his Ihya' 'Ulum al-Din (The Revival of the Religious Sciences) explained what the relationship between Reason and Soul should be.</p>
-        
-        <div class="quote">
-          <p>His view was: "The purpose of knowledge is not to argue, but to transform the self."</p>
-        </div>
-        
-        <p>This is the central point of Imam Al-Ghazali's philosophy. His entire project is based on the idea that the purpose of Ilm (knowledge) is not mere academic debate (Jadal) or intellectual arrogance, but the refinement of the soul (Tazkiyat al-Nafs) and achieving the true Gnosis (Ma'rifat) of Allah, which changes a person's Amal (action) and Akhlaq (character).</p>
-        
-        <p>Exploring both Western and Islamic intellectual traditions shaped a worldview that was neither borrowed nor inherited, but consciously constructed. However, ideas alone were no longer enough. I needed to see how these philosophies operated in the real world—through institutions, laws, and human systems. This realization shifted my journey from pure thought to structured learning.</p>
-      </div>
-    </div>
-    
-    <div class="chapter">
-      <div class="chapter-header">
-        <div class="chapter-number">3</div>
-        <h2 class="chapter-title">The Blueprint: The Rules of the Present — LLB & Geopolitics</h2>
-      </div>
-      
-      <div class="chapter-content">
-        <p>The real test of knowledge is in understanding and improving the 'Systems' of the practical world. Therefore, my next intellectual destination rested on the rules and laws of the present.</p>
-        
-        <h3>Law: The Blueprint of Society</h3>
-        <p>Once I understood the intellectual architecture behind civilizations—through the Qur'an, Ibn Khaldun, Aristotle, Machiavelli, and others—it became clear that law is where philosophical ideas take concrete form. This insight made me turn toward formal legal education.</p>
-        
-        <p>I began my studies in LLB. Law is not merely rules written in books, but the 'blueprint' of society's collective thought, morality, and necessity.</p>
-        
-        <div class="highlight">
-          <p>Inspired by Imam Abu Hanifa's 'Hypothetical Fiqh', I learned how to adapt rules for changing times.</p>
-        </div>
-        
-        <p>The principle of Maqasid (Purpose) of Imam Al-Shatibi gave a moral soul to my legal thinking: The 'body' (Rules) of the law must be subordinate to its 'soul' (Purpose).</p>
-        
-        <h3>Geopolitics: The Mirror of Power</h3>
-        <p>The study of Law drew me towards Geopolitics— the intersection where the currents of history, Power Politics, economics, and international law collide.</p>
-        
-        <div class="quote">
-          <p>Machiavelli's The Prince made me face a harsh reality: the world is not 'as it ought to be' (idealism), but 'as it is' (realism).</p>
-        </div>
-        
-        <p>This practical study solidified my spiritual knowledge: "And such are the days — We rotate them among mankind." is an Eternal Truth of the cyclical law of power and trials.</p>
-        
-        <p>In this way, LLB and Geopolitics gave me a 'blueprint' that turned my 'Fikr' (deep reflection) towards 'Amal' (Action).</p>
-      </div>
-    </div>
-    
-    <div class="chapter">
-      <div class="chapter-header">
-        <div class="chapter-number">4</div>
-        <h2 class="chapter-title">The Laboratory: From Theory to Practice — Career & NGO</h2>
-      </div>
-      
-      <div class="chapter-content">
-        <p>The true purpose of knowledge is fulfilled when it ceases to be just a mental exercise and becomes an Action that improves human life.</p>
-        
-        <h3>My Career: The Microcosm of the Global System</h3>
-        <p>My job as a US IT Recruiter, at first glance, seems separate from my studies, but it is actually a microcosm of my study of Geopolitics and cyclical history. I see how technology, law (especially inspired by Imam Abu Hanifa's 'Hypothetical Fiqh'), and human resources are interconnected in a complex global system. I see the balance of labour, capital, and power being determined every day (which reflects Ibn Khaldun's Asabiyyah and the Qur'an's nudāwiluhā principle in a modern form). This is an everyday example of Machiavelli's 'Realism'— that the system works 'as it is,' rather than 'as it ought to be'.</p>
-        
-        <h3>MERCI Foundation: The Soul of Maqasid</h3>
-        <p>On the other hand, MERCI Foundation is the center for turning my 'Ilm' (Knowledge) into 'Amal' (Action).</p>
-        
-        <div class="highlight">
-          <p>This is the place that receives spiritual strength from the Maqasid al-Shari'ah (The Purposes of Law) of Imam Al-Shatibi.</p>
-        </div>
-        
-        <p>Our work is not just charity; it directly fulfills the Five Basic Purposes of the Shari'ah— Hifazat-e-Nafs (Protection of Life), Hifazat-e-Aql (Protection of Intellect - free courses), and Hifazat-e-Maal (Protection of Wealth - making people capable of earning).</p>
-        
-        <div class="quote">
-          <p>This is the worship, this is the faith and religion,<br>
-          That man is useful to man in the world.<br>
-          - Altaf Husain Hali</p>
-        </div>
-        
-        <p>This is the field where Imam Al-Ghazali's principle— "The purpose of knowledge is not to argue, but to transform the self"— comes alive.</p>
-      </div>
-    </div>
-    
-    <div class="chapter">
-      <div class="chapter-header">
-        <div class="chapter-number">5</div>
-        <h2 class="chapter-title">The Synthesis: The Intellectual Hub of Thought and Action</h2>
-      </div>
-      
-      <div class="chapter-content">
-        <p>When I look at the five chapters of this journey together, it becomes not merely a biography, but a complete symbol of soul, thought, and action.</p>
-        
-        <h3>The Core of the Journey: Four Pillars</h3>
-        <ol>
-          <li><strong>The spark of 'Why':</strong> From Chapter 1 and the principle 'Ilm' is Ibadat, is the fire of 'Fikr' (deep reflection) within me that has never been extinguished.</li>
-          <li><strong>The Lens of the Past:</strong> Gave me 'Fikr' a framework of History and Philosophy. Ibn Khaldun's cyclical view and the Qur'an's injunction commands us to learn from decline and move forward, became the core of my intellectual consciousness.</li>
-          <li><strong>The Rules of the Present:</strong> Gave me the 'blueprint' to understand the complex system of the present. Machiavelli's Realism taught me to see the world 'as it is', but Imam Shatibi's Maqasid al-Shari'ah gave a moral soul to this 'blueprint'.</li>
-          <li><strong>The Laboratory of Action:</strong> Turned this entire theoretical knowledge into 'Amal' (Action). My job became the microcosm of the global power game, where MERCI Foundation made the Maqasid a ground reality.</li>
-        </ol>
-        
-        <div class="highlight">
-          <p>Thus, Imam Al-Ghazali's principle— "The purpose of knowledge is not to argue, but to transform the self"— became the core mantra of my social work.</p>
-        </div>
-        
-        <h3>Conclusion: From Self-Awareness to The Truth</h3>
-        <p>The final outcome of my journey is a Synthesis, where Iqbal's 'Khudi' (self-identity) has found the path of 'Amal' through the Maqasid al-Shari'ah. History gave me roots, Philosophy gave me wings, and Law gave me balance.</p>
-        
-        <p>With this very conviction, I started Edumots and my website— a platform that is not just a 'center of knowledge' for me, but a 'bridge of action'; where theoretical knowledge and practical solutions dialogue with each other.</p>
-        
-        <div class="quote">
-          <p>"We shall show them Our signs in the horizons and within themselves, until it becomes clear to them that it is the Truth." (Qur'an 41:53)</p>
-        </div>
-        
-        <p>I am still in search of that same "Why", but now I understand that behind every "Why" there is a "Who" — and that "Who" is Al-Haqq (The Truth).</p>
-        
-        <div class="quote">
-          <p>"There are still more worlds beyond the stars,<br>
-          There are still more trials of love to pass."<br>
-          - Allama Iqbal</p>
-        </div>
-        
-        <p style="text-align: center; font-style: italic; margin-top: 2rem;">— Faiz Ali Qadri (A Seeker on the Endless Road of Ilm and Ma'rifah, committed to Action)</p>
-      </div>
-    </div>
+        const PillarsChart = () => (
+            <div className="w-full bg-slate-800/50 p-6 rounded-xl border border-slate-700 my-8">
+                <h4 className="text-center text-amber-500 font-serif-title mb-6">The Three Pillars of Civilization</h4>
+                <div className="flex justify-around items-end h-40 space-x-4">
+                    {/* Pillar 1 */}
+                    <div className="flex flex-col items-center w-1/3">
+                        <motion.div 
+                            initial={{ height: 0 }} whileInView={{ height: "60%" }}
+                            className="w-full bg-gradient-to-t from-red-900 to-red-600 rounded-t-md opacity-80"
+                        />
+                        <span className="mt-2 text-xs uppercase font-bold tracking-wider">Power</span>
+                        <span className="text-[10px] text-slate-400">Subordinate</span>
+                    </div>
+                    {/* Pillar 2 (Central) */}
+                    <div className="flex flex-col items-center w-1/3 h-full justify-end">
+                        <motion.div 
+                            initial={{ height: 0 }} whileInView={{ height: "100%" }}
+                            className="w-full bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-md shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                        />
+                        <span className="mt-2 text-xs uppercase font-bold tracking-wider text-amber-400">Ethics</span>
+                        <span className="text-[10px] text-slate-400">The Core</span>
+                    </div>
+                    {/* Pillar 3 */}
+                    <div className="flex flex-col items-center w-1/3 h-full justify-end">
+                        <motion.div 
+                            initial={{ height: 0 }} whileInView={{ height: "80%" }}
+                            className="w-full bg-gradient-to-t from-blue-900 to-blue-600 rounded-t-md opacity-80"
+                        />
+                        <span className="mt-2 text-xs uppercase font-bold tracking-wider">Purpose</span>
+                        <span className="text-[10px] text-slate-400">Religion</span>
+                    </div>
+                </div>
+            </div>
+        );
 
-    <div class="section-title">Key Influences</div>
-    
-    <div class="content-grid">
-      <div class="content-card">
-        <h3><i class="fas fa-users"></i> Mentors & Teachers</h3>
-        <ul>
-          <li>Sheikh Ahmed Al-Misri - Quranic Studies</li>
-          <li>Dr. Muhammad Al-Shareef - Islamic Jurisprudence</li>
-          <li>Professor Fatima Zahra - Hadith Sciences</li>
-          <li>Dr. Ibrahim Khan - Contemporary Islamic Thought</li>
-        </ul>
-      </div>
-      
-      <div class="content-card">
-        <h3><i class="fas fa-book"></i> Influential Texts</h3>
-        <ul>
-          <li>Tafheem ul Quran - Maududi</li>
-          <li>Riyadh us Saliheen - Imam Nawawi</li>
-          <li>Fiqh us Sunnah - Sayyid Sabiq</li>
-          <li>Al-Muwatta - Imam Malik</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
+        // --- Content Components ---
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-socials">
-      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
-    </div>
-    <div class="footer-text">
-      <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
-      <p>May Allah accept our sincere efforts and guide us to the straight path</p>
-    </div>
-  </div>
-  
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/+918303682611?text=Hello%20MERCI%20Foundation,%20I%20would%20like%20to%20know%20more%20about%20your%20programs." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us</span>
-    </a>
-</footer>
-<script src="script.js"></script>
+        const QuoteBox = ({ arabic, translation, source }) => (
+            <div className="my-8 p-8 bg-slate-800/30 border-l-4 border-amber-500 rounded-r-xl relative overflow-hidden group hover:bg-slate-800/50 transition-all">
+                <div className="absolute -right-4 -top-4 text-9xl text-slate-700 opacity-10 select-none">”</div>
+                {arabic && <p className="text-center font-arabic text-amber-100 mb-4">{arabic}</p>}
+                <p className="text-lg italic text-slate-300 text-center font-prose">"{translation}"</p>
+                {source && <p className="text-center text-amber-500 text-sm mt-4 font-bold tracking-widest uppercase">— {source}</p>}
+            </div>
+        );
+
+        const StatBadge = ({ icon, number, label }) => (
+            <div className="flex flex-col items-center p-4 bg-slate-800 rounded-lg border border-slate-700 shadow-lg hover:border-amber-500/50 transition-colors">
+                <div className="text-amber-500 mb-2">{icon}</div>
+                <span className="text-2xl font-bold text-white font-serif-title">{number}</span>
+                <span className="text-xs uppercase tracking-widest text-slate-400 text-center">{label}</span>
+            </div>
+        );
+
+        const SectionTitle = ({ number, title, subtitle }) => (
+            <div className="mb-12 mt-20 border-b border-slate-700 pb-6">
+                <div className="flex items-baseline space-x-3 mb-2">
+                    <span className="text-4xl font-bold text-amber-600 opacity-50 font-serif-title">0{number}</span>
+                    <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-sm">Chapter</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-100 font-serif-title mb-2">{title}</h2>
+                <p className="text-xl text-slate-400 italic font-prose">{subtitle}</p>
+            </div>
+        );
+
+        const ImageBanner = ({ src, alt, caption }) => (
+            <div className="w-full my-10 relative rounded-xl overflow-hidden shadow-2xl group">
+                <div className="image-overlay z-10 group-hover:bg-opacity-10 transition-all"></div>
+                <img src={src} alt={alt} className="w-full h-64 md:h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent z-20">
+                    <p className="text-center text-amber-100 italic text-sm">{caption}</p>
+                </div>
+            </div>
+        );
+
+        // --- Main App ---
+
+        const App = () => {
+            const { scrollYProgress } = useScroll();
+            const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+            const [menuOpen, setMenuOpen] = useState(false);
+
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [menuOpen]);// Re-run when menu state changes to render icons in mobile menu
+
+            const navItems = [
+                { label: "Home", href: "index.html" },
+                { label: "Videos", href: "videos.html" },
+                { label: "Books", href: "books.html" },
+                { label: "Gallery", href: "gallery.html" },
+                { label: "Contact", href: "contact.html" },
+            ];
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setMenuOpen(false);
+                }
+            };
+
+            return (
+                <div className="antialiased selection:bg-amber-500 selection:text-black pt-16 md:pt-0">
+                    
+                    {/* Reading Progress Bar */}
+                    <motion.div className="fixed top-0 left-0 right-0 h-1 bg-amber-500 origin-left z-[60]" style={{ scaleX }} />
+
+                    {/* Transparent Floating Navbar */}
+                    <nav className="fixed top-0 left-0 right-0 z-50 p-4 transition-all duration-300">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="nav-glass rounded-full px-6 py-3 flex items-center justify-between shadow-lg shadow-black/20">
+                                {/* Brand */}
+                                <div 
+                                    className="flex items-center gap-2 cursor-pointer"
+                                    onClick={() => scrollToSection('home')}
+                                >
+                                    <span className="text-amber-500"><Icons.Scroll /></span>
+                                    <span className="text-slate-100 font-serif-title font-bold text-lg hidden sm:block">Intellectual Journey</span>
+                                </div>
+
+                                {/* Desktop Links */}
+                                <div className="hidden md:flex items-center space-x-1 bg-slate-800/50 rounded-full px-2 py-1 border border-white/5">
+                                    {navItems.map((item) => (
+                                        item.href.startsWith('#') ? (
+                                            <button
+                                                key={item.label}
+                                                onClick={() => scrollToSection(item.href.slice(1))}
+                                                className="px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 font-medium"
+                                            >
+                                                {item.label}
+                                            </button>
+                                        ) : (
+                                            <a
+                                                key={item.label}
+                                                href={item.href}
+                                                className="px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 font-medium"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        )
+                                    ))}
+                                </div>
+
+                                {/* Mobile Menu Button */}
+                                <button
+                                    className="md:hidden p-2 text-slate-300 hover:text-amber-400 transition-colors"
+                                    onClick={() => setMenuOpen(!menuOpen)}
+                                >
+                                    {menuOpen ? <Icons.X /> : <Icons.Menu />}
+                                </button>
+                            </div>
+
+                            {/* Mobile Dropdown */}
+                            {menuOpen && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    className="md:hidden mt-2 nav-glass rounded-2xl p-4 border border-slate-700/50"
+                                >
+                                    <div className="flex flex-col space-y-2">
+                                        {navItems.map((item) => (
+                                            item.href.startsWith('#') ? (
+                                                <button
+                                                    key={item.label}
+                                                    onClick={() => { scrollToSection(item.href.slice(1)); setMenuOpen(false); }}
+                                                    className="text-left px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700"
+                                                >
+                                                    {item.label}
+                                                </button>
+                                            ) : (
+                                                <a
+                                                    key={item.label}
+                                                    href={item.href}
+                                                    className="text-left px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700"
+                                                    onClick={() => setMenuOpen(false)}
+                                                >
+                                                    {item.label}
+                                                </a>
+                                            )
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header id="home" className="min-h-screen flex flex-col justify-center items-center relative px-6 text-center bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
+                        <div className="absolute inset-0 bg-slate-900/90"></div>
+                        
+                        <div className="relative z-10 max-w-4xl pt-20">
+                            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                                <span className="inline-block py-1 px-3 border border-amber-500/50 text-amber-500 rounded-full text-xs tracking-widest mb-4 bg-slate-900/50 backdrop-blur">A PERSONAL NARRATIVE</span>
+                                <h1 className="text-5xl md:text-7xl font-bold text-white font-serif-title mb-6 leading-tight">
+                                    My Intellectual Journey
+                                </h1>
+                                <p className="text-xl md:text-2xl text-slate-300 font-prose mb-8">
+                                    Between <span className="text-amber-400">Faith</span>, <span className="text-blue-400">Reason</span>, and <span className="text-emerald-400">Action</span>
+                                </p>
+                                <p className="text-md text-slate-400 max-w-2xl mx-auto mb-12 font-light">
+                                    A Journey — of knowing who we are, why we believe, and how it is all interconnected.
+                                </p>
+                            </motion.div>
+
+                            {/* Stats Dashboard */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <StatBadge icon={<Icons.BookOpen />} number="5" label="Chapters" />
+                                <StatBadge icon={<Icons.Brain />} number="12+" label="Philosophers" />
+                                <StatBadge icon={<Icons.Globe />} number="1400" label="Years Covered" />
+                                <StatBadge icon={<Icons.Heart />} number="1" label="Ultimate Truth" />
+                            </div>
+                        </div>
+                        
+                        <div className="absolute bottom-8 animate-bounce text-slate-500 hidden md:block">
+                            <Icons.Scroll />
+                        </div>
+                    </header>
+
+                    {/* Main Content */}
+                    <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 bg-slate-900">
+
+                        {/* Chapter 1 mapped to 'videos' */}
+                        <section id="videos">
+                            <SectionTitle number="1" title="The Foundation" subtitle="The Spark of “Why?”" />
+                            
+                            <div className="font-prose text-slate-300 space-y-6 text-lg">
+                                <p>My intellectual journey began not within the four walls of a formal university, but in my mother's lap and the intimate atmosphere of a home, where my relentless curiosity-filled mind was shaped by emotional stability and spiritual discipline.</p>
+                                
+                                <div className="flex flex-col md:flex-row gap-8 items-center my-8">
+                                    <div className="flex-1 space-y-4">
+                                        <div className="p-4 bg-slate-800 rounded-lg border-l-2 border-blue-500">
+                                            <strong className="text-blue-400 block mb-1">Physical World</strong>
+                                            “Why is the color of the sky blue? Who created the sky?”
+                                        </div>
+                                        <div className="p-4 bg-slate-800 rounded-lg border-l-2 border-amber-500">
+                                            <strong className="text-amber-400 block mb-1">Ethical Dilemmas</strong>
+                                            “What is the standard of right and wrong? Is right right for everyone?”
+                                        </div>
+                                        <div className="p-4 bg-slate-800 rounded-lg border-l-2 border-emerald-500">
+                                            <strong className="text-emerald-400 block mb-1">Existential Concerns</strong>
+                                            “Does our existence have a purpose in this whole cosmos?”
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-1/3 flex justify-center">
+                                        <div className="bg-amber-500/10 p-8 rounded-full border border-amber-500/30">
+                                            <i data-lucide="lightbulb" className="w-24 h-24 text-amber-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p>It was my mother who provided an epistemological framework to this curiosity of mine. She taught that 'Ilm' (knowledge) which is acquired to benefit people is in itself an 'Ibadat' (worship).</p>
+
+                                <QuoteBox 
+                                    arabic="اُطْﻠُﺑُوا اﻟْﻌِﻠْمَ ﻣِنَ اﻟْﻣَﮭْدِ إِﻟَﻰ اﻟ ﱠﻠﺣْدِ"
+                                    translation="Seek knowledge from the cradle to the grave."
+                                    source="Hadith (da'eef but spiritually significant)"
+                                />
+
+                                <p>This was not just an instruction; it was a spiritual mandate for lifelong learning. My faith did not stifle my reason, but rather encouraged it.</p>
+                                
+                                <p className="text-center font-arabic text-3xl text-amber-400 my-4">اْﻗَرْأ ِﺑﺎْﺳِم َر ﱢﺑَك ا ﱠﻟِذي َﺧَﻠَق</p>
+                                <p className="text-center italic text-slate-400 mb-6">“Read in the name of your Lord who created.” (Qur’an 96:1)</p>
+                                
+                                <p>My maternal grandfather made this theoretical foundation practical. He would take me to the Mosque to offer Fajr, and on the way back would turn the pages of history.</p>
+                                
+                                <ImageBanner 
+                                    src="https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=2070&auto=format&fit=crop" 
+                                    alt="Mosque Architecture" 
+                                    caption="The mosque became a place of both prayer and historical reflection." 
+                                />
+
+                                <p>Those gatherings at home— where there was the emotional commemoration of Milad un Nabi ﷺ and dialogue on Qur’an and Hadith— were informal seminars for me where the first spark of 'Fikr' was ignited.</p>
+                            </div>
+                        </section>
+
+                        {/* Chapter 2 mapped to 'books' */}
+                        <section id="books">
+                            <SectionTitle number="2" title="The Framework" subtitle="The Lens of the Past" />
+                            
+                            <div className="font-prose text-slate-300 space-y-6 text-lg">
+                                <p>As my curiosity grew, so did my need for a coherent framework. The scattered pieces of knowledge—faith, science, history—needed a unifying lens. This search led me to discover the great minds who had already walked this path.</p>
+                                
+                                <p>The first major breakthrough came when I encountered <span className="text-amber-400">Ibn Khaldun's Muqaddimah</span>. His theory of <span className="text-green-400">Asabiyyah</span> provided a powerful framework for understanding history.</p>
+
+                                <CycleOfCivilization />
+
+                                <p>Khaldun taught me that civilizations are organic entities—they grow, mature, decay, and are reborn.</p>
+
+                                <PillarsChart />
+
+                                <p>My journey through the history of thought introduced me to three distinct paradigms:</p>
+
+                                <div className="grid md:grid-cols-3 gap-6 my-8">
+                                    <div className="p-6 glass-card rounded-xl border border-blue-500/30">
+                                        <div className="text-blue-400 mb-4 flex items-center gap-2">
+                                            <Icons.Scroll />
+                                            <h3 className="font-bold text-lg">Western Enlightenment</h3>
+                                        </div>
+                                        <p className="text-sm">The celebration of reason, individual liberty, and scientific progress.</p>
+                                        <div className="mt-4 pt-4 border-t border-slate-700">
+                                            <span className="text-xs text-slate-400">Key Thinkers: Kant, Locke</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-6 glass-card rounded-xl border border-emerald-500/30">
+                                        <div className="text-emerald-400 mb-4 flex items-center gap-2">
+                                            <Icons.Compass />
+                                            <h3 className="font-bold text-lg">Islamic Golden Age</h3>
+                                        </div>
+                                        <p className="text-sm">Where faith and reason walked together. Reconciling revelation with intellect.</p>
+                                        <div className="mt-4 pt-4 border-t border-slate-700">
+                                            <span className="text-xs text-slate-400">Key Thinkers: Al-Ghazali, Ibn Rushd</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-6 glass-card rounded-xl border border-amber-500/30">
+                                        <div className="text-amber-400 mb-4 flex items-center gap-2">
+                                            <Icons.Scale />
+                                            <h3 className="font-bold text-lg">Eastern Wisdom</h3>
+                                        </div>
+                                        <p className="text-sm">The emphasis on harmony, duty, and the Middle Way.</p>
+                                        <div className="mt-4 pt-4 border-t border-slate-700">
+                                            <span className="text-xs text-slate-400">Key Thinkers: Confucius, Buddha</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <QuoteBox 
+                                    arabic="الحكمة ضالة المؤمن، أنى وجدها فهو أحق بها"
+                                    translation="Wisdom is the lost property of the believer. Wherever he finds it, he is most deserving of it."
+                                    source="Prophetic Tradition"
+                                />
+
+                                <p>My framework began to take shape: <span className="text-amber-400">history as a teacher</span>, <span className="text-blue-400">reason as a tool</span>, and <span className="text-emerald-400">faith as a compass</span>.</p>
+                            </div>
+                        </section>
+
+                        {/* Chapter 3 & 4 mapped to 'gallery' */}
+                        <section id="gallery">
+                            <SectionTitle number="3" title="The Synthesis" subtitle="Where Faith Meets Reason" />
+                            
+                            <div className="font-prose text-slate-300 space-y-6 text-lg">
+                                <p>The most difficult part of the journey was learning to hold multiple truths simultaneously.</p>
+                                
+                                <div className="my-10 p-8 bg-gradient-to-r from-slate-800/50 to-amber-900/20 rounded-xl border border-amber-500/20">
+                                    <h3 className="text-2xl font-bold text-center text-amber-400 mb-6">The Three Dimensions of Truth</h3>
+                                    <div className="grid md:grid-cols-3 gap-8">
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500">
+                                                <Icons.Brain />
+                                            </div>
+                                            <h4 className="text-blue-400 font-bold mb-2">Rational Truth</h4>
+                                            <p className="text-sm">Logic and evidence.</p>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 mx-auto mb-4 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500">
+                                                <Icons.Heart />
+                                            </div>
+                                            <h4 className="text-emerald-400 font-bold mb-2">Spiritual Truth</h4>
+                                            <p className="text-sm">Faith and intuition.</p>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center border border-amber-500">
+                                                <Icons.Scale />
+                                            </div>
+                                            <h4 className="text-amber-400 font-bold mb-2">Moral Truth</h4>
+                                            <p className="text-sm">Ethics and conscience.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <QuoteBox 
+                                    arabic="ربنا ما خلقت هذا باطلا سبحانك"
+                                    translation="Our Lord, You did not create this in vain. Glory be to You!"
+                                    source="Qur'an 3:191"
+                                />
+
+                                <p>This realization was liberating. It meant I could study evolution without abandoning my faith, and value democracy while holding to divine sovereignty.</p>
+                            </div>
+
+                            <div className="mt-20">
+                                <SectionTitle number="4" title="The Application" subtitle="Knowledge in Action" />
+                                <div className="font-prose text-slate-300 space-y-6 text-lg">
+                                    <p>Knowledge that doesn't transform is mere information.</p>
+                                    
+                                    <div className="my-8 p-6 bg-slate-800/50 rounded-xl">
+                                        <h3 className="text-xl font-bold text-amber-400 mb-4">From Theory to Practice</h3>
+                                        <ul className="space-y-4">
+                                            <li className="flex items-start gap-3">
+                                                <span className="text-green-400 mt-1">✓</span>
+                                                <span><strong className="text-green-400">Community Building:</strong> Applying Asabiyyah to strengthen social bonds.</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <span className="text-blue-400 mt-1">✓</span>
+                                                <span><strong className="text-blue-400">Ethical Leadership:</strong> Blending wisdom with management.</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <span className="text-amber-400 mt-1">✓</span>
+                                                <span><strong className="text-amber-400">Interfaith Dialogue:</strong> Building bridges.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <ImageBanner 
+                                        src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" 
+                                        alt="Community gathering" 
+                                        caption="Knowledge finds its ultimate purpose in serving others." 
+                                    />
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Chapter 5 mapped to 'contact' */}
+                        <section id="contact">
+                            <SectionTitle number="5" title="The Continuing Journey" subtitle="The Path Ahead" />
+                            
+                            <div className="font-prose text-slate-300 space-y-6 text-lg">
+                                <p>The journey never truly ends. Each answer opens new questions.</p>
+                                
+                                <div className="text-center my-12 p-8 glass-card rounded-2xl">
+                                    <Icons.Compass className="w-16 h-16 mx-auto mb-4 text-amber-500" />
+                                    <h3 className="text-2xl font-bold text-white mb-4">Let's Connect & Discuss</h3>
+                                    <p className="text-slate-300 mb-6">If these questions resonate with you, let's continue the conversation.</p>
+                                    <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                                        <div className="p-4 bg-slate-800/50 rounded-lg text-left hover:bg-slate-700/50 transition cursor-pointer">
+                                            <span className="text-amber-400 text-sm">Question 1</span>
+                                            <p className="mt-1">How does technology change what it means to be human?</p>
+                                        </div>
+                                        <div className="p-4 bg-slate-800/50 rounded-lg text-left hover:bg-slate-700/50 transition cursor-pointer">
+                                            <span className="text-blue-400 text-sm">Question 2</span>
+                                            <p className="mt-1">Can we build institutions that outlast moral failures?</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="mt-8">
+                                        <button className="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-amber-600/20">
+                                            Contact Me
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <QuoteBox 
+                                    arabic="وَقُل رَّبِّ زِدْنِي عِلْمًا"
+                                    translation="And say: My Lord, increase me in knowledge."
+                                    source="Qur'an 20:114"
+                                />
+
+                                <p className="text-center text-2xl italic text-slate-400 mt-12">The journey continues...</p>
+                            </div>
+                        </section>
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="py-12 px-6 border-t border-slate-800 text-center bg-slate-900/50 backdrop-blur">
+                        <div className="max-w-2xl mx-auto">
+                            <p className="text-slate-400 mb-4">
+                                "This interactive journey is a living document—a snapshot of an ongoing exploration."
+                            </p>
+                            <div className="flex justify-center gap-6 mt-8 text-slate-500 text-sm">
+                                <span>© {new Date().getFullYear()} Intellectual Journey</span>
+                                <span className="hidden md:inline">•</span>
+                                <span>Made with React & Framer Motion</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
 </body>
 </html>

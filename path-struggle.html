@@ -1,714 +1,1083 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌿 Path of Struggle - Faiz Ali Qadri</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-       :root {
-  --primary: #1a5f7a;
-  --secondary: #d4af37;
-  --accent: #2d9d78;
-  --background: #f8f6f2;
-  --dark: #2c3e50;
-  --light: #f9f9f9;
-  --shadow: 0 4px 16px rgba(38, 50, 56, 0.08);
-  --shadow-deep: 0 8px 32px rgba(19, 95, 122, 0.15);
-  --border-light: 1px solid rgba(212, 175, 55, 0.2);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Journey of Social Services & Learning- Faiz Ali Qadri</title>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <!-- Fonts: Cinzel (titles), Inter (body), Libre Baskerville (prose) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--background);
-  color: var(--dark);
-  min-height: 100vh;
-  line-height: 1.6;
-  position: relative;
-  overflow-x: hidden;
-}
+  <style>
+    :root {
+      /* Colors inspired by dark slate + amber like the Intellectual Journey UI */
+      --primary: #0f172a; /* slate-900 style background [web:25][web:28] */
+      --secondary: #fbbf24; /* amber */
+      --accent: #22c55e; /* emerald */
+      --muted: #64748b; /* slate-500 */
+      --background: #020617; /* near black */
+      --card-bg: rgba(15, 23, 42, 0.9);
+      --card-border: rgba(148, 163, 184, 0.35);
+      --nav-bg: rgba(15, 23, 42, 0.7);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.8);
+      --text-main: #e2e8f0; /* slate-200 */
+      --text-soft: #94a3b8; /* slate-400 */
+    }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(26, 95, 122, 0.15) 0%, transparent 60%),
-    radial-gradient(circle at 40% 40%, rgba(45, 157, 120, 0.1) 0%, transparent 60%);
-  z-index: -1;
-  filter: blur(3px);
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Header & Navigation */
-header {
-  background: linear-gradient(135deg, var(--primary) 0%, #144a61 100%);
-  color: #fff;
-  box-shadow: var(--shadow-deep);
-  position: relative;
-  overflow: hidden;
-}
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--secondary), var(--accent), var(--secondary));
-}
+    /* Subtle radial background glow like Intellectual Journey hero */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(
+          circle at 15% 20%,
+          rgba(248, 250, 252, 0.12),
+          transparent 55%
+        ),
+        radial-gradient(circle at 80% 10%, rgba(248, 250, 252, 0.08), transparent 60%),
+        radial-gradient(circle at 10% 90%, rgba(56, 189, 248, 0.18), transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(248, 250, 252, 0.1), transparent 55%);
+      opacity: 0.85;
+      z-index: -2;
+    }
 
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(26, 95, 122, 0.2);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 16px 32px;
-  transition: all 0.3s ease;
-}
+    body::after {
+      /* dark overlay for depth */
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(
+        circle at top,
+        rgba(15, 23, 42, 0.3),
+        rgba(15, 23, 42, 0.95) 55%,
+        #020617 100%
+      );
+      z-index: -1;
+    }
 
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-  color: var(--secondary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-}
+    .font-serif-title {
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.06em;
+    }
 
-.nav-logo::before {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: var(--secondary);
-}
+    .font-prose {
+      font-family: "Libre Baskerville", serif;
+      line-height: 1.9;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 25px;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  transition: all 0.3s ease;
-  padding: 8px 0;
-}
+    /* Scroll progress bar at top (like reading bar) */
+    #scroll-progress-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 120;
+    }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--secondary);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
+    #scroll-progress {
+      height: 3px;
+      width: 0;
+      background: linear-gradient(
+        to right,
+        #fbbf24,
+        #22c55e,
+        #38bdf8
+      );
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.8);
+      transition: width 0.1s linear;
+    }
 
-.nav-links a:hover {
-  color: var(--secondary);
-}
+    /* Header & Glassmorphic Navbar (Intellectual Journey style) */
+    header {
+      position: relative;
+      z-index: 110;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
 
-.nav-links a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+    nav {
+      position: sticky;
+      top: 0.75rem;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.75rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
 
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 5rem 1rem;
-            background: linear-gradient(135deg, rgba(44, 85, 48, 0.05), rgba(138, 185, 150, 0.1));
-            margin-bottom: 3rem;
-        }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(251, 191, 36, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(
+        circle at 30% 20%,
+        rgba(251, 191, 36, 0.28),
+        rgba(15, 23, 42, 0.95)
+      );
+      color: var(--secondary);
+      box-shadow: 0 0 25px rgba(251, 191, 36, 0.5);
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
+    .nav-logo-text {
+      font-family: "Cinzel", serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
+    .nav-logo-sub {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-        .author {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
 
-        /* Content Sections */
-        .section {
-            margin-bottom: 4rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
+    .nav-links a {
+      position: relative;
+      text-decoration: none;
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.3rem;
+      transition: color 0.25s ease;
+    }
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-        }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.2rem;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #fbbf24, #22c55e);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
 
-        .section-title i {
-            margin-right: 1rem;
-            color: var(--accent);
-        }
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
 
-        .section-content {
-            line-height: 1.8;
-        }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
-        .section-content p {
-            margin-bottom: 1.5rem;
-        }
+    .nav-links a.active {
+      color: var(--secondary);
+    }
 
-        blockquote {
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: var(--text-light);
-        }
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
 
-        .highlight-box {
-            background: rgba(138, 185, 150, 0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--accent);
-        }
+    /* Mobile nav toggle (hidden by default, simple version) */
+    .nav-toggle {
+      display: none;
+      font-size: 1.3rem;
+      color: #e5e7eb;
+      cursor: pointer;
+    }
 
-        ul {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.6rem 1.1rem;
+      }
 
-        li {
-            margin-bottom: 0.8rem;
-        }
+      .nav-logo-text {
+        font-size: 0.95rem;
+      }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+      .nav-logo-sub {
+        display: none;
+      }
 
-        .timeline-path {
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--accent);
-            z-index: 1;
-        }
+      .nav-links {
+        display: none;
+      }
 
-        .timeline-item {
-            display: flex;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
+      .nav-toggle {
+        display: block;
+      }
+    }
 
-        .timeline-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-right: 2rem;
-            flex-shrink: 0;
-            z-index: 3;
-        }
+    /* Hero section (dark image + overlay like Intellectual Journey) */
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 4.5rem 1.5rem 3.5rem;
+      overflow: hidden;
+      border-radius: 1.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-soft);
+    }
 
-        .timeline-content {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            flex: 1;
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+          circle at top,
+          rgba(15, 23, 42, 0.1),
+          rgba(15, 23, 42, 0.85) 55%,
+          rgba(15, 23, 42, 1)
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.85),
+          rgba(15, 23, 42, 0.98)
+        );
+      mix-blend-mode: multiply;
+    }
 
-        .timeline-date {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
 
-        /* Language Cards */
-        .languages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.28rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--secondary);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
 
-        .language-card {
-            background: var(--light);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid #e9ecef;
-        }
+    .hero-pill i {
+      font-size: 0.9rem;
+    }
 
-        .language-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
 
-        .language-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+    .hero-title-accent {
+      background: linear-gradient(to right, #fbbf24, #22c55e, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
-            text-align: center;
-        }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-soft);
+      margin-bottom: 1.5rem;
+      font-family: "Libre Baskerville", serif;
+      font-style: italic;
+    }
 
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+    .hero-author {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
 
-        .footer-socials a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-        }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
 
-        .footer-socials a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
 
-        .footer-text p {
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-        }
+    .hero-meta i {
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+    @media (max-width: 768px) {
+      .hero {
+        padding: 3.5rem 1.1rem 2.5rem;
+        border-radius: 1.25rem;
+      }
 
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+      .hero h1 {
+        font-size: 2.05rem;
+      }
 
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
 
-            .timeline-item {
-                flex-direction: column;
-            }
+    /* Main content sections as glass cards */
+    main {
+      margin-top: -1.5rem;
+      padding-bottom: 3rem;
+    }
 
-            .timeline-icon {
-                margin-right: 0;
-                margin-bottom: 1rem;
-                align-self: flex-start;
-            }
+    .section {
+      margin-bottom: 2.75rem;
+      padding: 2rem 1.75rem;
+      background: var(--card-bg);
+      border-radius: 1.4rem;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
 
-            .timeline-path {
-                left: 30px;
-            }
+    .section-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
 
-            .languages-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .section-title i {
+      margin-right: 0.9rem;
+      color: var(--secondary);
+      font-size: 1.5rem;
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+    }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
+    .section-content {
+      line-height: 1.8;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
 
-            .hero {
-                padding: 3rem 1rem;
-            }
+    .section-content p {
+      margin-bottom: 1.1rem;
+    }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+    blockquote {
+      border-left: 3px solid var(--secondary);
+      padding-left: 1.2rem;
+      margin: 1.6rem 0;
+      font-style: italic;
+      color: var(--text-soft);
+      font-family: "Libre Baskerville", serif;
+    }
 
-            .section {
-                padding: 1.5rem;
-            }
+    .highlight-box {
+      background: linear-gradient(
+        to right,
+        rgba(251, 191, 36, 0.06),
+        rgba(56, 189, 248, 0.03)
+      );
+      border-radius: 1.1rem;
+      padding: 1.35rem 1.3rem;
+      margin: 1.8rem 0;
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+    }
 
-            .section-title {
-                font-size: 1.5rem;
-            }
+    .highlight-box p {
+      margin: 0.15rem 0;
+    }
 
-            .languages-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    ul {
+      margin: 1.2rem 0;
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.7rem;
+    }
+
+    /* Timeline in modern dark style */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 1rem auto 0;
+    }
+
+    .timeline-path {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #fbbf24, #22c55e);
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2.3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: radial-gradient(circle at 30% 20%, #fbbf24, #0f172a);
+      border-radius: 50%;
+      border: 2px solid rgba(251, 191, 36, 0.8);
+      color: #fefce8;
+      font-size: 1.25rem;
+      margin-right: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.6);
+    }
+
+    .timeline-content {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 1rem;
+      padding: 1.1rem 1rem;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      flex: 1;
+    }
+
+    .timeline-content h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .timeline-date {
+      display: inline-block;
+      background: rgba(34, 197, 94, 0.08);
+      color: #bbf7d0;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+    }
+
+    /* Language cards grid */
+    .languages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1.7rem;
+    }
+
+    .language-card {
+      background: radial-gradient(
+        circle at top,
+        rgba(248, 250, 252, 0.02),
+        rgba(15, 23, 42, 0.98)
+      );
+      border-radius: 1.05rem;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.85);
+    }
+
+    .language-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.95);
+      border-color: rgba(251, 191, 36, 0.7);
+    }
+
+    .language-icon {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 0.6rem;
+    }
+
+    .language-card h3 {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    footer {
+      background: radial-gradient(
+        circle at top,
+        rgba(15, 23, 42, 0.85),
+        rgba(2, 6, 23, 1)
+      );
+      color: #e5e7eb;
+      padding: 2.8rem 0 1.4rem;
+      margin-top: 2.5rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 -18px 40px rgba(15, 23, 42, 0.95);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.7rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-socials a:hover {
+      background: radial-gradient(circle at top, #fbbf24, #0f172a);
+      border-color: rgba(251, 191, 36, 0.9);
+      transform: translateY(-3px);
+    }
+
+    .footer-text p {
+      margin-bottom: 0.4rem;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    /* Fade-in for sections (reused with JS) */
+    .section {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 900px) {
+      .section {
+        padding: 1.6rem 1.35rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline {
+        margin-left: 0.4rem;
+      }
+
+      .timeline-item {
+        flex-direction: row;
+      }
+
+      .timeline-icon {
+        margin-right: 1.1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .timeline-item {
+        flex-direction: column;
+      }
+
+      .timeline-icon {
+        margin-right: 0;
+        margin-bottom: 0.8rem;
+        align-self: flex-start;
+      }
+
+      .timeline-path {
+        left: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="nav-logo">Faiz Ali Qadri</div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#journey">Journey</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-    </header>
+  <!-- Reading progress bar -->
+  <div id="scroll-progress-wrapper">
+    <div id="scroll-progress"></div>
+  </div>
 
-    <main class="container">
-        <section class="hero">
-            <h1>🌿 Path of Struggle</h1>
-            <div class="hero-subtitle">A Journey of Service, Learning, and Collective Upliftment</div>
-            <div class="author">By: Faiz Ali Qadri</div>
-        </section>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="nav-logo">
+          <div class="nav-logo-icon">
+            <i class="fas fa-feather-pointed"></i>
+          </div>
+          <div>
+            <span class="nav-logo-text">Faiz Ali Qadri</span>
+            <span class="nav-logo-sub">My Journey of Social Services & Learning</span>
+          </div>
+        </a>
 
-        <section class="section" id="journey">
-            <h2 class="section-title"><i class="fas fa-seedling"></i> The Beginning</h2>
-            <div class="section-content">
-                <p>There are certain moments in life when faith transforms into action and compassion becomes a direction. My journey began in 2013, during the blessed month of Rabi' al-Awwal, when I first visited a hospital to distribute fruits in remembrance of the birth of the Mercy to Mankind, Prophet Muhammad ﷺ.</p>
-                
-                <p>The smiles on the faces of the patients were more nourishing than the fruits in our hands. When some of the patients—many of them non-Muslims—asked why we were doing this, I replied:</p>
-                
-                <blockquote>"We share this in honour of the birth of Prophet Muhammad ﷺ."</blockquote>
-                
-                <p>Their faces changed with a sincere expression of respect—and they joined their palms, acknowledging his sanctity. That moment engraved in my heart that the Prophetic light touches every soul, regardless of creed.</p>
-                
-                <p>From that experience emerged a new tradition in our locality—a public food distribution, known as Langar-e-Rasool ﷺ—which continued for several years. Alongside my friends, I took part in the historic Juloos-e-Muhammadi in Kanpur, reciting salutations upon the Prophet ﷺ until sunset, before returning home after Maghrib in Phoolbagh.</p>
-                
-                <p>The spiritual rhythm of Rabi' al-Awwal continues to this day.</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-expand-arrows-alt"></i> Expansion into Righteous Gatherings</h2>
-            <div class="section-content">
-                <p>From that starting point, our circle of work expanded into religious and educational gatherings:</p>
-                
-                <ul>
-                    <li><strong>Milad Conferences</strong></li>
-                    <li><strong>Seerah Seminars</strong></li>
-                    <li><strong>Gosha-e-Durood Majalis</strong></li>
-                    <li><strong>Education Day</strong> on the birth anniversary of <strong>Imam Ahmad Raza Khan Barelvi</strong> (10th Shawwal), who reminded the world that:</li>
-                </ul>
-                
-                <blockquote>"Knowledge is life, and ignorance is death."</blockquote>
-                
-                <p>We soon realized that sincere remembrance must naturally flow into <strong>service to humanity</strong>. Thus, we began social welfare initiatives:</p>
-                
-                <ul>
-                    <li>Winter <strong>blanket and sweater distribution</strong></li>
-                    <li><strong>Warm bedding sheets</strong> for the homeless</li>
-                    <li>And later, <strong>Ramadan Ration Programs</strong></li>
-                </ul>
-                
-                <div class="highlight-box">
-                    <p>During the <strong>COVID-19 lockdown</strong>, we were blessed to support <strong>more than 5,000 families</strong> with essential food supplies. We did not consider this an achievement, but a responsibility—an amanah.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education as the Long-Term Solution</h2>
-            <div class="section-content">
-                <p>With time, a conviction settled in my heart:</p>
-                
-                <blockquote>"Charity relieves hunger for a night, but education ends hunger for generations."</blockquote>
-                
-                <p>The community was suffering from:</p>
-                
-                <ul>
-                    <li>Economic marginalization</li>
-                    <li>Political underrepresentation</li>
-                    <li>Low literacy and career opportunities</li>
-                </ul>
-                
-                <p>This reinforced what <strong>Maulana Abul Hasan Ali Nadwi</strong> wrote, that the revival of a people begins with <em>"Tarbiyat and Ilm—moral training and knowledge."</em></p>
-                
-                <p>Thus, we began supporting <strong>career counselling</strong> and <strong>scholarships</strong> for talented students.</p>
-                
-                <p>But the world was changing rapidly, and a deeper realization emerged:</p>
-                
-                <div class="highlight-box">
-                    <p>To uplift the community, we must shift from the <strong>informal sector to the formal economy</strong>, strengthening digital and industrial competencies.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-turning-point"></i> 2021 – Minhaj Educational Conclave (A Turning Point)</h2>
-            <div class="section-content">
-                <p>In <strong>2021</strong>, I was invited to deliver a speech on:</p>
-                
-                <p><strong>"Islam and Europe: History and the Significance of Muslim Civilization"</strong></p>
-                
-                <p>at the <strong>Merchant Chamber Hall</strong>, organized by <strong>Minhaj-ul-Quran India</strong> under the title <em>Minhaj Educational Conclave</em>.</p>
-                
-                <p>Our <strong>Chief Guest</strong> was the distinguished scholar <strong>Allama Ubaid Ullah Khan Azmi</strong>, and the <strong>Special Guest</strong> was <strong>Sameer Siddiqui</strong>, renowned <strong>IAS Coach</strong>. Speaking on the intellectual legacy of Islam in Europe—Al-Andalus, Sicily, Ottoman Balkans—strengthened in me a greater responsibility: the responsibility to reconnect our youth with the intellectual magnificence of their civilization.</p>
-                
-                <p>Here I reflected upon <strong>Allama Iqbal's words</strong>:</p>
-                
-                <blockquote>"Nations are born in the hearts of poets; they prosper and die in the hands of politicians."</blockquote>
-                
-                <p>Iqbal's vision of the <em>Momin</em>—the spiritually awakened, morally grounded, and socially beneficial human being—became a defining compass in my journey.</p>
-            </div>
-        </section>
-
-        <section class="section" id="projects">
-            <h2 class="section-title"><i class="fas fa-university"></i> Institutional Vision: MERCI Educational & Welfare Foundation</h2>
-            <div class="section-content">
-                <p>To turn this mission into a structured movement, we established:</p>
-                
-                <h3>🌿 MERCI Foundation</h3>
-                <p><em>(MERCI Educational & Welfare Foundation)</em></p>
-                
-                <p>Our goal was not only to assist people in distress, but to <strong>create a human chain of compassion</strong>, where one transformed person becomes a means of transforming another. As I wrote in my mission reflections:</p>
-                
-                <blockquote>"Service is not a project; it is a way of being."</blockquote>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Skill Development & ASDC Kanpur</h2>
-            <div class="section-content">
-                <p>Through data-driven analysis of global market transitions and industry demands, we identified critical future-skills. With collaboration from <strong>The Quran Foundation</strong> and <strong>SEED</strong>, we worked toward empowering youth in:</p>
-                
-                <div class="timeline">
-                    <div class="timeline-path"></div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Digital Marketing</h3>
-                            <p>Comprehensive training in modern digital marketing strategies</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Accounting & Tally</h3>
-                            <p>Financial management and accounting software training</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Web Development</h3>
-                            <p>Full-stack web development with modern technologies</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Communication & Personality Development</h3>
-                            <p>Enhancing soft skills and professional presence</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Graphic Designing & 3D Animation</h3>
-                            <p>Creative design skills for digital media</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <p><em>(Video Editing training is being added)</em></p>
-                
-                <p>Thus, the <strong>ASDC Institute</strong> was opened in Kanpur—an initiative to build a skilled, confident, and career-ready generation.</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-globe-americas"></i> Foreign Languages: Gateway to a Global Future</h2>
-            <div class="section-content">
-                <p>My deep interest in <strong>foreign languages</strong> further shaped our direction. I believe our youth should not be confined within linguistic borders, but be prepared for global opportunities. Our long-term plan includes:</p>
-                
-                <div class="languages-grid">
-                    <div class="language-card">
-                        <div class="language-icon">🌿</div>
-                        <h3>German</h3>
-                    </div>
-                    
-                    <div class="language-card">
-                        <div class="language-icon">🌿</div>
-                        <h3>French</h3>
-                    </div>
-                    
-                    <div class="language-card">
-                        <div class="language-icon">🌿</div>
-                        <h3>Arabic</h3>
-                    </div>
-                    
-                    <div class="language-card">
-                        <div class="language-icon">🌿</div>
-                        <h3>Chinese</h3>
-                    </div>
-                    
-                    <div class="language-card">
-                        <div class="language-icon">🌿</div>
-                        <h3>Japanese</h3>
-                    </div>
-                </div>
-                
-                <p><strong>Phase-1: French, German, and Arabic</strong> (Launching under MERCI Foundation)</p>
-                
-                <p>Because tomorrow belongs to those who can speak to the world—not just in words, but with knowledge.</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-users"></i> Leadership & Entrepreneurship Development</h2>
-            <div class="section-content">
-                <p>Our next developmental focus is to identify youth who:</p>
-                
-                <ul>
-                    <li>Think <strong>beyond employment</strong> toward enterprise</li>
-                    <li>Are <strong>innovative, collaborative, and ethically grounded</strong></li>
-                    <li>Have the courage to <strong>create opportunities, not just seek them</strong></li>
-                </ul>
-                
-                <p>As Iqbal said:</p>
-                
-                <blockquote>"Khudi ko kar buland itna, ke har taqdeer se pehle,<br>
-                Khuda bande se khud pooche, bata teri raza kya hai."</blockquote>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-road"></i> The Journey Continues</h2>
-            <div class="section-content">
-                <p>I do not claim that this path has been easy. There were misunderstandings, doubts, and resistance. Yet, we continued—with reliance on Allah and belief that:</p>
-                
-                <blockquote>"Action done for the pleasure of the Creator does not wait for the approval of creation."</blockquote>
-                
-                <p>This journey—from <strong>fruit distribution to skill development</strong>, from <strong>charity to institutional transformation</strong>, from <strong>local service to global vision</strong>—is not my journey alone. It is a shared path walked with countless volunteers, scholars, teachers, donors, and well-wishers.</p>
-                
-                <div class="highlight-box">
-                    <p>And we walk forward still…<br>
-                    with faith in God,<br>
-                    Love for His Messenger ﷺ,<br>
-                    and hope for humanity.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-socials">
-                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <div class="footer-text">
-                <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
-                <p>May Allah accept our sincere efforts and guide us to the straight path</p>
-            </div>
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="#journey">Journey</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </div>
-    </footer>
 
-    <script>
-        // Simple script to add fade-in animation to sections
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(section);
-            });
-        });
-    </script>
+        <div class="nav-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <div class="hero-pill">
+          <i class="fas fa-seedling"></i>
+          <span>Personal Narrative • Service • Education</span>
+        </div>
+        <h1>
+          <span class="hero-title-accent">My Journey of Social Services & Learning</span>
+        </h1>
+        <div class="hero-subtitle">
+          A journey of service, learning, and collective upliftment—rooted in faith, shaped by action.
+        </div>
+        <div class="hero-author">By: Faiz Ali Qadri</div>
+
+        <div class="hero-meta">
+          <span><i class="fas fa-mosque"></i> From Milad to Welfare</span>
+          <span><i class="fas fa-hand-holding-heart"></i> Community & Institutional Work</span>
+          <span><i class="fas fa-book-open-reader"></i> Education & Skill Development</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections (content unchanged, design updated) -->
+    <section class="section" id="journey">
+      <h2 class="section-title">
+        <i class="fas fa-seedling"></i>
+        The Beginning
+      </h2>
+      <div class="section-content">
+        <p>
+          There are certain moments in life when faith transforms into action and compassion becomes a direction. My journey began in 2013, during the blessed month of Rabi' al-Awwal, when I first visited a hospital to distribute fruits in remembrance of the birth of the Mercy to Mankind, Prophet Muhammad ﷺ.
+        </p>
+        <p>
+          The smiles on the faces of the patients were more nourishing than the fruits in our hands. When some of the patients—many of them non-Muslims—asked why we were doing this, I replied:
+        </p>
+        <blockquote>
+          "We share this in honour of the birth of Prophet Muhammad ﷺ."
+        </blockquote>
+        <p>
+          Their faces changed with a sincere expression of respect—and they joined their palms, acknowledging his sanctity. That moment engraved in my heart that the Prophetic light touches every soul, regardless of creed.
+        </p>
+        <p>
+          From that experience emerged a new tradition in our locality—a public food distribution, known as Langar-e-Rasool ﷺ—which continued for several years. Alongside my friends, I took part in the historic Juloos-e-Muhammadi in Kanpur, reciting salutations upon the Prophet ﷺ until sunset, before returning home after Maghrib in Phoolbagh.
+        </p>
+        <p>The spiritual rhythm of Rabi' al-Awwal continues to this day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-expand-arrows-alt"></i>
+        Expansion into Righteous Gatherings
+      </h2>
+      <div class="section-content">
+        <p>From that starting point, our circle of work expanded into religious and educational gatherings:</p>
+        <ul>
+          <li><strong>Milad Conferences</strong></li>
+          <li><strong>Seerah Seminars</strong></li>
+          <li><strong>Gosha-e-Durood Majalis</strong></li>
+          <li>
+            <strong>Education Day</strong> on the birth anniversary of
+            <strong>Imam Ahmad Raza Khan Barelvi</strong> (10th Shawwal), who reminded the world that:
+          </li>
+        </ul>
+        <blockquote>"Knowledge is life, and ignorance is death."</blockquote>
+        <p>We soon realized that sincere remembrance must naturally flow into <strong>service to humanity</strong>. Thus, we began social welfare initiatives:</p>
+        <ul>
+          <li>Winter <strong>blanket and sweater distribution</strong></li>
+          <li><strong>Warm bedding sheets</strong> for the homeless</li>
+          <li>And later, <strong>Ramadan Ration Programs</strong></li>
+        </ul>
+        <div class="highlight-box">
+          <p>
+            During the <strong>COVID-19 lockdown</strong>, we were blessed to support
+            <strong>more than 5,000 families</strong> with essential food supplies. We did not consider this an achievement, but a responsibility—an amanah.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-graduation-cap"></i>
+        Education as the Long-Term Solution
+      </h2>
+      <div class="section-content">
+        <p>With time, a conviction settled in my heart:</p>
+        <blockquote>
+          "Charity relieves hunger for a night, but education ends hunger for generations."
+        </blockquote>
+        <p>The community was suffering from:</p>
+        <ul>
+          <li>Economic marginalization</li>
+          <li>Political underrepresentation</li>
+          <li>Low literacy and career opportunities</li>
+        </ul>
+        <p>
+          This reinforced what <strong>Maulana Abul Hasan Ali Nadwi</strong> wrote, that the revival of a people begins with
+          <em>"Tarbiyat and Ilm—moral training and knowledge."</em>
+        </p>
+        <p>Thus, we began supporting <strong>career counselling</strong> and <strong>scholarships</strong> for talented students.</p>
+        <p>But the world was changing rapidly, and a deeper realization emerged:</p>
+        <div class="highlight-box">
+          <p>
+            To uplift the community, we must shift from the <strong>informal sector to the formal economy</strong>, strengthening digital and industrial competencies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-turn-up"></i>
+        2021 – Minhaj Educational Conclave (A Turning Point)
+      </h2>
+      <div class="section-content">
+        <p>In <strong>2021</strong>, I was invited to deliver a speech on:</p>
+        <p><strong>"Islam and Europe: History and the Significance of Muslim Civilization"</strong></p>
+        <p>
+          at the <strong>Merchant Chamber Hall</strong>, organized by <strong>Minhaj-ul-Quran India</strong> under the title
+          <em>Minhaj Educational Conclave</em>.
+        </p>
+        <p>
+          Our <strong>Chief Guest</strong> was the distinguished scholar <strong>Allama Ubaid Ullah Khan Azmi</strong>, and the
+          <strong>Special Guest</strong> was <strong>Sameer Siddiqui</strong>, renowned <strong>IAS Coach</strong>. Speaking on the intellectual legacy of Islam in Europe—Al-Andalus, Sicily, Ottoman Balkans—strengthened in me a greater responsibility: the responsibility to reconnect our youth with the intellectual magnificence of their civilization.
+        </p>
+        <p>Here I reflected upon <strong>Allama Iqbal's words</strong>:</p>
+        <blockquote>
+          "Nations are born in the hearts of poets; they prosper and die in the hands of politicians."
+        </blockquote>
+        <p>
+          Iqbal's vision of the <em>Momin</em>—the spiritually awakened, morally grounded, and socially beneficial human being—became a defining compass in my journey.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2 class="section-title">
+        <i class="fas fa-university"></i>
+        Institutional Vision: MERCI Educational & Welfare Foundation
+      </h2>
+      <div class="section-content">
+        <p>To turn this mission into a structured movement, we established:</p>
+        <h3>🌿 MERCI Foundation</h3>
+        <p><em>(MERCI Educational & Welfare Foundation)</em></p>
+        <p>
+          Our goal was not only to assist people in distress, but to <strong>create a human chain of compassion</strong>, where one transformed person becomes a means of transforming another. As I wrote in my mission reflections:
+        </p>
+        <blockquote>"Service is not a project; it is a way of being."</blockquote>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-laptop-code"></i>
+        Skill Development & ASDC Kanpur
+      </h2>
+      <div class="section-content">
+        <p>
+          Through data-driven analysis of global market transitions and industry demands, we identified critical future-skills. With collaboration from
+          <strong>The Quran Foundation</strong> and <strong>SEED</strong>, we worked toward empowering youth in:
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-path"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Digital Marketing</h3>
+              <p>Comprehensive training in modern digital marketing strategies</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Accounting & Tally</h3>
+              <p>Financial management and accounting software training</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Web Development</h3>
+              <p>Full-stack web development with modern technologies</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Communication & Personality Development</h3>
+              <p>Enhancing soft skills and professional presence</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Graphic Designing & 3D Animation</h3>
+              <p>Creative design skills for digital media</p>
+            </div>
+          </div>
+        </div>
+
+        <p><em>(Video Editing training is being added)</em></p>
+        <p>
+          Thus, the <strong>ASDC Institute</strong> was opened in Kanpur—an initiative to build a skilled, confident, and career-ready generation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-globe-americas"></i>
+        Foreign Languages: Gateway to a Global Future
+      </h2>
+      <div class="section-content">
+        <p>
+          My deep interest in <strong>foreign languages</strong> further shaped our direction. I believe our youth should not be confined within linguistic borders, but be prepared for global opportunities. Our long-term plan includes:
+        </p>
+
+        <div class="languages-grid">
+          <div class="language-card">
+            <div class="language-icon">🌿</div>
+            <h3>German</h3>
+          </div>
+          <div class="language-card">
+            <div class="language-icon">🌿</div>
+            <h3>French</h3>
+          </div>
+          <div class="language-card">
+            <div class="language-icon">🌿</div>
+            <h3>Arabic</h3>
+          </div>
+          <div class="language-card">
+            <div class="language-icon">🌿</div>
+            <h3>Chinese</h3>
+          </div>
+          <div class="language-card">
+            <div class="language-icon">🌿</div>
+            <h3>Japanese</h3>
+          </div>
+        </div>
+
+        <p><strong>Phase-1: French, German, and Arabic</strong> (Launching under MERCI Foundation)</p>
+        <p>Because tomorrow belongs to those who can speak to the world—not just in words, but with knowledge.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-users"></i>
+        Leadership & Entrepreneurship Development
+      </h2>
+      <div class="section-content">
+        <p>Our next developmental focus is to identify youth who:</p>
+        <ul>
+          <li>Think <strong>beyond employment</strong> toward enterprise</li>
+          <li>Are <strong>innovative, collaborative, and ethically grounded</strong></li>
+          <li>Have the courage to <strong>create opportunities, not just seek them</strong></li>
+        </ul>
+        <p>As Iqbal said:</p>
+        <blockquote>
+          "Khudi ko kar buland itna, ke har taqdeer se pehle,<br />
+          Khuda bande se khud pooche, bata teri raza kya hai."
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-road"></i>
+        The Journey Continues
+      </h2>
+      <div class="section-content">
+        <p>
+          I do not claim that this path has been easy. There were misunderstandings, doubts, and resistance. Yet, we continued—with reliance on Allah and belief that:
+        </p>
+        <blockquote>
+          "Action done for the pleasure of the Creator does not wait for the approval of creation."
+        </blockquote>
+        <p>
+          This journey—from <strong>fruit distribution to skill development</strong>, from <strong>charity to institutional transformation</strong>, from
+          <strong>local service to global vision</strong>—is not my journey alone. It is a shared path walked with countless volunteers, scholars, teachers, donors, and well-wishers.
+        </p>
+        <div class="highlight-box">
+          <p>And we walk forward still…</p>
+          <p>with faith in God,</p>
+          <p>Love for His Messenger ﷺ,</p>
+          <p>and hope for humanity.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-socials">
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="footer-text">
+        <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
+        <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in animation for sections when they enter viewport
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll(".section");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    });
+
+    // Scroll progress bar logic [web:26][web:29]
+    window.addEventListener("scroll", function () {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress =
+        scrollableHeight > 0 ? (scrolled / scrollableHeight) * 100 : 0;
+      const bar = document.getElementById("scroll-progress");
+      if (bar) {
+        bar.style.width = progress + "%";
+      }
+    });
+  </script>
 </body>
 </html>
