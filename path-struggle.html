@@ -241,6 +241,12 @@
       font-size: 1.3rem;
       color: #e5e7eb;
       cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     @media (max-width: 768px) {
@@ -258,6 +264,28 @@
 
       .nav-links {
         display: none;
+      }
+
+      /* When nav is toggled open on mobile, show the links as a stacked menu */
+      nav.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        position: absolute;
+        left: 1.1rem;
+        right: 1.1rem;
+        top: calc(100% + 10px);
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 0.75rem;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      }
+
+      nav.open .nav-links a {
+        padding: 0.6rem 0.8rem;
+        border-radius: 10px;
+        display: block;
       }
 
       .nav-toggle {
@@ -710,9 +738,9 @@
           <a href="#contact">Contact</a>
         </div>
 
-        <div class="nav-toggle">
-          <i class="fas fa-bars"></i>
-        </div>
+        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-label="Open navigation menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
       </nav>
     </div>
   </header>
@@ -1078,6 +1106,46 @@
         bar.style.width = progress + "%";
       }
     });
+
+    // Mobile nav toggle
+    (function () {
+      const nav = document.querySelector('nav');
+      const toggle = document.getElementById('navToggle');
+      const links = document.querySelectorAll('.nav-links a');
+
+      if (!nav || !toggle) return;
+
+      function setOpenState(isOpen) {
+        if (isOpen) {
+          nav.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+          // switch icon
+          toggle.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
+        } else {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+        }
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpenState(!nav.classList.contains('open'));
+      });
+
+      // Close menu when clicking any link (useful for mobile)
+      links.forEach(a => a.addEventListener('click', function () {
+        if (window.innerWidth <= 768 && nav.classList.contains('open')) {
+          setOpenState(false);
+        }
+      }));
+
+      // Close if window resizes larger
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && nav.classList.contains('open')) {
+          setOpenState(false);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
