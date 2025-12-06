@@ -99,8 +99,17 @@
             Brain: () => <i data-lucide="brain" className="w-6 h-6" />,
             Lightbulb: () => <i data-lucide="lightbulb" className="w-6 h-6" />,
             Compass: () => <i data-lucide="compass" className="w-6 h-6" />,
-            Menu: () => <i data-lucide="menu" className="w-6 h-6" />,
-            X: () => <i data-lucide="x" className="w-6 h-6" />
+            // Use small inline SVGs for menu toggles so they always display (don't rely solely on lucide)
+            Menu: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            ),
+            X: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            )
         };
 
         // --- Visual Components (Illustrations) ---
@@ -215,18 +224,19 @@
             const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
             const [menuOpen, setMenuOpen] = useState(false);
 
-            useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            }, [menuOpen]);// Re-run when menu state changes to render icons in mobile menu
+                useEffect(() => {
+                    // Ensure lucide icons are created on mount and whenever menu toggles
+                    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                        try { window.lucide.createIcons(); } catch (e) { /* safe fallback */ }
+                    }
+                }, [menuOpen]);
 
             const navItems = [
                 { label: "Home", href: "index.html" },
                 { label: "Videos", href: "videos.html" },
                 { label: "Books", href: "books.html" },
-                { label: "Gallery", href: "gallery.html" },
-                { label: "Contact", href: "contact.html" },
+                { label: "Gallery", href: "recommended-authors.html" },
+                { label: "Contact", href: "connect.html" },
             ];
 
             const scrollToSection = (id) => {
