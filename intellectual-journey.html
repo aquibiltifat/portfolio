@@ -30,7 +30,6 @@
             color: #e2e8f0;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
         .font-serif-title {
             font-family: 'Cinzel', serif;
@@ -50,11 +49,6 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .nav-glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
         .gold-text {
             color: #fbbf24;
             background: linear-gradient(to right, #fbbf24, #d97706);
@@ -65,20 +59,6 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.9));
-        }
-        /* Custom scrollbar for webkit */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #fbbf24;
         }
     </style>
 </head>
@@ -98,18 +78,7 @@
             Heart: () => <i data-lucide="heart" className="w-6 h-6" />,
             Brain: () => <i data-lucide="brain" className="w-6 h-6" />,
             Lightbulb: () => <i data-lucide="lightbulb" className="w-6 h-6" />,
-            Compass: () => <i data-lucide="compass" className="w-6 h-6" />,
-            // Use small inline SVGs for menu toggles so they always display (don't rely solely on lucide)
-            Menu: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            ),
-            X: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            )
+            Compass: () => <i data-lucide="compass" className="w-6 h-6" />
         };
 
         // --- Visual Components (Illustrations) ---
@@ -189,7 +158,7 @@
         );
 
         const StatBadge = ({ icon, number, label }) => (
-            <div className="flex flex-col items-center p-4 bg-slate-800 rounded-lg border border-slate-700 shadow-lg hover:border-amber-500/50 transition-colors">
+            <div className="flex flex-col items-center p-4 bg-slate-800 rounded-lg border border-slate-700 shadow-lg">
                 <div className="text-amber-500 mb-2">{icon}</div>
                 <span className="text-2xl font-bold text-white font-serif-title">{number}</span>
                 <span className="text-xs uppercase tracking-widest text-slate-400 text-center">{label}</span>
@@ -222,122 +191,22 @@
         const App = () => {
             const { scrollYProgress } = useScroll();
             const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-            const [menuOpen, setMenuOpen] = useState(false);
 
-                useEffect(() => {
-                    // Ensure lucide icons are created on mount and whenever menu toggles
-                    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-                        try { window.lucide.createIcons(); } catch (e) { /* safe fallback */ }
-                    }
-                }, [menuOpen]);
-
-            const navItems = [
-                { label: "Home", href: "index.html" },
-                { label: "Videos", href: "videos.html" },
-                { label: "Books", href: "books.html" },
-                { label: "Gallery", href: "recommended-authors.html" },
-                { label: "Contact", href: "connect.html" },
-            ];
-
-            const scrollToSection = (id) => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                    setMenuOpen(false);
-                }
-            };
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, []);
 
             return (
-                <div className="antialiased selection:bg-amber-500 selection:text-black pt-16 md:pt-0">
+                <div className="antialiased selection:bg-amber-500 selection:text-black">
                     
                     {/* Reading Progress Bar */}
-                    <motion.div className="fixed top-0 left-0 right-0 h-1 bg-amber-500 origin-left z-[60]" style={{ scaleX }} />
-
-                    {/* Transparent Floating Navbar */}
-                    <nav className="fixed top-0 left-0 right-0 z-50 p-4 transition-all duration-300">
-                        <div className="max-w-6xl mx-auto">
-                            <div className="nav-glass rounded-full px-6 py-3 flex items-center justify-between shadow-lg shadow-black/20">
-                                {/* Brand */}
-                                <div 
-                                    className="flex items-center gap-2 cursor-pointer"
-                                    onClick={() => scrollToSection('home')}
-                                >
-                                    <span className="text-amber-500"><Icons.Scroll /></span>
-                                    <span className="text-slate-100 font-serif-title font-bold text-lg hidden sm:block">Intellectual Journey</span>
-                                </div>
-
-                                {/* Desktop Links */}
-                                <div className="hidden md:flex items-center space-x-1 bg-slate-800/50 rounded-full px-2 py-1 border border-white/5">
-                                    {navItems.map((item) => (
-                                        item.href.startsWith('#') ? (
-                                            <button
-                                                key={item.label}
-                                                onClick={() => scrollToSection(item.href.slice(1))}
-                                                className="px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 font-medium"
-                                            >
-                                                {item.label}
-                                            </button>
-                                        ) : (
-                                            <a
-                                                key={item.label}
-                                                href={item.href}
-                                                className="px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 font-medium"
-                                            >
-                                                {item.label}
-                                            </a>
-                                        )
-                                    ))}
-                                </div>
-
-                                {/* Mobile Menu Button */}
-                                <button
-                                    className="md:hidden p-2 text-slate-300 hover:text-amber-400 transition-colors"
-                                    onClick={() => setMenuOpen(!menuOpen)}
-                                >
-                                    {menuOpen ? <Icons.X /> : <Icons.Menu />}
-                                </button>
-                            </div>
-
-                            {/* Mobile Dropdown */}
-                            {menuOpen && (
-                                <motion.div 
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    className="md:hidden mt-2 nav-glass rounded-2xl p-4 border border-slate-700/50"
-                                >
-                                    <div className="flex flex-col space-y-2">
-                                        {navItems.map((item) => (
-                                            item.href.startsWith('#') ? (
-                                                <button
-                                                    key={item.label}
-                                                    onClick={() => { scrollToSection(item.href.slice(1)); setMenuOpen(false); }}
-                                                    className="text-left px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700"
-                                                >
-                                                    {item.label}
-                                                </button>
-                                            ) : (
-                                                <a
-                                                    key={item.label}
-                                                    href={item.href}
-                                                    className="text-left px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700"
-                                                    onClick={() => setMenuOpen(false)}
-                                                >
-                                                    {item.label}
-                                                </a>
-                                            )
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </div>
-                    </nav>
+                    <motion.div className="fixed top-0 left-0 right-0 h-1 bg-amber-500 origin-left z-50" style={{ scaleX }} />
 
                     {/* Hero Section */}
-                    <header id="home" className="min-h-screen flex flex-col justify-center items-center relative px-6 text-center bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
+                    <header className="min-h-screen flex flex-col justify-center items-center relative px-6 text-center bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
                         <div className="absolute inset-0 bg-slate-900/90"></div>
                         
-                        <div className="relative z-10 max-w-4xl pt-20">
+                        <div className="relative z-10 max-w-4xl">
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                                 <span className="inline-block py-1 px-3 border border-amber-500/50 text-amber-500 rounded-full text-xs tracking-widest mb-4 bg-slate-900/50 backdrop-blur">A PERSONAL NARRATIVE</span>
                                 <h1 className="text-5xl md:text-7xl font-bold text-white font-serif-title mb-6 leading-tight">
@@ -360,7 +229,7 @@
                             </div>
                         </div>
                         
-                        <div className="absolute bottom-8 animate-bounce text-slate-500 hidden md:block">
+                        <div className="absolute bottom-8 animate-bounce text-slate-500">
                             <Icons.Scroll />
                         </div>
                     </header>
@@ -368,12 +237,12 @@
                     {/* Main Content */}
                     <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 bg-slate-900">
 
-                        {/* Chapter 1 mapped to 'videos' */}
-                        <section id="videos">
+                        {/* Chapter 1 */}
+                        <section>
                             <SectionTitle number="1" title="The Foundation" subtitle="The Spark of “Why?”" />
                             
                             <div className="font-prose text-slate-300 space-y-6 text-lg">
-                                <p>My intellectual journey began not within the four walls of a formal university, but in my mother's lap and the intimate atmosphere of a home, where my relentless curiosity-filled mind was shaped by emotional stability and spiritual discipline.</p>
+                                <p>My intellectual journey began not within the four walls of a formal university, but in my mother's lap and the intimate atmosphere of a home, where my relentless curiosity-filled mind was shaped by emotional stability and spiritual discipline, and trained to undertake the journey of knowing the reality of things by establishing questions.</p>
                                 
                                 <div className="flex flex-col md:flex-row gap-8 items-center my-8">
                                     <div className="flex-1 space-y-4">
@@ -383,11 +252,11 @@
                                         </div>
                                         <div className="p-4 bg-slate-800 rounded-lg border-l-2 border-amber-500">
                                             <strong className="text-amber-400 block mb-1">Ethical Dilemmas</strong>
-                                            “What is the standard of right and wrong? Is right right for everyone?”
+                                            “What is the standard of right and wrong? Is right right for everyone and wrong wrong for everyone?”
                                         </div>
                                         <div className="p-4 bg-slate-800 rounded-lg border-l-2 border-emerald-500">
                                             <strong className="text-emerald-400 block mb-1">Existential Concerns</strong>
-                                            “Does our existence have a purpose in this whole cosmos?”
+                                            “Where do we stand in this vast universe? Does our existence have a purpose in this whole cosmos? If so, what is it, and how is that purpose to be achieved?”
                                         </div>
                                     </div>
                                     <div className="w-full md:w-1/3 flex justify-center">
@@ -397,7 +266,7 @@
                                     </div>
                                 </div>
 
-                                <p>It was my mother who provided an epistemological framework to this curiosity of mine. She taught that 'Ilm' (knowledge) which is acquired to benefit people is in itself an 'Ibadat' (worship).</p>
+                                <p>It was my mother who provided an epistemological framework to this curiosity of mine. She taught that 'Ilm' (knowledge) which is acquired to benefit people is in itself an 'Ibadat' (worship). This principle was imprinted in my mind when I first heard the Hadith, which became the academic tenet of my life:</p>
 
                                 <QuoteBox 
                                     arabic="اُطْﻠُﺑُوا اﻟْﻌِﻠْمَ ﻣِنَ اﻟْﻣَﮭْدِ إِﻟَﻰ اﻟ ﱠﻠﺣْدِ"
@@ -405,12 +274,16 @@
                                     source="Hadith (da'eef but spiritually significant)"
                                 />
 
-                                <p>This was not just an instruction; it was a spiritual mandate for lifelong learning. My faith did not stifle my reason, but rather encouraged it.</p>
+                                <p>This was not just an instruction; it was a spiritual mandate for lifelong learning. Upon this foundation rested my first intellectual liberation: the understanding that asking questions is not Kufr (blasphemy), but a means of reaching the higher stages of Iman (faith). My faith did not stifle my reason, but rather encouraged it. After all, the divine imperative that was revealed was 'Iqra' (Read):</p>
                                 
                                 <p className="text-center font-arabic text-3xl text-amber-400 my-4">اْﻗَرْأ ِﺑﺎْﺳِم َر ﱢﺑَك ا ﱠﻟِذي َﺧَﻠَق</p>
                                 <p className="text-center italic text-slate-400 mb-6">“Read in the name of your Lord who created.” (Qur’an 96:1)</p>
                                 
-                                <p>My maternal grandfather made this theoretical foundation practical. He would take me to the Mosque to offer Fajr, and on the way back would turn the pages of history.</p>
+                                <p className="text-center font-arabic text-2xl text-amber-400">أَﻓَﻼ َﺗَﺗَﻔ ﱠﻛُروَن</p>
+                                <p className="text-center italic text-slate-400 mb-8">'Will you not then reflect?' (Qur’an 6:50)</p>
+
+                                <p>This ended any supposed conflict between knowledge and faith before it could begin.</p>
+                                <p>My maternal grandfather made this theoretical foundation practical. He would take me to the Mosque to offer Fajr (the morning prayer), and on the way back would turn the pages of history— sometimes the narrative of Karbala, which was a lesson in sacrifice and moral courage, and sometimes the event of Hijrah, which was a sociological study of strategy and community-building. It was there that I learned that history is not merely a compilation of past dates, but 'Tarbiyyah' — that is, the inner refinement and ethical training of the personality.</p>
                                 
                                 <ImageBanner 
                                     src="https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=2070&auto=format&fit=crop" 
@@ -418,205 +291,237 @@
                                     caption="The mosque became a place of both prayer and historical reflection." 
                                 />
 
-                                <p>Those gatherings at home— where there was the emotional commemoration of Milad un Nabi ﷺ and dialogue on Qur’an and Hadith— were informal seminars for me where the first spark of 'Fikr' was ignited.</p>
+                                <p>Those gatherings at home— where there was the emotional commemoration of Milad un Nabi ﷺ, where the high character and teachings of the Last Prophet of Allah, Hazrat Muhammad ﷺ, were discussed, where there was dialogue on Qur’an and Hadith— were informal seminars for me. It was in these discussions that the first spark of 'Fikr' — meaning deep reflection and critical thinking — was ignited within me.</p>
+                                <p>This dual training gave a distinct dimension to my thinking. Science gave me an understanding of 'how' (the mechanism), while Religion asked me the question of 'why' (the teleology). The confluence of these two became a continuous question in my mind, which still drives my journey today: “Is there a purpose behind everything— if yes, then what is that purpose (Telos)?”</p>
                             </div>
                         </section>
 
-                        {/* Chapter 2 mapped to 'books' */}
-                        <section id="books">
+                        {/* Chapter 2 */}
+                        <section>
                             <SectionTitle number="2" title="The Framework" subtitle="The Lens of the Past" />
                             
-                            <div className="font-prose text-slate-300 space-y-6 text-lg">
-                                <p>As my curiosity grew, so did my need for a coherent framework. The scattered pieces of knowledge—faith, science, history—needed a unifying lens. This search led me to discover the great minds who had already walked this path.</p>
-                                
-                                <p>The first major breakthrough came when I encountered <span className="text-amber-400">Ibn Khaldun's Muqaddimah</span>. His theory of <span className="text-green-400">Asabiyyah</span> provided a powerful framework for understanding history.</p>
-
-                                <CycleOfCivilization />
-
-                                <p>Khaldun taught me that civilizations are organic entities—they grow, mature, decay, and are reborn.</p>
-
-                                <PillarsChart />
-
-                                <p>My journey through the history of thought introduced me to three distinct paradigms:</p>
-
-                                <div className="grid md:grid-cols-3 gap-6 my-8">
-                                    <div className="p-6 glass-card rounded-xl border border-blue-500/30">
-                                        <div className="text-blue-400 mb-4 flex items-center gap-2">
-                                            <Icons.Scroll />
-                                            <h3 className="font-bold text-lg">Western Enlightenment</h3>
-                                        </div>
-                                        <p className="text-sm">The celebration of reason, individual liberty, and scientific progress.</p>
-                                        <div className="mt-4 pt-4 border-t border-slate-700">
-                                            <span className="text-xs text-slate-400">Key Thinkers: Kant, Locke</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-6 glass-card rounded-xl border border-emerald-500/30">
-                                        <div className="text-emerald-400 mb-4 flex items-center gap-2">
-                                            <Icons.Compass />
-                                            <h3 className="font-bold text-lg">Islamic Golden Age</h3>
-                                        </div>
-                                        <p className="text-sm">Where faith and reason walked together. Reconciling revelation with intellect.</p>
-                                        <div className="mt-4 pt-4 border-t border-slate-700">
-                                            <span className="text-xs text-slate-400">Key Thinkers: Al-Ghazali, Ibn Rushd</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-6 glass-card rounded-xl border border-amber-500/30">
-                                        <div className="text-amber-400 mb-4 flex items-center gap-2">
-                                            <Icons.Scale />
-                                            <h3 className="font-bold text-lg">Eastern Wisdom</h3>
-                                        </div>
-                                        <p className="text-sm">The emphasis on harmony, duty, and the Middle Way.</p>
-                                        <div className="mt-4 pt-4 border-t border-slate-700">
-                                            <span className="text-xs text-slate-400">Key Thinkers: Confucius, Buddha</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <QuoteBox 
-                                    arabic="الحكمة ضالة المؤمن، أنى وجدها فهو أحق بها"
-                                    translation="Wisdom is the lost property of the believer. Wherever he finds it, he is most deserving of it."
-                                    source="Prophetic Tradition"
-                                />
-
-                                <p>My framework began to take shape: <span className="text-amber-400">history as a teacher</span>, <span className="text-blue-400">reason as a tool</span>, and <span className="text-emerald-400">faith as a compass</span>.</p>
-                            </div>
-                        </section>
-
-                        {/* Chapter 3 & 4 mapped to 'gallery' */}
-                        <section id="gallery">
-                            <SectionTitle number="3" title="The Synthesis" subtitle="Where Faith Meets Reason" />
+                                                   {/* Chapter 2 - Continued */}
+                        <div className="font-prose text-slate-300 space-y-6 text-lg">
+                            <p>As my curiosity grew, so did my need for a coherent framework to understand the world. The scattered pieces of knowledge—faith, science, history—needed a unifying lens. This search led me to discover the great minds who had already walked this path, and in their works, I found the intellectual tools to build my own worldview.</p>
                             
-                            <div className="font-prose text-slate-300 space-y-6 text-lg">
-                                <p>The most difficult part of the journey was learning to hold multiple truths simultaneously.</p>
-                                
-                                <div className="my-10 p-8 bg-gradient-to-r from-slate-800/50 to-amber-900/20 rounded-xl border border-amber-500/20">
-                                    <h3 className="text-2xl font-bold text-center text-amber-400 mb-6">The Three Dimensions of Truth</h3>
-                                    <div className="grid md:grid-cols-3 gap-8">
-                                        <div className="text-center">
-                                            <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500">
-                                                <Icons.Brain />
-                                            </div>
-                                            <h4 className="text-blue-400 font-bold mb-2">Rational Truth</h4>
-                                            <p className="text-sm">Logic and evidence.</p>
-                                        </div>
-                                        <div className="text-center">
-                                            <div className="w-16 h-16 mx-auto mb-4 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500">
-                                                <Icons.Heart />
-                                            </div>
-                                            <h4 className="text-emerald-400 font-bold mb-2">Spiritual Truth</h4>
-                                            <p className="text-sm">Faith and intuition.</p>
-                                        </div>
-                                        <div className="text-center">
-                                            <div className="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center border border-amber-500">
-                                                <Icons.Scale />
-                                            </div>
-                                            <h4 className="text-amber-400 font-bold mb-2">Moral Truth</h4>
-                                            <p className="text-sm">Ethics and conscience.</p>
-                                        </div>
+                            <p>The first major breakthrough came when I encountered <span className="text-amber-400">Ibn Khaldun's Muqaddimah</span>. His theory of <span className="text-green-400">Asabiyyah</span> (social cohesion) and the cyclical rise and fall of civilizations provided a powerful framework for understanding history not as random events, but as patterns governed by discernible laws.</p>
+
+                            <CycleOfCivilization />
+
+                            <p>Khaldun taught me that civilizations are organic entities—they grow, mature, decay, and are reborn. The key to their longevity lies not in military might alone, but in the strength of their social bonds and the justice of their institutions.</p>
+
+                            <PillarsChart />
+
+                            <p>But Khaldun was just the beginning. My journey through the history of thought introduced me to three distinct paradigms that have shaped human civilization:</p>
+
+                            <div className="grid md:grid-cols-3 gap-6 my-8">
+                                <div className="p-6 glass-card rounded-xl border border-blue-500/30">
+                                    <div className="text-blue-400 mb-4 flex items-center gap-2">
+                                        <Icons.Scroll />
+                                        <h3 className="font-bold text-lg">Western Enlightenment</h3>
+                                    </div>
+                                    <p className="text-sm">The celebration of reason, individual liberty, and scientific progress. From Kant's "dare to know" to the social contract theories that shaped modern democracy.</p>
+                                    <div className="mt-4 pt-4 border-t border-slate-700">
+                                        <span className="text-xs text-slate-400">Key Thinkers: Kant, Locke, Voltaire</span>
                                     </div>
                                 </div>
 
-                                <QuoteBox 
-                                    arabic="ربنا ما خلقت هذا باطلا سبحانك"
-                                    translation="Our Lord, You did not create this in vain. Glory be to You!"
-                                    source="Qur'an 3:191"
-                                />
-
-                                <p>This realization was liberating. It meant I could study evolution without abandoning my faith, and value democracy while holding to divine sovereignty.</p>
-                            </div>
-
-                            <div className="mt-20">
-                                <SectionTitle number="4" title="The Application" subtitle="Knowledge in Action" />
-                                <div className="font-prose text-slate-300 space-y-6 text-lg">
-                                    <p>Knowledge that doesn't transform is mere information.</p>
-                                    
-                                    <div className="my-8 p-6 bg-slate-800/50 rounded-xl">
-                                        <h3 className="text-xl font-bold text-amber-400 mb-4">From Theory to Practice</h3>
-                                        <ul className="space-y-4">
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-green-400 mt-1">✓</span>
-                                                <span><strong className="text-green-400">Community Building:</strong> Applying Asabiyyah to strengthen social bonds.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-blue-400 mt-1">✓</span>
-                                                <span><strong className="text-blue-400">Ethical Leadership:</strong> Blending wisdom with management.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <span className="text-amber-400 mt-1">✓</span>
-                                                <span><strong className="text-amber-400">Interfaith Dialogue:</strong> Building bridges.</span>
-                                            </li>
-                                        </ul>
+                                <div className="p-6 glass-card rounded-xl border border-emerald-500/30">
+                                    <div className="text-emerald-400 mb-4 flex items-center gap-2">
+                                        <Icons.Compass />
+                                        <h3 className="font-bold text-lg">Islamic Golden Age</h3>
                                     </div>
-
-                                    <ImageBanner 
-                                        src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" 
-                                        alt="Community gathering" 
-                                        caption="Knowledge finds its ultimate purpose in serving others." 
-                                    />
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Chapter 5 mapped to 'contact' */}
-                        <section id="contact">
-                            <SectionTitle number="5" title="The Continuing Journey" subtitle="The Path Ahead" />
-                            
-                            <div className="font-prose text-slate-300 space-y-6 text-lg">
-                                <p>The journey never truly ends. Each answer opens new questions.</p>
-                                
-                                <div className="text-center my-12 p-8 glass-card rounded-2xl">
-                                    <Icons.Compass className="w-16 h-16 mx-auto mb-4 text-amber-500" />
-                                    <h3 className="text-2xl font-bold text-white mb-4">Let's Connect & Discuss</h3>
-                                    <p className="text-slate-300 mb-6">If these questions resonate with you, let's continue the conversation.</p>
-                                    <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                                        <div className="p-4 bg-slate-800/50 rounded-lg text-left hover:bg-slate-700/50 transition cursor-pointer">
-                                            <span className="text-amber-400 text-sm">Question 1</span>
-                                            <p className="mt-1">How does technology change what it means to be human?</p>
-                                        </div>
-                                        <div className="p-4 bg-slate-800/50 rounded-lg text-left hover:bg-slate-700/50 transition cursor-pointer">
-                                            <span className="text-blue-400 text-sm">Question 2</span>
-                                            <p className="mt-1">Can we build institutions that outlast moral failures?</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="mt-8">
-                                        <button className="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-amber-600/20">
-                                            Contact Me
-                                        </button>
+                                    <p className="text-sm">Where faith and reason walked together. From Avicenna's metaphysics to Al-Ghazali's spiritual psychology, a tradition that sought to reconcile divine revelation with human intellect.</p>
+                                    <div className="mt-4 pt-4 border-t border-slate-700">
+                                        <span className="text-xs text-slate-400">Key Thinkers: Al-Farabi, Ibn Rushd, Al-Ghazali</span>
                                     </div>
                                 </div>
 
-                                <QuoteBox 
-                                    arabic="وَقُل رَّبِّ زِدْنِي عِلْمًا"
-                                    translation="And say: My Lord, increase me in knowledge."
-                                    source="Qur'an 20:114"
-                                />
-
-                                <p className="text-center text-2xl italic text-slate-400 mt-12">The journey continues...</p>
+                                <div className="p-6 glass-card rounded-xl border border-amber-500/30">
+                                    <div className="text-amber-400 mb-4 flex items-center gap-2">
+                                        <Icons.Scale />
+                                        <h3 className="font-bold text-lg">Eastern Wisdom</h3>
+                                    </div>
+                                    <p className="text-sm">The emphasis on harmony, duty, and the Middle Way. Confucian ethics, Buddhist mindfulness, and the Hindu concept of Dharma—paths to balance in an unbalanced world.</p>
+                                    <div className="mt-4 pt-4 border-t border-slate-700">
+                                        <span className="text-xs text-slate-400">Key Thinkers: Confucius, Buddha, Lao Tzu</span>
+                                    </div>
+                                </div>
                             </div>
-                        </section>
-                    </main>
 
-                    {/* Footer */}
-                    <footer className="py-12 px-6 border-t border-slate-800 text-center bg-slate-900/50 backdrop-blur">
-                        <div className="max-w-2xl mx-auto">
-                            <p className="text-slate-400 mb-4">
-                                "This interactive journey is a living document—a snapshot of an ongoing exploration."
-                            </p>
-                            <div className="flex justify-center gap-6 mt-8 text-slate-500 text-sm">
-                                <span>© {new Date().getFullYear()} Intellectual Journey</span>
-                                <span className="hidden md:inline">•</span>
-                                <span>Made with React & Framer Motion</span>
-                            </div>
+                            <QuoteBox 
+                                arabic="الحكمة ضالة المؤمن، أنى وجدها فهو أحق بها"
+                                translation="Wisdom is the lost property of the believer. Wherever he finds it, he is most deserving of it."
+                                source="Prophetic Tradition"
+                            />
+
+                            <p>This tradition gave me permission to learn from all sources. I realized that truth isn't the monopoly of any single civilization or tradition. The Greek philosophers, the Islamic scholars, the Enlightenment thinkers—each had pieces of the puzzle.</p>
+
+                            <p>My framework began to take shape: <span className="text-amber-400">history as a teacher</span>, <span className="text-blue-400">reason as a tool</span>, and <span className="text-emerald-400">faith as a compass</span>. Each civilization's rise and fall became a case study in human nature—what works, what doesn't, and why.</p>
+
+                            <p>But frameworks without application are empty intellectual exercises. The real test came when I tried to apply these insights to contemporary challenges...</p>
                         </div>
-                    </footer>
-                </div>
-            );
-        };
+                    </section>
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+                    {/* Chapter 3 */}
+                    <section>
+                        <SectionTitle number="3" title="The Synthesis" subtitle="Where Faith Meets Reason" />
+                        
+                        <div className="font-prose text-slate-300 space-y-6 text-lg">
+                            <p>The most difficult part of the journey was learning to hold multiple truths simultaneously. Not everything that is rational is true, and not everything that is true is immediately rational. The synthesis required a new way of thinking.</p>
+                            
+                            <div className="my-10 p-8 bg-gradient-to-r from-slate-800/50 to-amber-900/20 rounded-xl border border-amber-500/20">
+                                <h3 className="text-2xl font-bold text-center text-amber-400 mb-6">The Three Dimensions of Truth</h3>
+                                <div className="grid md:grid-cols-3 gap-8">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500">
+                                            <Icons.Brain />
+                                        </div>
+                                        <h4 className="text-blue-400 font-bold mb-2">Rational Truth</h4>
+                                        <p className="text-sm">What can be proven through logic and evidence. The domain of science and philosophy.</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 mx-auto mb-4 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500">
+                                            <Icons.Heart />
+                                        </div>
+                                        <h4 className="text-emerald-400 font-bold mb-2">Spiritual Truth</h4>
+                                        <p className="text-sm">What is revealed through faith and intuition. The domain of religion and mysticism.</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center border border-amber-500">
+                                            <Icons.Scale />
+                                        </div>
+                                        <h4 className="text-amber-400 font-bold mb-2">Moral Truth</h4>
+                                        <p className="text-sm">What is right, just, and good. The domain of ethics and conscience.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>I learned that these dimensions aren't contradictory but complementary. Science tells us <span className="text-blue-400">how</span> the world works, religion tells us <span className="text-emerald-400">why</span> we're here, and ethics tells us <span className="text-amber-400">what</span> we should do about it.</p>
+
+                            <p>The great synthesis came when I realized that all truth is <span className="italic">God's truth</span>. Whether discovered in a laboratory or revealed in scripture, whether articulated by a Muslim scholar or a Christian mystic, whether ancient or modern—if it's true, it belongs to the One who is Truth itself.</p>
+
+                            <QuoteBox 
+                                arabic="ربنا ما خلقت هذا باطلا سبحانك"
+                                translation="Our Lord, You did not create this in vain. Glory be to You!"
+                                source="Qur'an 3:191"
+                            />
+
+                            <p>This realization was liberating. It meant I could study evolution without abandoning my faith, could appreciate Plato's forms while believing in Islamic metaphysics, could value democracy while holding to divine sovereignty.</p>
+
+                            <p>The synthesis wasn't about creating a perfect system—it was about developing the intellectual humility to recognize that my understanding is always partial, always growing, always in need of correction.</p>
+                        </div>
+                    </section>
+
+                    {/* Chapter 4 */}
+                    <section>
+                        <SectionTitle number="4" title="The Application" subtitle="Knowledge in Action" />
+                        
+                        <div className="font-prose text-slate-300 space-y-6 text-lg">
+                            <p>Knowledge that doesn't transform is mere information. The final stage of my journey was learning to translate understanding into action—to take what I had learned and apply it to real-world challenges.</p>
+                            
+                            <div className="my-8 p-6 bg-slate-800/50 rounded-xl">
+                                <h3 className="text-xl font-bold text-amber-400 mb-4">From Theory to Practice</h3>
+                                <ul className="space-y-4">
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span className="text-green-400 text-sm">✓</span>
+                                        </div>
+                                        <span><strong className="text-green-400">Community Building:</strong> Applying Khaldun's Asabiyyah to strengthen social bonds in fragmented communities</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span className="text-blue-400 text-sm">✓</span>
+                                        </div>
+                                        <span><strong className="text-blue-400">Ethical Leadership:</strong> Blending prophetic wisdom with modern management principles</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span className="text-amber-400 text-sm">✓</span>
+                                        </div>
+                                        <span><strong className="text-amber-400">Interfaith Dialogue:</strong> Building bridges by finding common ground in diverse religious traditions</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <p>The application taught me that intellectual journeys must ultimately serve human flourishing. Whether through teaching, writing, community service, or simply being a better human being—knowledge finds its true purpose in service.</p>
+
+                            <ImageBanner 
+                                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" 
+                                alt="Community gathering" 
+                                caption="Knowledge finds its ultimate purpose in serving others and building community." 
+                            />
+
+                            <p>This is where the circle completes itself: beginning with childhood questions, moving through frameworks and synthesis, and ending with application that serves the very community that nurtured those questions.</p>
+                        </div>
+                    </section>
+
+                    {/* Chapter 5 */}
+                    <section>
+                        <SectionTitle number="5" title="The Continuing Journey" subtitle="The Path Ahead" />
+                        
+                        <div className="font-prose text-slate-300 space-y-6 text-lg">
+                            <p>The journey never truly ends. Each answer opens new questions, each insight reveals new mysteries. What began as a child's curiosity has become a lifelong pursuit—a continuous process of learning, unlearning, and relearning.</p>
+                            
+                            <div className="text-center my-12 p-8 glass-card rounded-2xl">
+                                <Icons.Compass className="w-16 h-16 mx-auto mb-4 text-amber-500" />
+                                <h3 className="text-2xl font-bold text-white mb-4">The Journey Continues</h3>
+                                <p className="text-slate-300 mb-6">Some questions that guide my current exploration:</p>
+                                <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                                    <div className="p-4 bg-slate-800/50 rounded-lg text-left">
+                                        <span className="text-amber-400 text-sm">Question 1</span>
+                                        <p className="mt-1">How does technology change what it means to be human?</p>
+                                    </div>
+                                    <div className="p-4 bg-slate-800/50 rounded-lg text-left">
+                                        <span className="text-blue-400 text-sm">Question 2</span>
+                                        <p className="mt-1">Can we build institutions that outlast our individual moral failures?</p>
+                                    </div>
+                                    <div className="p-4 bg-slate-800/50 rounded-lg text-left">
+                                        <span className="text-emerald-400 text-sm">Question 3</span>
+                                        <p className="mt-1">What does spiritual maturity look like in a secular age?</p>
+                                    </div>
+                                    <div className="p-4 bg-slate-800/50 rounded-lg text-left">
+                                        <span className="text-purple-400 text-sm">Question 4</span>
+                                        <p className="mt-1">How do we cultivate hope in the face of civilizational decline?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>The most important lesson: <span className="text-amber-400">the map is not the territory</span>. All frameworks, all syntheses, all applications are imperfect representations of a reality far more complex than our minds can fully comprehend.</p>
+
+                            <p>And yet, we journey on. Because the pursuit of understanding is itself a form of worship. Because asking questions is an act of faith. Because in seeking truth, we draw closer to the Source of all truth.</p>
+
+                            <QuoteBox 
+                                arabic="وَقُل رَّبِّ زِدْنِي عِلْمًا"
+                                translation="And say: My Lord, increase me in knowledge."
+                                source="Qur'an 20:114"
+                            />
+
+                            <p className="text-center text-2xl italic text-slate-400 mt-12">The journey continues...</p>
+                        </div>
+                    </section>
+                </main>
+
+                {/* Footer */}
+                <footer className="py-12 px-6 border-t border-slate-800 text-center">
+                    <div className="max-w-2xl mx-auto">
+                        <p className="text-slate-400 mb-4">
+                            "This interactive journey is a living document—a snapshot of an ongoing exploration of faith, reason, and human flourishing."
+                        </p>
+                        <div className="flex justify-center gap-6 mt-8 text-slate-500">
+                            <span>© {new Date().getFullYear()} Intellectual Journey</span>
+                            <span>•</span>
+                            <span>Made with React & Framer Motion</span>
+                            <span>•</span>
+                            <span>Inspired by centuries of human thought</span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
 </body>
 </html>

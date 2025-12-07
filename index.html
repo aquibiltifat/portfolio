@@ -5,67 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faiz Ali Qadri - Islamic Scholar Portfolio</title>
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:300,400,500,600&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Inter:400,500,600&display=swap" rel="stylesheet">
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     /* =========================================
-       1. DESIGN SYSTEM (DARK SLATE & GOLD)
+       1. CSS VARIABLES & RESET
        ========================================= */
     :root {
-      --bg-dark: #0f172a;
-      --bg-darker: #020617;
-      --glass-bg: rgba(30, 41, 59, 0.6);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      
-      --primary-gold: #fbbf24;
-      --primary-hover: #d97706;
-      
-      --text-white: #f8fafc;
-      --text-muted: #94a3b8;
-      
+      --primary-color: #1a472a;       /* Deep Islamic Green */
+      --secondary-color: #2e8b57;     /* Lighter Green */
+      --accent-color: #d4af37;        /* Gold */
+      --text-dark: #1a1a1a;
+      --text-light: #f4f4f4;
+      --text-gray: #666;
+      --bg-light: #f9f9f9;
+      --white: #ffffff;
+      --font-main: 'Inter', sans-serif;
       --font-heading: 'Playfair Display', serif;
-      --font-body: 'Inter', sans-serif;
-      
-      --shadow-glow: 0 0 20px rgba(251, 191, 36, 0.1);
-      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.3s ease;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-white);
-      font-family: var(--font-body);
-      line-height: 1.7;
+      font-family: var(--font-main);
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
     a { text-decoration: none; color: inherit; transition: var(--transition); }
     ul { list-style: none; }
-    img { max-width: 100%; display: block; }
-    button { font-family: inherit; cursor: pointer; border: none; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--primary-gold); }
+    button { cursor: pointer; font-family: inherit; }
 
     /* =========================================
        2. HEADER & NAVIGATION
        ========================================= */
     header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: relative;
       width: 100%;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--glass-border);
+      z-index: 100;
     }
 
     nav {
@@ -80,11 +74,10 @@
       font-family: var(--font-heading);
       font-size: 1.8rem;
       font-weight: 900;
-      background: linear-gradient(to right, #fff, var(--primary-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary-color);
     }
 
+    /* Desktop Nav Links */
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -92,61 +85,204 @@
 
     .nav-links a {
       font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      font-size: 1rem;
+      color: var(--text-dark);
       position: relative;
     }
 
-    .nav-links a:hover { color: var(--primary-gold); }
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Mobile Hamburger Trigger (Hidden on Desktop) */
+    .mobile-hamburger {
+      display: none; 
+    }
 
     /* =========================================
-       3. HERO SECTION
+       3. HAMBURGER MENUS (Desktop & Mobile)
+       ========================================= */
+    
+    /* Shared Styles for Menu Drawers */
+    .desktop-menu, .mobile-menu {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      background: var(--white);
+      box-shadow: -5px 0 30px rgba(248, 248, 248, 0.945);
+      z-index: 1001;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    /* Desktop Side Menu (Left Side) */
+    .desktop-hamburger {
+      position: fixed;
+      top: 100px; /* Below header */
+      left: 30px;
+      z-index: 900;
+    }
+    
+    /* Hide checkbox input */
+    #desktop-menu-toggle, #mobile-menu-toggle {
+      display: none;
+    }
+
+    .desktop-menu-icon {
+      background: white;
+      color: var(--accent-color);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+
+    .desktop-menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .desktop-menu {
+      left: 0;
+      width: 320px;
+      transform: translateX(-100%); /* Hidden by default */
+    }
+
+    /* Show menu when checked */
+    #desktop-menu-toggle:checked ~ .desktop-menu {
+      transform: translateX(0);
+    }
+
+    .desktop-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    .desktop-menu-header h3 {
+      font-family: var(--font-heading);
+      color: var(--primary-color);
+    }
+
+    .desktop-menu-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-gray);
+    }
+
+    .desktop-menu-link {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      font-weight: 500;
+      border-bottom: 1px solid #f5f5f5;
+      color: var(--text-dark);
+    }
+
+    .desktop-menu-link i {
+      width: 30px;
+      color: var(--accent-color);
+    }
+
+    .desktop-menu-link:hover {
+      padding-left: 10px;
+      color: var(--primary-color);
+    }
+
+    /* Mobile Menu Specifics */
+    .mobile-menu {
+      right: 0;
+      width: 80%;
+      max-width: 300px;
+      transform: translateX(100%); /* Hidden to right */
+    }
+
+    #mobile-menu-toggle:checked ~ .mobile-menu {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 102;
+    }
+
+    .mobile-menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    /* =========================================
+       4. HERO SECTION
        ========================================= */
     .hero {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 4rem 2rem;
-      min-height: 90vh;
-      background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-      background-attachment: fixed;
+      padding: 4rem 1rem;
+      background: linear-gradient(to bottom, #ffffff, #f4f9f6);
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), var(--bg-dark));
-      z-index: 1;
-    }
-
-    .hero > * { position: relative; z-index: 2; }
 
     .profile-img {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--primary-gold);
-      padding: 4px;
+      border: 4px solid var(--accent-color);
       margin-bottom: 1.5rem;
-      box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
     }
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: 3.5rem;
-      color: var(--text-white);
+      font-size: 3rem;
+      color: var(--primary-color);
       margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .hero-subtitle {
       font-size: 1.2rem;
-      color: var(--primary-gold);
+      color: var(--text-gray);
       margin-bottom: 1.5rem;
       font-weight: 500;
     }
@@ -157,305 +293,151 @@
       justify-content: center;
       gap: 0.8rem;
       margin-bottom: 2rem;
-      max-width: 800px;
     }
 
     .hero-role {
-      background: rgba(251, 191, 36, 0.1);
-      color: var(--primary-gold);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
+      background: rgba(26, 71, 42, 0.1);
+      color: var(--primary-color);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
       font-weight: 600;
-      border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
     .cta-btn {
-      background: var(--primary-gold);
-      color: #0f172a;
+      background: var(--primary-color);
+      color: var(--white);
       border: none;
       padding: 1rem 2.5rem;
       border-radius: 50px;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 600;
       transition: var(--transition);
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 5px 15px rgba(26, 71, 42, 0.3);
     }
 
     .cta-btn:hover {
-      background: #fff;
+      background: var(--secondary-color);
       transform: translateY(-3px);
     }
 
     /* =========================================
-       4. HAMBURGER MENUS
-       ========================================= */
-    
-    /* Desktop Hamburger (Top-Left Fixed) */
-    .desktop-hamburger {
-      position: fixed;
-      top: 100px;
-      left: 30px;
-      z-index: 900;
-    }
-
-    #desktop-menu-toggle, #mobile-menu-toggle { display: none; }
-
-    .desktop-menu-icon {
-      background: rgba(30, 41, 59, 0.9);
-      color: var(--primary-gold);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 1px solid var(--glass-border);
-      transition: var(--transition);
-      font-size: 1.2rem;
-      box-shadow: var(--shadow-card);
-    }
-
-    .desktop-menu-icon:hover {
-      border-color: var(--primary-gold);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .desktop-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 320px;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.98);
-      backdrop-filter: blur(16px);
-      border-right: 1px solid var(--glass-border);
-      box-shadow: 5px 0 30px rgba(0,0,0,0.5);
-      z-index: 1001;
-      transform: translateX(-100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-      padding: 2rem;
-    }
-
-    #desktop-menu-toggle:checked ~ .desktop-menu {
-      transform: translateX(0);
-    }
-
-    .desktop-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--glass-border);
-      padding-bottom: 1rem;
-    }
-
-    .desktop-menu-header h3 {
-      font-family: var(--font-heading);
-      color: var(--primary-gold);
-      font-size: 1.5rem;
-    }
-
-    .desktop-menu-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .desktop-menu-links {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .desktop-menu-link {
-      display: flex;
-      align-items: center;
-      padding: 1rem 0;
-      font-weight: 500;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: var(--text-white);
-      transition: var(--transition);
-    }
-
-    .desktop-menu-link i {
-      width: 30px;
-      color: var(--primary-gold);
-      margin-right: 0.5rem;
-    }
-
-    .desktop-menu-link:hover {
-      padding-left: 10px;
-      color: var(--primary-gold);
-    }
-
-    /* Mobile Hamburger */
-    .mobile-hamburger {
-      display: none;
-    }
-
-    .mobile-menu-icon {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .mobile-menu-icon span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background-color: var(--primary-gold);
-      border-radius: 3px;
-      transition: var(--transition);
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 80%;
-      max-width: 320px;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.98);
-      backdrop-filter: blur(16px);
-      border-left: 1px solid var(--glass-border);
-      box-shadow: -5px 0 30px rgba(0,0,0,0.5);
-      z-index: 1001;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-      padding: 2rem;
-    }
-
-    #mobile-menu-toggle:checked ~ .mobile-menu {
-      transform: translateX(0);
-    }
-
-    .mobile-menu-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-white);
-      cursor: pointer;
-    }
-
-    .mobile-menu-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .menu-subtitle {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
-
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .mobile-menu-link {
-      display: flex;
-      align-items: center;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: var(--text-white);
-      transition: var(--transition);
-    }
-
-    .mobile-menu-link i {
-      width: 30px;
-      color: var(--primary-gold);
-      margin-right: 0.5rem;
-    }
-
-    .mobile-menu-link:hover {
-      color: var(--primary-gold);
-      padding-left: 10px;
-    }
-
-    .menu-divider {
-      height: 1px;
-      background: var(--glass-border);
-      margin: 1rem 0;
-    }
-
-    /* =========================================
-       5. STATS COUNTERS
+       5. STATS & CONTENT SECTIONS
        ========================================= */
     .stats-counters {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 2rem;
       padding: 3rem 5%;
-      background: rgba(30, 41, 59, 0.3);
-      border-top: 1px solid var(--glass-border);
-      border-bottom: 1px solid var(--glass-border);
-      margin-top: -3rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    .counter-card {
+      background: var(--primary-color);
+      color: var(--white);
       text-align: center;
-      padding: 2rem 1rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      box-shadow: var(--shadow-card);
-      transition: var(--transition);
-    }
-
-    .counter-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(251, 191, 36, 0.4);
     }
 
     .counter-num {
       font-family: var(--font-heading);
       font-size: 2.5rem;
-      color: var(--primary-gold);
+      color: var(--accent-color);
       font-weight: 700;
-      margin-bottom: 0.5rem;
     }
 
     .counter-label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text-muted);
+      letter-spacing: 1px;
+      opacity: 0.9;
     }
-
-    /* =========================================
-       6. SECTIONS
-       ========================================= */
-    .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
 
     .section-title {
       text-align: center;
       font-family: var(--font-heading);
-      font-size: 2.5rem;
-      color: var(--primary-gold);
-      margin-bottom: 3rem;
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin: 4rem 0 2rem 0;
       position: relative;
     }
-
+    
     .section-title::after {
       content: '';
       display: block;
       width: 60px;
-      height: 2px;
-      background: var(--primary-gold);
-      margin: 15px auto 0;
+      height: 3px;
+      background: var(--accent-color);
+      margin: 10px auto 0;
+    }
+
+    /* =========================================
+       6. VIDEOS (Grid/Card)
+       ========================================= */
+    .videos-row {
+      padding: 0 5%;
+      margin-bottom: 2rem;
+    }
+
+    .videos-carousel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .video-thumb-container {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(0,0,0,0.6);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--white);
+      transition: var(--transition);
+    }
+
+    .video-card:hover .video-play-btn {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .video-title {
+      padding: 1rem 1rem 0.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .video-meta {
+      padding: 0 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-gray);
     }
 
     /* =========================================
@@ -464,69 +446,67 @@
     .book-item {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 0 auto 3rem;
-      max-width: 1200px;
-      box-shadow: var(--shadow-card);
-      transition: var(--transition);
+      background: var(--white);
+      margin: 0 5% 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
-
-    .book-item:hover {
-      border-color: rgba(251, 191, 36, 0.4);
-      transform: translateY(-5px);
-    }
-
+    
     @media (min-width: 768px) {
       .book-item {
         flex-direction: row;
+        align-items: start;
       }
     }
 
     .book-cover-large {
       position: relative;
       width: 100%;
-      max-width: 200px;
-      flex-shrink: 0;
+      max-width: 250px;
       margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+      .book-cover-large {
+        width: 250px;
+        flex-shrink: 0;
+      }
     }
 
     .book-cover-large img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .book-badge {
       position: absolute;
       top: 10px;
       left: 10px;
-      background: var(--primary-gold);
-      color: #0f172a;
+      background: var(--accent-color);
+      color: var(--text-dark);
       padding: 4px 12px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
       border-radius: 4px;
     }
 
     .book-details {
+      padding: 2rem;
       flex: 1;
     }
 
     .book-details h3 {
       font-family: var(--font-heading);
       font-size: 1.5rem;
-      color: var(--text-white);
       margin-bottom: 0.5rem;
     }
 
     .book-author {
-      color: var(--primary-gold);
+      color: var(--secondary-color);
       font-weight: 600;
       margin-bottom: 1rem;
     }
@@ -538,223 +518,201 @@
     }
 
     .book-rating span {
-      color: var(--text-muted);
+      color: var(--text-gray);
       margin-left: 5px;
     }
 
     .book-description {
-      color: var(--text-muted);
+      color: var(--text-gray);
       margin-bottom: 1.5rem;
-      line-height: 1.8;
     }
 
     .book-meta {
       display: flex;
-      flex-wrap: wrap;
       gap: 1.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.9rem;
+      color: var(--text-gray);
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .book-meta i {
-      color: var(--primary-gold);
+      color: var(--accent-color);
       margin-right: 5px;
     }
 
     .book-actions {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
     }
 
     .book-action-btn {
       padding: 0.8rem 1.5rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
       text-align: center;
       display: inline-block;
-      transition: var(--transition);
     }
 
     .book-action-btn.primary {
-      background: var(--primary-gold);
-      color: #0f172a;
+      background: var(--primary-color);
+      color: var(--white);
       border: none;
     }
 
     .book-action-btn.secondary {
       background: transparent;
-      color: var(--primary-gold);
-      border: 2px solid var(--primary-gold);
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
     }
 
     .book-action-btn:hover {
-      transform: translateY(-2px);
       opacity: 0.9;
+      transform: translateY(-2px);
     }
 
     /* =========================================
-       8. GALLERY
+       8. GALLERY MASONRY
        ========================================= */
     .gallery-masonry {
-      column-count: 3;
-      column-gap: 1.5rem;
-      padding: 0 2rem;
+      columns: 2;
+      column-gap: 1rem;
+      padding: 0 5%;
+      margin-bottom: 4rem;
+    }
+    
+    @media(min-width: 768px) {
+      .gallery-masonry { columns: 3; }
     }
 
     .gallery-img {
       width: 100%;
       border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-card);
+      margin-bottom: 1rem;
       transition: var(--transition);
-      break-inside: avoid;
+      box-shadow: var(--shadow);
     }
 
     .gallery-img:hover {
-      transform: scale(1.03);
-      opacity: 0.8;
+      transform: scale(1.02);
+      filter: brightness(1.1);
     }
 
     /* =========================================
-       9. PERSONAL DETAILS
+       9. PERSONAL DETAILS & CONTACT
        ========================================= */
     .personal-details {
-      background: rgba(30, 41, 59, 0.2);
-      padding: 4rem 2rem;
-      margin: 4rem 0;
+      background: var(--white);
+      padding: 3rem 5%;
+      margin: 2rem 0;
     }
 
     .detail-content {
-      max-width: 900px;
-      margin: 0 auto 3rem;
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-    }
-
-    .detail-content p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      font-style: italic;
-      line-height: 1.8;
+      font-size: 1.1rem;
     }
 
     .detail-content ul {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: 1.5rem;
     }
 
     .detail-content li {
-      background: rgba(251, 191, 36, 0.1);
-      border: 1px solid rgba(251, 191, 36, 0.3);
-      padding: 0.6rem 1.5rem;
+      background: #f0f5f2;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
-      color: var(--text-white);
+      color: var(--primary-color);
       font-weight: 500;
     }
 
-    /* =========================================
-       10. CONTACT FORM
-       ========================================= */
     .contact-form {
-      max-width: 700px;
+      max-width: 600px;
       margin: 0 auto 4rem;
-      padding: 0 2rem;
+      padding: 0 1rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .contact-form input,
-    .contact-form textarea {
+    .contact-form input, .contact-form textarea {
       padding: 1rem;
-      border: 1px solid var(--glass-border);
+      border: 1px solid #ddd;
       border-radius: 8px;
-      background: rgba(30, 41, 59, 0.5);
-      color: var(--text-white);
-      font-family: var(--font-body);
+      font-family: var(--font-main);
       font-size: 1rem;
       transition: var(--transition);
     }
 
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-      color: var(--text-muted);
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--primary-color);
       outline: none;
-      border-color: var(--primary-gold);
-      box-shadow: 0 0 10px rgba(251, 191, 36, 0.1);
+      box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
     }
 
     .contact-form button {
-      background: var(--primary-gold);
-      color: #0f172a;
+      background: var(--accent-color);
+      color: var(--text-dark);
       padding: 1rem;
       border: none;
       border-radius: 8px;
       font-weight: 700;
       font-size: 1rem;
+      margin-top: 0.5rem;
       transition: var(--transition);
-      cursor: pointer;
     }
 
     .contact-form button:hover {
-      background: #fff;
-      transform: translateY(-2px);
+      background: #c29726;
     }
 
     /* =========================================
-       11. FOOTER
+       10. FOOTER
        ========================================= */
     footer {
-      background: var(--bg-darker);
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--glass-border);
+      background: #111;
+      color: #fff;
+      padding: 4rem 5% 2rem;
       position: relative;
     }
 
     .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .footer-socials {
       display: flex;
-      justify-content: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
     .footer-socials a {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 1.2rem;
+      border-radius: 50%;
       transition: var(--transition);
+      color: var(--white);
     }
 
     .footer-socials a:hover {
-      background: var(--primary-gold);
-      color: #0f172a;
-      transform: translateY(-5px);
+      background: var(--accent-color);
+      transform: translateY(-3px);
     }
 
     .footer-text p {
-      color: var(--text-muted);
+      opacity: 0.7;
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
@@ -762,18 +720,18 @@
     /* WhatsApp Float */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      left: 30px;
+      bottom: 2rem;
+      right: 2rem; /* place to right below hadith button */
+      background: #25D366;
+      color: white;
       width: 60px;
       height: 60px;
-      background: #25D366;
-      color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
       z-index: 999;
       transition: var(--transition);
     }
@@ -784,7 +742,8 @@
 
     .whatsapp-tooltip {
       position: absolute;
-      left: 70px;
+      right: 70px;
+      left: auto;
       background: #333;
       color: #fff;
       padding: 5px 10px;
@@ -798,523 +757,568 @@
 
     .whatsapp-float:hover .whatsapp-tooltip {
       opacity: 1;
-      left: 75px;
+      right: 75px;
     }
 
-    /* Hadith Float */
-    .float-hadith {
+    /* =========================================
+       11. MODALS (Video & Hadith)
+       ========================================= */
+    .video-modal, .hadith-modal {
+      display: none;
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 10000;
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .video-modal.show, .hadith-modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Video Modal Content */
+    .video-modal-content {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .video-modal-iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    .video-modal-close, .hadith-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .video-modal-close:hover, .hadith-modal-close:hover {
+      background: rgba(255,255,255,0.4);
+      transform: rotate(90deg);
+    }
+
+    /* Hadith Modal Content */
+    .hadith-modal-content {
+      background: linear-gradient(135deg, #1a472a 0%, #143821 100%);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      color: #fff;
+      border: 2px solid var(--accent-color);
+    }
+
+    .hadith-icon {
+      font-size: 3.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .hadith-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    .hadith-text {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hadith-source {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hadith-next-btn {
+      background: var(--accent-color);
+      color: #000;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .hadith-next-btn:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Floating Hadith Trigger Button */
+    .hadith-float {
+      position: fixed;
+      /* move hadith trigger higher so WhatsApp can sit below it */
+      bottom: 6rem;
+      right: 2rem;
+      background: var(--primary-color);
+      color: white;
       width: 60px;
       height: 60px;
-      background: var(--primary-gold);
-      color: #0f172a;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 5px 20px rgba(26, 71, 42, 0.5);
       z-index: 999;
       cursor: pointer;
       transition: var(--transition);
-      border: 2px solid #fff;
+      border: 2px solid var(--accent-color);
     }
 
-    .float-hadith:hover {
-      transform: rotate(15deg) scale(1.1);
+    .hadith-float:hover {
+      transform: scale(1.1) rotate(10deg);
     }
 
-    /* =========================================
-       12. MODALS
-       ========================================= */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 10000;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(5px);
-      padding: 1rem;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      background: var(--bg-dark);
-      border: 1px solid var(--primary-gold);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .hadith-box {
-      padding: 3rem;
-      text-align: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-    }
-
-    .hadith-icon {
-      font-size: 3rem;
-      color: var(--primary-gold);
-      margin-bottom: 1rem;
-    }
-
-    .hadith-text {
-      font-size: 1.4rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-      font-family: var(--font-heading);
-      line-height: 1.8;
-    }
-
-    .hadith-source {
-      color: var(--primary-gold);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 2rem;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 5;
-    }
-
-    .close-modal:hover {
-      background: #dc2626;
-    }
-
+    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
     /* =========================================
-       13. RESPONSIVE
+       12. RESPONSIVE MEDIA QUERIES
        ========================================= */
     @media (max-width: 992px) {
-      .nav-links { display: none; }
-      .mobile-hamburger { display: block; }
-      .desktop-hamburger { display: none; }
+      .nav-links { display: none; } /* Hide top nav links on tablet/mobile */
+      .mobile-hamburger { display: block; } /* Show mobile hamburger */
+      .desktop-hamburger { display: none; } /* Hide desktop hamburger on mobile */
+      
       .hero-title { font-size: 2.5rem; }
-      .gallery-masonry { column-count: 2; }
+      .desktop-menu { display: none; } /* Completely remove desktop drawer logic on mobile */
     }
 
-    @media (max-width: 600px) {
-      .hero-title { font-size: 2rem; }
-      .stats-counters { grid-template-columns: repeat(2, 1fr); }
-      .gallery-masonry { column-count: 1; }
-      .book-cover-large { max-width: 150px; }
+    @media (max-width: 768px) {
+      .hero { padding-top: 2rem; }
+      .hero-roles { flex-direction: column; align-items: center; }
+      .hadith-modal-content { padding: 2rem 1.5rem; }
+      .hadith-text { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER & NAVIGATION -->
-  <header>
-    <nav>
-      <div class="nav-logo">Faiz Ali Qadri</div>
-      
-      <!-- Desktop Nav Links -->
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#videos">Videos</a>
-        <a href="#books">Books</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-      <!-- Mobile Hamburger Trigger -->
-      <div class="mobile-hamburger">
-        <input type="checkbox" id="mobile-menu-toggle">
-        <label for="mobile-menu-toggle" class="mobile-menu-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-
-        <!-- Mobile Menu Drawer -->
-        <div class="mobile-menu">
-          <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
-            <i class="fas fa-times"></i>
-          </button>
-
-          <div class="mobile-menu-header">
-            <div class="nav-logo">Faiz Ali Qadri</div>
-            <div class="menu-subtitle">Islamic Scholar & Legal Expert</div>
-          </div>
-
-          <div class="mobile-menu-links">
-            <a href="#home" class="mobile-menu-link" onclick="closeMobileMenu()">
-              <i class="fas fa-home"></i>
-              <span>Home</span>
-            </a>
-            <a href="#videos" class="mobile-menu-link" onclick="closeMobileMenu()">
-              <i class="fas fa-play-circle"></i>
-              <span>Videos</span>
-            </a>
-            <a href="#books" class="mobile-menu-link" onclick="closeMobileMenu()">
-              <i class="fas fa-book"></i>
-              <span>Books</span>
-            </a>
-            <a href="#gallery" class="mobile-menu-link" onclick="closeMobileMenu()">
-              <i class="fas fa-images"></i>
-              <span>Gallery</span>
-            </a>
-            <a href="#contact" class="mobile-menu-link" onclick="closeMobileMenu()">
-              <i class="fas fa-envelope"></i>
-              <span>Contact</span>
-            </a>
-
-            <div class="menu-divider"></div>
-
-            <a href="intellectual-journey.html" class="mobile-menu-link">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Intellectual Journey</span>
-            </a>
-            <a href="path-struggle.html" class="mobile-menu-link">
-              <i class="fas fa-mountain"></i>
-              <span>Social Services</span>
-            </a>
-            <a href="social-projects.html" class="mobile-menu-link">
-              <i class="fas fa-hands-helping"></i>
-              <span>Social Projects</span>
-            </a>
-            <a href="connect.html" class="mobile-menu-link">
-              <i class="fas fa-link"></i>
-              <span>Connect</span>
-            </a>
-            <a href="recommended-books.html" class="mobile-menu-link">
-              <i class="fas fa-book-open"></i>
-              <span>Recommended Books</span>
-            </a>
-            <a href="recommended-authors.html" class="mobile-menu-link">
-              <i class="fas fa-user-graduate"></i>
-              <span>Recommended Authors</span>
-            </a>
-            <a href="future.html" class="mobile-menu-link">
-              <i class="fas fa-film"></i>
-              <span>Future Projects</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-      <img src="Gemini_Generated_Image_jxxhnzjxxhnzjxxh.png" alt="Faiz Ali Qadri" class="profile-img">
-      <div class="hero-title">Faiz Ali Qadri</div>
-      <div class="hero-subtitle">Islamic Scholar • Speaker • Legal Expert</div>
-      <div class="hero-roles">
-        <span class="hero-role">Public Speaker</span>
-        <span class="hero-role">Research Scholar</span>
-        <span class="hero-role">Career Coach</span>
-        <span class="hero-role">Non-Profit Governance / Leadership</span>
-      </div>
-      <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-        Get in Touch
-      </button>
-    </section>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <!-- Desktop Hamburger Menu -->
-    <div class="desktop-hamburger">
-      <input type="checkbox" id="desktop-menu-toggle">
-      <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
-        <i class="fas fa-bars"></i>
+<header>
+  <nav>
+    <div class="nav-logo">Faiz Ali Qadri</div>
+    <!-- Desktop Top Navigation -->
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#videos">Videos</a>
+      <a href="recommended-books.html">Books</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    
+    <!-- Mobile Hamburger Trigger -->
+    <div class="mobile-hamburger">
+      <input type="checkbox" id="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="mobile-menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
       </label>
 
-      <div class="desktop-menu">
-        <div class="desktop-menu-header">
-          <h3>Explore More</h3>
-          <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
-            <i class="fas fa-times"></i>
-          </button>
+      <!-- Mobile Menu Drawer -->
+      <div class="mobile-menu">
+        <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu-toggle').checked = false;">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu-header">
+          <div class="nav-logo" style="font-size: 1.5rem;">Faiz Ali Qadri</div>
         </div>
-        <div class="desktop-menu-links">
-          <a href="intellectual-journey.html" class="desktop-menu-link">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Intellectual Journey</span>
-          </a>
-          <a href="path-struggle.html" class="desktop-menu-link">
-            <i class="fas fa-mountain"></i>
-            <span>Social Services & Learning</span>
-          </a>
-          <a href="social-projects.html" class="desktop-menu-link">
-            <i class="fas fa-hands-helping"></i>
-            <span>Social Projects</span>
-          </a>
-          <a href="connect.html" class="desktop-menu-link">
-            <i class="fas fa-link"></i>
-            <span>Connect</span>
-          </a>
-          <a href="recommended-books.html" class="desktop-menu-link">
-            <i class="fas fa-book-open"></i>
-            <span>Recommended Books</span>
-          </a>
-          <a href="recommended-authors.html" class="desktop-menu-link">
-            <i class="fas fa-user-graduate"></i>
-            <span>Recommended Authors</span>
-          </a>
+        <div class="desktop-menu-links"> <!-- Reusing class for styling -->
+          <a href="#home" class="desktop-menu-link" onclick="closeMobileMenu()"><i class="fas fa-home"></i> Home</a>
+          <a href="#videos" class="desktop-menu-link" onclick="closeMobileMenu()"><i class="fas fa-play-circle"></i> Videos</a>
+          <a href="recommended-books.html" class="desktop-menu-link" onclick="closeMobileMenu()"><i class="fas fa-book"></i> Books</a>
+          <a href="#gallery" class="desktop-menu-link" onclick="closeMobileMenu()"><i class="fas fa-images"></i> Gallery</a>
+          <a href="#contact" class="desktop-menu-link" onclick="closeMobileMenu()"><i class="fas fa-envelope"></i> Contact</a>
+          <!-- Extra links from desktop drawer for mobile accessibility -->
+          <div style="margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem;">
+            <a href="intellectual-journey.html" class="desktop-menu-link"><i class="fas fa-graduation-cap"></i> Intellectual Journey</a>
+            <a href="path-struggle.html" class="desktop-menu-link"><i class="fas fa-mountain"></i> My Journey of Social Services & Learning</a>
+            <a href="social-projects.html" class="desktop-menu-link"><i class="fas fa-hands-helping"></i> Social Projects</a>
+            <a href="recommended-books.html" class="desktop-menu-link"><i class="fas fa-book-open"></i> Recommended Books</a>
+            <a href="recommended-authors.html" class="desktop-menu-link"><i class="fas fa-feather-alt"></i> Recommended Authors</a>
+            <a href="connect.html" class="desktop-menu-link"><i class="fas fa-link"></i> Connect</a>
+             <a href="future.html" class="desktop-menu-link"><i class="fas fa-hand-holding-heart"></i>Future Projects</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <img src="Gemini_Generated_Image_jxxhnzjxxhnzjxxh.png" alt="Dr. Rahman" class="profile-img">
+    <div class="hero-title">Faiz Ali Qadri</div>
+    <div class="hero-subtitle">Islamic Scholar • Speaker • Legal Expert</div>
+    <div class="hero-roles">
+      <span class="hero-role">Public Speaker</span>
+      <span class="hero-role">Research Scholar</span>
+      <span class="hero-role">Career Coach</span>
+      <span class="hero-role">Leadership</span>
+    </div>
+    <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+      Get in Touch
+    </button>
+  </section>
+</header>
+
+<main>
+  <!-- Desktop Side Hamburger (Extra Menu) -->
+  <div class="desktop-hamburger">
+    <input type="checkbox" id="desktop-menu-toggle">
+    <label for="desktop-menu-toggle" class="desktop-menu-icon" aria-label="Open menu" title="Open menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    
+    <div class="desktop-menu">
+      <div class="desktop-menu-header">
+        <h3>Explore More</h3>
+        <button class="desktop-menu-close" onclick="document.getElementById('desktop-menu-toggle').checked = false;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="desktop-menu-links">
+        <a href="intellectual-journey.html" class="desktop-menu-link">
+          <i class="fas fa-graduation-cap"></i> <span>Intellectual Journey</span>
+        </a>
+        <a href="path-struggle.html" class="desktop-menu-link">
+          <i class="fas fa-mountain"></i> <span>My Journey of Social Services & Learning</span>
+        </a>
+        <a href="social-projects.html" class="desktop-menu-link">
+          <i class="fas fa-hands-helping"></i> <span>Social Projects</span>
+        </a>
+        <a href="connect.html" class="desktop-menu-link">
+          <i class="fas fa-link"></i> <span>Connect</span>
+        </a>
+        <a href="recommended-books.html" class="desktop-menu-link">
+          <i class="fas fa-book-open"></i> <span>Recommended Books</span>
+        </a>
+        <a href="recommended-authors.html" class="desktop-menu-link">
+          <i class="fas fa-feather-alt"></i> <span>Recommended Authors</span>
           <a href="future.html" class="desktop-menu-link">
-            <i class="fas fa-film"></i>
-            <span>Future Projects</span>
-          </a>
+          <i class="fas fa-hand-holding-heart"></i> <span>Future Projects</span>  
           <a href="writing.html" class="desktop-menu-link">
-            <i class="fas fa-pen-fancy"></i>
-            <span>My Opinion & Writings</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- STATS COUNTERS -->
-    <section class="stats-counters">
-      <div class="counter-card">
-        <div class="counter-num" id="talks-count">120+</div>
-        <div class="counter-label">Islamic Talks</div>
-      </div>
-      <div class="counter-card">
-        <div class="counter-num" id="students-count">5000+</div>
-        <div class="counter-label">Students</div>
-      </div>
-      <div class="counter-card">
-        <div class="counter-num" id="videos-count">110+</div>
-        <div class="counter-label">Islamic Videos</div>
-      </div>
-      <div class="counter-card">
-        <div class="counter-num" id="books-count">28+</div>
-        <div class="counter-label">Islamic Books</div>
-      </div>
-    </section>
-
-    <!-- VIDEOS SECTION -->
-    <section id="videos" class="container">
-      <h2 class="section-title">Islamic Videos & Lectures</h2>
-      <!-- Add your video cards here -->
-    </section>
-
-    <!-- BOOKS SECTION -->
-    <div class="section-title" id="books">Islamic Books & Resources</div>
-    
-    <div class="book-item" data-category="quran">
-      <div class="book-cover-large">
-        <img src="WhatsApp Image 2025-11-03 at 13.16.25_0dabb257.jpg" alt="The Eternal Blueprint">
-        <div class="book-badge">Essential</div>
-      </div>
-      <div class="book-details">
-        <h3>The Eternal Blueprint: A Review of M. Fethullah Gülen's Nur e Sarmadi</h3>
-        <div class="book-author">M. Fethullah Gülen's Nur e Sarmadi</div>
-        <div class="book-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-          <span>4.7/5</span>
-        </div>
-        <p class="book-description">"The Eternal Blueprint: A Review of M. Fethullah Gülen's Nur e Sarmadi" is a review or analysis of Fethullah Gülen's book, Nur-i Sarmadi (The Eternal Light), which presents his comprehensive vision for a peaceful and virtuous society.</p>
-        <div class="book-meta">
-          <span><i class="fas fa-clock"></i> 1200 pages</span>
-          <span><i class="fas fa-language"></i> English</span>
-          <span><i class="fas fa-calendar"></i> 1989</span>
-        </div>
-        <div class="book-actions">
-          <button class="book-action-btn primary">Get Book</button>
-          <a href="summary.html" class="book-action-btn secondary button-link">Read Summary</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="book-item" data-category="spirituality">
-      <div class="book-cover-large">
-        <img src="WhatsApp Image 2025-11-03 at 14.39.19_64ef79b8.jpg" alt="Fatwa on Terrorism">
-        <div class="book-badge">Classic</div>
-      </div>
-      <div class="book-details">
-        <h3>A Comprehensive Review of the Fatwa on Terrorism and Suicide Bombings by Dr. Muhammad Tahir-ul-Qadri</h3>
-        <div class="book-author">Dr. Muhammad Tahir-ul-Qadri</div>
-        <div class="book-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-          <span>4.7/5</span>
-        </div>
-        <p class="book-description">A Comprehensive Review of the Fatwa on Terrorism and Suicide Bombings analyzes Dr. Muhammad Tahir-ul-Qadri's detailed religious decree condemning all forms of terrorism, extremism, and suicide attacks as un-Islamic. The review highlights how Dr. Qadri uses classical Islamic jurisprudence, Quranic verses, and Hadith to refute the ideological justifications used by extremist groups.</p>
-        <div class="book-meta">
-          <span><i class="fas fa-clock"></i> Approximately 475–500 pages</span>
-          <span><i class="fas fa-language"></i> Urdu, English, Arabic</span>
-          <span><i class="fas fa-calendar"></i> 2010</span>
-        </div>
-        <div class="book-actions">
-          <button class="book-action-btn primary">Get Book</button>
-          <a href="tahir.html" class="book-action-btn secondary button-link">Read Summary</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GALLERY SECTION -->
-    <div class="section-title" id="gallery">Islamic Event Gallery</div>
-    <div class="gallery-masonry" style="margin-bottom: 4rem;">
-      <img src="https://images.unsplash.com/photo-1560421683-258635f7a58a?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 1" class="gallery-img"/>
-      <img src="https://images.unsplash.com/photo-1601599714603-3c1d56bad9f7?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 2" class="gallery-img"/>
-      <img src="https://images.unsplash.com/photo-1584552620664-148d740a514c?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 3" class="gallery-img"/>
-      <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 4" class="gallery-img"/>
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event 5" class="gallery-img"/>
-    </div>
-
-    <!-- PERSONAL DETAILS SECTION -->
-    <section class="personal-details">
-      <div class="section-title">My Opinion</div>
-      <div class="detail-content">
-        <p>"Through knowledge and understanding, we can bridge the gap between tradition and modernity, creating a harmonious society that respects Islamic values while embracing positive change."</p>
-      </div>
-
-      <div class="section-title">Qualification</div>
-      <div class="detail-content">
-        <ul>
-          <li>B.A. (History & Political Science)</li>
-          <li>M.A. (History)</li>
-          <li>L.L.B</li>
-        </ul>
-      </div>
-
-      <div class="section-title">Achievement</div>
-      <div class="detail-content">
-        <ul>
-          <li>President at MERCI Educational & Welfare Foundation</li>
-          <li>Talent Acquisition Specialist</li>
-          <li>Conducted 50+ Public Lectures</li>
-          <li>Mentored 5000+ Students</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <div class="section-title" id="contact">Contact FAIZ ALI QADRI</div>
-    <form class="contact-form" autocomplete="on">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-socials">
-        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/faiz_ali_qadri?igsh=bmRwcWluNzVtMjg4" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com/@edumots?si=zQ2P459FdPpMv2zl" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/share/1FxQeod9Xq/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="mailto:faizalipresofmerci@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-      <div class="footer-text">
-        <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
-        <p>May Allah accept our sincere efforts and guide us to the straight path</p>
-      </div>
-    </div>
-    
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/+918303682611?text=Hello%20MERCI%20Foundation,%20I%20would%20like%20to%20know%20more%20about%20your%20programs." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-      <span class="whatsapp-tooltip">Chat with us</span>
-    </a>
-  </footer>
-
-  <!-- Hadith Float -->
-  <div class="float-hadith" onclick="showHadith()" title="Daily Hadith">
-    <i class="fas fa-book-open"></i>
-  </div>
-
-  <!-- HADITH MODAL -->
-  <div class="modal-overlay" id="hadithModal">
-    <div class="modal-content" style="max-width: 600px;">
-      <div class="hadith-box">
-        <div class="close-modal" onclick="closeHadith()"><i class="fas fa-times"></i></div>
-        <div class="hadith-icon"><i class="fas fa-quran"></i></div>
-        <h3 style="color:var(--primary-gold); margin-bottom:1rem; font-family: var(--font-heading);">Daily Wisdom</h3>
-        <p class="hadith-text" id="hadithText">Loading...</p>
-        <p class="hadith-source" id="hadithSource"></p>
-        <button class="cta-btn" onclick="randomHadith()">Read Another</button>
+          <i class="fas fa-film"></i>
+          <span>My Opinion & Writings</span>
+        </a>
+        </a>
       </div>
     </div>
   </div>
 
-  <script>
-    // Mobile Menu Toggle
-    function closeMobileMenu() {
-      document.getElementById('mobile-menu-toggle').checked = false;
-    }
+  <!-- Stats Section -->
+  <section class="stats-counters">
+    <div class="counter-card">
+      <div class="counter-num">120+</div>
+      <div class="counter-label">Islamic Talks</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num">5000+</div>
+      <div class="counter-label">Students</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num">110+</div>
+      <div class="counter-label">Islamic Videos</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-num">28+</div>
+      <div class="counter-label">Islamic Books</div>
+    </div>
+  </section>
+  
+  <!-- Videos Section -->
+  <div class="section-title" id="videos">Islamic Videos & Lectures</div>
+  <div class="videos-row">
+    <div class="videos-carousel">
+      <!-- Video 1 -->
+      <div class="video-card" onclick="openVideo('1XcW7sHTHJM')">
+        <div class="video-thumb-container">
+          <img src="https://img.youtube.com/vi/1XcW7sHTHJM/maxresdefault.jpg" class="video-thumb" alt="Islamic Lecture"/>
+          <div class="video-play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-title">Inspirational Islamic Lecture</div>
+        <div class="video-meta">10min • 12k views</div>
+      </div>
+      <!-- Video 2 -->
+      <div class="video-card" onclick="openVideo('3gU2bdLGojA')">
+        <div class="video-thumb-container">
+          <img src="https://img.youtube.com/vi/3gU2bdLGojA/maxresdefault.jpg" class="video-thumb" alt="Islamic Lecture"/>
+          <div class="video-play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-title">Powerful Islamic Lecture</div>
+        <div class="video-meta">12min • 15k views</div>
+      </div>
+    </div>
+  </div>
 
-    // Hadith Modal
-    const hadiths = [
-      { text: "The best among you are those who have the best manners and character.", source: "Sahih al-Bukhari 3559" },
-      { text: "Kindness is a mark of faith, and whoever is not kind has no faith.", source: "Sahih Muslim 78" },
-      { text: "The strong person is not the one who can wrestle, but the one who controls himself when angry.", source: "Sahih al-Bukhari 6114" },
-      { text: "None of you truly believes until he loves for his brother what he loves for himself.", source: "Sahih al-Bukhari 13" },
-      { text: "A good word is charity.", source: "Sahih al-Bukhari 2989" },
-      { text: "Speak good or remain silent.", source: "Prophet Muhammad (PBUH)" },
-      { text: "Richness is not having many possessions, but richness is being content with oneself.", source: "Sahih al-Bukhari 6446" }
-    ];
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="videoModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <iframe class="video-modal-iframe" id="videoIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  <!-- Books Section -->
+  <div class="section-title" id="books">Islamic Books & Resources</div>
+  
+  <div class="book-item">
+    <div class="book-cover-large">
+      <img src="WhatsApp Image 2025-11-03 at 13.16.25_0dabb257.jpg" alt="Book Cover">
+      <div class="book-badge">Essential</div>
+    </div>
+    <div class="book-details">
+      <h3>The Eternal Blueprint</h3>
+      <div class="book-author">M. Fethullah Gülen</div>
+      <div class="book-rating">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        <span>4.7/5</span>
+      </div>
+      <p class="book-description">A comprehensive review of Nur-i Sarmadi (The Eternal Light), presenting a vision for a peaceful and virtuous society.</p>
+      <div class="book-meta">
+        <span><i class="fas fa-clock"></i> 1200 pages</span>
+        <span><i class="fas fa-language"></i> English</span>
+        <span><i class="fas fa-calendar"></i> 1989</span>
+      </div>
+      <div class="book-actions">
+        <button class="book-action-btn primary">Get Book</button>
+        <a href="summary.html" class="book-action-btn secondary button-link">Read Summary</a>
+      </div>
+    </div>
+  </div>
 
-    const hadithModal = document.getElementById('hadithModal');
+  <div class="book-item">
+    <div class="book-cover-large">
+      <img src="WhatsApp Image 2025-11-03 at 14.39.19_64ef79b8.jpg" alt="Book Cover">
+      <div class="book-badge">Classic</div>
+    </div>
+    <div class="book-details">
+      <h3>Fatwa on Terrorism</h3>
+      <div class="book-author">Dr. Muhammad Tahir-ul-Qadri</div>
+      <div class="book-rating">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        <span>4.9/5</span>
+      </div>
+      <p class="book-description">A detailed religious decree condemning all forms of terrorism, extremism, and suicide attacks as un-Islamic.</p>
+      <div class="book-meta">
+        <span><i class="fas fa-clock"></i> 500 pages</span>
+        <span><i class="fas fa-language"></i> Urdu / English</span>
+        <span><i class="fas fa-calendar"></i> 2010</span>
+      </div>
+      <div class="book-actions">
+        <button class="book-action-btn primary">Get Book</button>
+        <a href="tahir.html" class="book-action-btn secondary button-link">Read Summary</a>
+      </div>
+    </div>
+  </div>
 
-    function showHadith() {
-      hadithModal.classList.add('active');
-      if(document.getElementById('hadithText').innerText === 'Loading...') randomHadith();
-    }
+  <!-- Gallery Section -->
+  <div class="section-title" id="gallery">Islamic Event Gallery</div>
+  <div class="gallery-masonry">
+    <img src="https://images.unsplash.com/photo-1560421683-258635f7a58a?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event" class="gallery-img"/>
+    <img src="https://images.unsplash.com/photo-1601599714603-3c1d56bad9f7?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event" class="gallery-img"/>
+    <img src="https://images.unsplash.com/photo-1584552620664-148d740a514c?auto=format&fit=crop&w=1000&q=80" alt="Islamic Event" class="gallery-img"/>
+  </div>
 
-    function closeHadith() {
-      hadithModal.classList.remove('active');
-    }
+  <!-- Personal Details -->
+  <section class="personal-details">
+    <div class="section-title">My Opinion</div>
+    <div class="detail-content">
+      <p>"Through knowledge and understanding, we can bridge the gap between tradition and modernity, creating a harmonious society that respects Islamic values."</p>
+    </div>
+    
+    <div class="section-title">Qualification</div>
+    <div class="detail-content">
+      <ul>
+        <li>B.A. (History & Political Science)</li>
+        <li>M.A. (History)</li>
+        <li>L.L.B</li>
+      </ul>
+    </div>
 
-    function randomHadith() {
-      const r = hadiths[Math.floor(Math.random() * hadiths.length)];
-      document.getElementById('hadithText').innerText = `"${r.text}"`;
-      document.getElementById('hadithSource').innerText = `— ${r.source}`;
-    }
+    <div class="section-title">Achievement</div>
+    <div class="detail-content">
+      <ul>
+        <li>President at MERCI Educational Foundation</li>
+        <li>Talent Acquisition Specialist</li>
+        <li>Conducted 50+ Public Lectures</li>
+      </ul>
+    </div>
+  </section>
 
-    // Close modal on outside click
-    window.onclick = function(event) {
-      if (event.target == hadithModal) closeHadith();
-    }
+  <!-- Contact -->
+  <div class="section-title" id="contact">Contact Faiz Ali Qadri</div>
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</main>
 
-    // Auto-open Hadith on Load (after 2s)
-    window.onload = function() {
-      setTimeout(showHadith, 2000);
-    }
-  </script>
+<footer>
+  <div class="footer-content">
+    <div class="footer-socials">
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.instagram.com/faiz_ali_qadri" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@edumots" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:faizalipresofmerci@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="footer-text">
+      <p>&copy; 2025 Faiz Ali Qadri | Islamic Scholar & Legal Expert</p>
+      <p>May Allah accept our sincere efforts and guide us to the straight path</p>
+    </div>
+  </div>
+  
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/+918303682611" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with us</span>
+  </a>
+</footer>
 
+<!-- Hadith Popup Modal -->
+<div class="hadith-modal" id="hadithModal">
+  <div class="hadith-modal-content">
+    <button class="hadith-modal-close" id="hadithModalClose">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="hadith-icon">
+      <i class="fas fa-book-open"></i>
+    </div>
+    <h3 class="hadith-title">Daily Hadith</h3>
+    <p class="hadith-text" id="hadithText">Loading...</p>
+    <p class="hadith-source" id="hadithSource"></p>
+    <button class="hadith-next-btn" id="nextHadith">
+      <i class="fas fa-sync-alt"></i>
+      Show Another Hadith
+    </button>
+  </div>
+</div>
+
+<script>
+  /* =========================================
+     JAVASCRIPT LOGIC
+     ========================================= */
+
+  // 1. MOBILE MENU LOGIC
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu-toggle').checked = false;
+  }
+
+  // 2. VIDEO MODAL LOGIC
+  const videoModal = document.getElementById('videoModal');
+  const videoIframe = document.getElementById('videoIframe');
+  const videoClose = document.getElementById('videoModalClose');
+
+  function openVideo(videoId) {
+    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    videoModal.classList.add('show');
+  }
+
+  function closeVideo() {
+    videoModal.classList.remove('show');
+    videoIframe.src = ''; // Stop video
+  }
+
+  videoClose.addEventListener('click', closeVideo);
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) closeVideo();
+  });
+
+  // 3. HADITH MODAL LOGIC
+  const hadiths = [
+    { text: "The best among you are those who have the best manners and character.", source: "Sahih al-Bukhari 3559" },
+    { text: "Kindness is a mark of faith, and whoever is not kind has no faith.", source: "Sahih Muslim 78" },
+    { text: "The strong person is not the one who can wrestle, but the one who controls himself when angry.", source: "Sahih al-Bukhari 6114" },
+    { text: "None of you truly believes until he loves for his brother what he loves for himself.", source: "Sahih al-Bukhari 13" },
+    { text: "A good word is charity.", source: "Sahih al-Bukhari 2989" },
+    { text: "Make things easy and do not make them difficult, cheer the people up and do not drive them away.", source: "Sahih al-Bukhari 69" },
+    { text: "Richness is not having many possessions, but richness is being content with oneself.", source: "Sahih al-Bukhari 6446" }
+  ];
+
+  const hadithModal = document.getElementById('hadithModal');
+  const hadithText = document.getElementById('hadithText');
+  const hadithSource = document.getElementById('hadithSource');
+  const hadithClose = document.getElementById('hadithModalClose');
+  const nextHadithBtn = document.getElementById('nextHadith');
+
+  function showRandomHadith() {
+    const random = hadiths[Math.floor(Math.random() * hadiths.length)];
+    hadithText.textContent = `"${random.text}"`;
+    hadithSource.textContent = `— ${random.source}`;
+    hadithModal.classList.add('show');
+  }
+
+  function closeHadith() {
+    hadithModal.classList.remove('show');
+  }
+
+  hadithClose.addEventListener('click', closeHadith);
+  hadithModal.addEventListener('click', (e) => {
+    if (e.target === hadithModal) closeHadith();
+  });
+  nextHadithBtn.addEventListener('click', showRandomHadith);
+
+  // Auto-show Hadith after 2 seconds on load
+  window.addEventListener('load', () => {
+    setTimeout(showRandomHadith, 2000);
+  });
+
+  // Create Floating Button for Hadith manually via JS (as per request)
+  const hadithFloat = document.createElement('div');
+  hadithFloat.className = 'hadith-float';
+  hadithFloat.innerHTML = '<i class="fas fa-book-open"></i>';
+  hadithFloat.title = 'Read Hadith';
+  hadithFloat.onclick = showRandomHadith;
+  document.body.appendChild(hadithFloat);
+
+</script>
 </body>
 </html>
